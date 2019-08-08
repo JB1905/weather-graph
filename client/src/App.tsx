@@ -13,22 +13,20 @@ import Layout from './components/Layout';
 import Global from './components/Global';
 import Background from './components/Background';
 
-const App: React.FC = () => {
-  return (
-    <Layout>
-      <Router basename="/">
-        <Global />
+const App: React.FC = () => (
+  <Layout>
+    <Router basename="/">
+      <Global />
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/city/:id" component={City} />
-          <Redirect from="*" to="/" />
-        </Switch>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/city/:id" component={City} />
+        <Redirect from="*" to="/" />
+      </Switch>
 
-        <Background />
-      </Router>
-    </Layout>
-  );
-};
+      <Background />
+    </Router>
+  </Layout>
+);
 
 export default App;
