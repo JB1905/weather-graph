@@ -1,11 +1,8 @@
 const { ApolloServer } = require('apollo-server');
-
-const typeDefs = require('./schema');
-const resolvers = require('./resolvers');
+require('dotenv').config();
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers
+  modules: [require('./modules/hourly-forecast')]
 });
 
 server.listen().then(({ url }) => {
