@@ -9,14 +9,14 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "apollo-server": "^2.8.2",
+    "apollo-server": "^2.9.2",
     "dotenv": "^8.1.0",
-    "graphql": "^14.4.2",
+    "graphql": "^14.5.4",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "husky": "^3.0.4",
-    "lint-staged": "^9.2.3",
+    "lint-staged": "^9.2.5",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
   }
