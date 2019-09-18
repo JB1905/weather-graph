@@ -5,6 +5,7 @@ const Global = createGlobalStyle`
     min-width: 320px;
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
+    user-select: none;
     color: #fff;
   }
 
