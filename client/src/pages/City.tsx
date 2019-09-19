@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import moment from 'moment';
 import days from 'days';
