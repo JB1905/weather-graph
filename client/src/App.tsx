@@ -33,7 +33,7 @@ const App: React.FC = ({ history }: any) => {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
 
-        history.push(`/coords?${latitude},${longitude}`);
+        history.push(`/coords?lat=${latitude}&lon=${longitude}`);
       });
     }
   };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { withRouter } from 'react-router';
 import { BeatLoader } from 'react-spinners';
+import queryString from 'query-string'
 import moment from 'moment';
 import days from 'days';
 import months from 'months';
@@ -16,10 +17,12 @@ import { roundTemperature, toUnit } from '../helpers';
 import { COORDS_QUERY } from '../Query';
 
 const Coords: React.FC = ({ location }: any) => {
+  const { lat, lon } = queryString.parse(location.search);
+
   const { loading, error, data } = useQuery(COORDS_QUERY, {
     variables: {
-      lat: parseFloat(location.search.split(',')[0].replace('?', '')),
-      lon: parseFloat(location.search.split(',')[1])
+      lat: parseFloat(lat as string), 
+      lon: parseFloat(lon as string), 
     }
   });
 
