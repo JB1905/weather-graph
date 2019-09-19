@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
 
-export const Home = () => (
+export const Home: React.FC = () => (
   <>
     <FontAwesomeIcon
       icon={faCloudSun}

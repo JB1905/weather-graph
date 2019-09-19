@@ -16,7 +16,7 @@ import { roundTemperature, toUnit } from '../helpers';
 
 import { FORECAST_QUERY } from '../Query';
 
-const City = ({ match }: any) => {
+const City: React.FC = ({ match }: any) => {
   const dispatch = useDispatch();
 
   const { loading, error, data } = useQuery(FORECAST_QUERY, {
@@ -33,21 +33,19 @@ const City = ({ match }: any) => {
     return <p>An error occured!</p>;
   }
 
-  const { list, city } = data.hourlyForecastByName;
+  const { dt,weather, name, main } = data.currentForecastByName;
 
-  const now = list[0];
-
-  const time = moment.unix(now.dt);
+  const time = moment.unix(dt);
 
   dispatch({
     type: 'SET_BACKGROUND_COLOR',
-    payload: now.weather[0].description
+    payload: weather[0].description
   });
 
   return (
     <>
       <Inner left>
-        <Title>{city.name}</Title>
+        <Title>{name}</Title>
 
         <Time>
           {days[time.day()]}, {time.date()} {months[time.month()]} {time.year()}
@@ -55,12 +53,12 @@ const City = ({ match }: any) => {
       </Inner>
 
       <Inner>
-        <p>{now.weather[0].description}</p>
+        <p>{weather[0].description}</p>
 
-        <Temperature>{roundTemperature(toUnit(now.main.temp))}</Temperature>
+        <Temperature>{roundTemperature(toUnit(main.temp))}</Temperature>
 
-        <p>Pressure: {now.main.pressure}</p>
-        <p>Humidity: {now.main.humidity}</p>
+        <p>Pressure: {main.pressure}</p>
+        <p>Humidity: {main.humidity}</p>
       </Inner>
     </>
   );

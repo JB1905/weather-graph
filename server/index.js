@@ -2,7 +2,7 @@ const { ApolloServer } = require('apollo-server');
 require('dotenv').config();
 
 const server = new ApolloServer({
-  modules: [require('./modules/hourly-forecast')]
+  modules: [require('./modules/current-forecast')]
 });
 
 server.listen().then(({ url }) => {

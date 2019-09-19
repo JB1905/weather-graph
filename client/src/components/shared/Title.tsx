@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { sm } from '../../helpers';
-
 const Title = styled.h1<{ sub?: boolean; visible?: boolean }>`
   ${({ sub }) =>
     sub
@@ -11,10 +9,6 @@ const Title = styled.h1<{ sub?: boolean; visible?: boolean }>`
   `
       : `
     font-size: 20px;
-
-    // @media (min-width: ${sm}) {
-    //   font-size: 24px;
-    // }
   `}
 
   display: ${({ visible = true }) => (visible ? 'block' : 'none')};
