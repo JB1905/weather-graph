@@ -31,7 +31,7 @@ const Coords: React.FC = ({ location }: any) => {
     return <p>An error occured!</p>;
   }
 
-  const { dt,weather, name, main } = data.currentForecastByCoords;
+  const { dt, weather, name, main } = data.currentForecastByCoords;
 
   const time = moment.unix(dt);
 

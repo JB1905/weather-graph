@@ -12,7 +12,7 @@ export const FORECAST_QUERY = gql`
       }
       weather {
         description
-      } 
+      }
       wind {
         speed
       }

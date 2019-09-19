@@ -33,7 +33,7 @@ const City: React.FC = ({ match }: any) => {
     return <p>An error occured!</p>;
   }
 
-  const { dt,weather, name, main } = data.currentForecastByName;
+  const { dt, weather, name, main } = data.currentForecastByName;
 
   const time = moment.unix(dt);
 
