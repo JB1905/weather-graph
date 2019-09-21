@@ -6,7 +6,7 @@ import queryString from 'query-string'
 import moment from 'moment';
 import days from 'days';
 import months from 'months';
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 
 import Title from '../components/shared/Title';
 import Time from '../components/city/Time';
@@ -19,6 +19,8 @@ import { COORDS_QUERY } from '../Query';
 
 const Coords: React.FC = ({ location }: any) => {
   const dispatch = useDispatch();
+
+  const unit = useSelector((state:any) => state.settings.unit);
   
   const { lat, lon } = queryString.parse(location.search);
 
@@ -30,7 +32,7 @@ const Coords: React.FC = ({ location }: any) => {
   });
 
   if (loading) {
-    return <BeatLoader color={'#fff'} />;
+    return <BeatLoader color="#fff" />;
   }
 
   if (error) {
@@ -59,7 +61,7 @@ const Coords: React.FC = ({ location }: any) => {
       <Inner>
         <p>{weather[0].description}</p>
 
-        <Temperature>{roundTemperature(toUnit(main.temp))}</Temperature>
+        <Temperature>{roundTemperature(toUnit(main.temp, unit), unit)}</Temperature>
 
         <p>Pressure: {main.pressure}</p>
         <p>Humidity: {main.humidity}</p>

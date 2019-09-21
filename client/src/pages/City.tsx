@@ -5,12 +5,13 @@ import { BeatLoader } from 'react-spinners';
 import moment from 'moment';
 import days from 'days';
 import months from 'months';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Title from '../components/shared/Title';
 import Time from '../components/city/Time';
 import Temperature from '../components/shared/Temperature';
 import Inner from '../components/city/Inner';
+import UnitSwitch from '../components/shared/UnitSwitch';
 
 import { roundTemperature, toUnit } from '../helpers';
 
@@ -19,6 +20,8 @@ import { FORECAST_QUERY } from '../Query';
 const City: React.FC = ({ match }: any) => {
   const dispatch = useDispatch();
 
+  const unit = useSelector((state:any) => state.settings.unit);
+
   const { loading, error, data } = useQuery(FORECAST_QUERY, {
     variables: {
       name: match.params.id
@@ -26,7 +29,7 @@ const City: React.FC = ({ match }: any) => {
   });
 
   if (loading) {
-    return <BeatLoader color={'#fff'} />;
+    return <BeatLoader color="#fff" />;
   }
 
   if (error) {
@@ -55,7 +58,9 @@ const City: React.FC = ({ match }: any) => {
       <Inner>
         <p>{weather[0].description}</p>
 
-        <Temperature>{roundTemperature(toUnit(main.temp))}</Temperature>
+        <Temperature>{roundTemperature(toUnit(main.temp, unit), unit)}</Temperature>
+
+        <UnitSwitch />
 
         <p>Pressure: {main.pressure}</p>
         <p>Humidity: {main.humidity}</p>
