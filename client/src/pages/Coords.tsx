@@ -6,6 +6,7 @@ import queryString from 'query-string'
 import moment from 'moment';
 import days from 'days';
 import months from 'months';
+import { useDispatch } from 'react-redux';
 
 import Title from '../components/shared/Title';
 import Time from '../components/city/Time';
@@ -17,6 +18,8 @@ import { roundTemperature, toUnit } from '../helpers';
 import { COORDS_QUERY } from '../Query';
 
 const Coords: React.FC = ({ location }: any) => {
+  const dispatch = useDispatch();
+  
   const { lat, lon } = queryString.parse(location.search);
 
   const { loading, error, data } = useQuery(COORDS_QUERY, {
@@ -37,6 +40,11 @@ const Coords: React.FC = ({ location }: any) => {
   const { dt, weather, name, main } = data.currentForecastByCoords;
 
   const time = moment.unix(dt);
+
+  dispatch({
+    type: 'SET_BACKGROUND_COLOR',
+    payload: weather[0].description
+  });
 
   return (
     <>

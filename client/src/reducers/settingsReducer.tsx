@@ -12,9 +12,9 @@ const settingsReducer = (state = defaultSettings, action: any) => {
       const colors = setBackground(action.payload);
 
       return {
+        ...state,
         gradientStart: colors[0],
-        gradientStop: colors[1],
-        ...state
+        gradientStop: colors[1]
       };
     }
 
@@ -26,7 +26,7 @@ const settingsReducer = (state = defaultSettings, action: any) => {
     }
 
     default:
-      return state;
+      return defaultSettings;
   }
 };
 
