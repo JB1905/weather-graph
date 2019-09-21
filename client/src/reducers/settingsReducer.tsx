@@ -20,8 +20,8 @@ const settingsReducer = (state = defaultSettings, action: any) => {
 
     case 'SET_UNIT': {
       return {
-        unit: action.payload,
-        ...state
+        ...state,
+        unit: action.payload
       };
     }
 
