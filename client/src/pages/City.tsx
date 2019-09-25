@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
-import { withRouter } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import moment from 'moment';
 import days from 'days';
@@ -17,10 +17,12 @@ import { roundTemperature, toUnit } from '../helpers';
 
 import { FORECAST_QUERY } from '../Query';
 
-const City: React.FC = ({ match }: any) => {
+const City: React.FC = () => {
+  const match = useRouteMatch();
+
   const dispatch = useDispatch();
 
-  const unit = useSelector((state:any) => state.settings.unit);
+  const unit = useSelector((state: any) => state.settings.unit);
 
   const { loading, error, data } = useQuery(FORECAST_QUERY, {
     variables: {
@@ -58,7 +60,9 @@ const City: React.FC = ({ match }: any) => {
       <Inner>
         <p>{weather[0].description}</p>
 
-        <Temperature>{roundTemperature(toUnit(main.temp, unit), unit)}</Temperature>
+        <Temperature>
+          {roundTemperature(toUnit(main.temp, unit), unit)}
+        </Temperature>
 
         <UnitSwitch />
 
@@ -69,4 +73,4 @@ const City: React.FC = ({ match }: any) => {
   );
 };
 
-export default withRouter(City);
+export default City;

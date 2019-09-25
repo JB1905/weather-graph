@@ -1,33 +1,36 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
-import queryString from 'query-string'
+import queryString from 'query-string';
 import moment from 'moment';
 import days from 'days';
 import months from 'months';
-import {useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Title from '../components/shared/Title';
 import Time from '../components/city/Time';
 import Temperature from '../components/shared/Temperature';
 import Inner from '../components/city/Inner';
+import UnitSwitch from '../components/shared/UnitSwitch';
 
 import { roundTemperature, toUnit } from '../helpers';
 
 import { COORDS_QUERY } from '../Query';
 
-const Coords: React.FC = ({ location }: any) => {
+const Coords: React.FC = () => {
+  const location = useLocation();
+
   const dispatch = useDispatch();
 
-  const unit = useSelector((state:any) => state.settings.unit);
-  
+  const unit = useSelector((state: any) => state.settings.unit);
+
   const { lat, lon } = queryString.parse(location.search);
 
   const { loading, error, data } = useQuery(COORDS_QUERY, {
     variables: {
-      lat: parseFloat(lat as string), 
-      lon: parseFloat(lon as string), 
+      lat: parseFloat(lat as string),
+      lon: parseFloat(lon as string)
     }
   });
 
@@ -61,7 +64,11 @@ const Coords: React.FC = ({ location }: any) => {
       <Inner>
         <p>{weather[0].description}</p>
 
-        <Temperature>{roundTemperature(toUnit(main.temp, unit), unit)}</Temperature>
+        <Temperature>
+          {roundTemperature(toUnit(main.temp, unit), unit)}
+        </Temperature>
+
+        <UnitSwitch />
 
         <p>Pressure: {main.pressure}</p>
         <p>Humidity: {main.humidity}</p>
@@ -70,4 +77,4 @@ const Coords: React.FC = ({ location }: any) => {
   );
 };
 
-export default withRouter(Coords);
+export default Coords;
