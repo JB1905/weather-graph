@@ -1,9 +1,9 @@
-import { setBackground } from '../helpers';
+import { setBackground, getUnit } from '../helpers';
 
 const defaultSettings = {
   gradientStart: '#4844eb',
   gradientStop: '#0400ba',
-  unit: 'C'
+  unit: getUnit() || 'C'
 };
 
 const settingsReducer = (state = defaultSettings, action: any) => {

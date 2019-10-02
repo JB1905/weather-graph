@@ -59,7 +59,6 @@ const typeDefs = gql`
 
   extend type Query {
     currentForecastByName(name: String!): CurrentForecast!
-    currentForecastById(id: ID!): CurrentForecast!
     currentForecastByCoords(lon: Float!, lat: Float!): CurrentForecast!
   }
 `;
@@ -71,12 +70,9 @@ const resolvers = {
 
       const data = await res.json();
 
-      return data;
-    },
-    currentForecastById: async (parent, { id }) => {
-      const res = await fetch(`${endpoint}&id=${id}`);
-
-      const data = await res.json();
+      if (data.cod === '404') {
+        throw new Error(data.message);
+      }
 
       return data;
     },
@@ -84,6 +80,10 @@ const resolvers = {
       const res = await fetch(`${endpoint}&lat=${lat}&lon=${lon}`);
 
       const data = await res.json();
+
+      if (data.cod === '400') {
+        throw new Error('wrong data type');
+      }
 
       return data;
     }

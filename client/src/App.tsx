@@ -19,7 +19,7 @@ import Button from './components/shared/Button';
 import Main from './components/shared/Main';
 
 const App: React.FC = () => {
-  const history = useHistory()
+  const history = useHistory();
 
   const [isSearch, setIsSearch] = useState(false);
   const [search, setSearch] = useState('');

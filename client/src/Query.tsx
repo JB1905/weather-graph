@@ -15,6 +15,11 @@ export const FORECAST_QUERY = gql`
       }
       wind {
         speed
+        deg
+      }
+      sys {
+        sunrise
+        sunset
       }
       clouds {
         all
@@ -38,6 +43,11 @@ export const COORDS_QUERY = gql`
       }
       wind {
         speed
+        deg
+      }
+      sys {
+        sunrise
+        sunset
       }
       clouds {
         all
