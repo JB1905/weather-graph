@@ -1,7 +1,7 @@
-const { gql } = require('apollo-server');
-const fetch = require('node-fetch');
+import { gql } from 'apollo-server';
+import fetch from 'node-fetch';
 
-const endpoint = require('../utils');
+import endpoint from '../utils';
 
 const typeDefs = gql`
   type CurrentForecast {
@@ -41,7 +41,7 @@ const typeDefs = gql`
 
   type Wind {
     speed: Float!
-    deg: Float!
+    deg: Float
   }
 
   type Clouds {
@@ -65,7 +65,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    currentForecastByName: async (parent, { name }) => {
+    currentForecastByName: async (parent: any, { name }: { name: string }) => {
       const res = await fetch(`${endpoint}&q=${name}`);
 
       const data = await res.json();
@@ -76,7 +76,10 @@ const resolvers = {
 
       return data;
     },
-    currentForecastByCoords: async (parent, { lon, lat }) => {
+    currentForecastByCoords: async (
+      parent: any,
+      { lon, lat }: { lon: number; lat: number }
+    ) => {
       const res = await fetch(`${endpoint}&lat=${lat}&lon=${lon}`);
 
       const data = await res.json();
