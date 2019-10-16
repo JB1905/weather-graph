@@ -9,7 +9,7 @@ const Background = styled.figure<{ start: string; stop: string }>`
   left: 0;
 
   ${({ start, stop }) => `
-    background: linear-gradient(155.9deg, ${start} 0%, ${stop} 100%);
+    background: linear-gradient(160deg, ${start} 0%, ${stop} 100%);
   `}
 `;
 

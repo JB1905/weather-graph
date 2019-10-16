@@ -1,10 +1,4 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "server/index.js", "use": "@now/node-server" },
-    {
-      "src": "client/build/index.html"
-    }
-  ],
-  "routes": []
+  "builds": [{ "src": "*.html", "use": "@now/static" }]
 }

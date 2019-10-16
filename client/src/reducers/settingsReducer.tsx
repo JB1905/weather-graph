@@ -9,7 +9,7 @@ const defaultSettings = {
 const settingsReducer = (state = defaultSettings, action: any) => {
   switch (action.type) {
     case 'SET_BACKGROUND_COLOR': {
-      const colors = setBackground(action.payload);
+      const colors = setBackground(action.payload, action.isNight);
 
       return {
         ...state,

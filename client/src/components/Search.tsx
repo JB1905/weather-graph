@@ -12,8 +12,8 @@ const Search = styled.input<{ visible?: boolean }>`
   border-left: 3px solid #ffffff;
   max-width: calc(100% - 110px);
   font-family: inherit;
-  padding: 8px 20px;
-  margin: 10px 0;
+  padding: 8px 14px;
+  margin: 7px 0;
   color: #fff;
 
   &::placeholder {

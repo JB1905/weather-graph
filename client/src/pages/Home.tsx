@@ -1,9 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 
-export const Home: React.FC = () => {
+const Icon = styled(FontAwesomeIcon)`
+  font-size: 100px;
+  margin-bottom: 36px;
+`;
+
+const Message = styled.p`
+  max-width: 280px;
+  text-align: center;
+  line-height: 1.6;
+`;
+
+const Home: React.FC = () => {
   const dispatch = useDispatch();
 
   dispatch({
@@ -13,14 +25,9 @@ export const Home: React.FC = () => {
 
   return (
     <>
-      <FontAwesomeIcon
-        icon={faCloudSun}
-        style={{ fontSize: 100, marginBottom: 36 }}
-      />
+      <Icon icon={faCloudSun} />
 
-      <p style={{ maxWidth: 280, textAlign: 'center', lineHeight: 1.6 }}>
-        Type city name or get wather for current location
-      </p>
+      <Message>Type city name or get wather for current location</Message>
     </>
   );
 };

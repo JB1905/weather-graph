@@ -3,27 +3,13 @@ import { useQuery } from 'react-apollo';
 import { useLocation } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import queryString from 'query-string';
-import moment from 'moment';
-import days from 'days';
-import months from 'months';
-import { useSelector, useDispatch } from 'react-redux';
 
-import Title from '../components/shared/Title';
-import Time from '../components/city/Time';
-import Temperature from '../components/shared/Temperature';
-import Inner from '../components/city/Inner';
-import UnitSwitch from '../components/shared/UnitSwitch';
-
-import { roundTemperature, toUnit } from '../helpers';
+import Details from '../containers/Details';
 
 import { COORDS_QUERY } from '../Query';
 
 const Coords: React.FC = () => {
   const location = useLocation();
-
-  const dispatch = useDispatch();
-
-  const unit = useSelector((state: any) => state.settings.unit);
 
   const { lat, lon } = queryString.parse(location.search);
 
@@ -34,46 +20,16 @@ const Coords: React.FC = () => {
     }
   });
 
-  if (loading) {
-    return <BeatLoader color="#fff" />;
-  }
-
-  if (error) {
-    return <p>An error occured!</p>;
-  }
-
-  const { dt, weather, name, main } = data.currentForecastByCoords;
-
-  const time = moment.unix(dt);
-
-  dispatch({
-    type: 'SET_BACKGROUND_COLOR',
-    payload: weather[0].description
-  });
-
-  return (
-    <>
-      <Inner left>
-        <Title>{name}</Title>
-
-        <Time>
-          {days[time.day()]}, {time.date()} {months[time.month()]} {time.year()}
-        </Time>
-      </Inner>
-
-      <Inner>
-        <p>{weather[0].description}</p>
-
-        <Temperature>
-          {roundTemperature(toUnit(main.temp, unit), unit)}
-        </Temperature>
-
-        <UnitSwitch />
-
-        <p>Pressure: {main.pressure}</p>
-        <p>Humidity: {main.humidity}</p>
-      </Inner>
-    </>
+  return error ? (
+    error.networkError ? (
+      <p>Connection error!</p>
+    ) : (
+      error.graphQLErrors && <p>{error.graphQLErrors[0].message}!</p>
+    )
+  ) : loading ? (
+    <BeatLoader color="#fff" />
+  ) : (
+    <Details data={data.currentForecastByCoords} />
   );
 };
 

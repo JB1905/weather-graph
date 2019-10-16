@@ -1,15 +1,36 @@
 import tuc from 'temp-units-conv';
+import Color from 'color';
 
 export const sm = '680px';
 
 export const roundTemperature = (temperature: number) => {
-  return `${Math.round(temperature)}ºC`;
+  return `${Math.round(temperature)}`;
+};
+
+const updateColor = ([...colors], isNight?: boolean) => {
+  let temp = [];
+
+  if (isNight) {
+    for (let color of colors) {
+      temp.push(
+        Color(color)
+          .darken(0.5)
+          .hex()
+      );
+    }
+  } else {
+    temp = colors;
+  }
+
+  return temp;
 };
 
 export const toUnit = (temperature: number, unit: 'C' | 'F' = 'C') => {
   window.localStorage.setItem('unit', unit);
 
-  return unit === 'C' ? tuc.k2c(temperature) : tuc.k2f(temperature);
+  const conversion = unit === 'C' ? tuc.k2c(temperature) : tuc.k2f(temperature);
+
+  return Math.round(conversion);
 };
 
 export const getUnit = () => window.localStorage.getItem('unit');
@@ -28,10 +49,11 @@ export const setBackground = (weather: string, isNight?: boolean) => {
       break;
 
     case 'clear sky':
-      colors = ['#03b1fc', '#0380fc'];
+      colors = ['#03b1fc', '#0380fc']
 
       break;
 
+    case 'heavy intensity rain':
     case 'overcast clouds':
       colors = ['#708494', '#707a94'];
 
@@ -42,6 +64,7 @@ export const setBackground = (weather: string, isNight?: boolean) => {
 
       break;
 
+    case 'light snow':
     case 'few clouds':
       colors = ['#5c81fa', '#707a94'];
 
@@ -52,12 +75,15 @@ export const setBackground = (weather: string, isNight?: boolean) => {
 
       break;
 
+    case 'fog':
     case 'moderate rain':
       break;
 
     default:
+      colors = ['#4844eb', '#0400ba'];
+
       break;
   }
 
-  return colors;
+  return updateColor(colors, isNight);
 };
