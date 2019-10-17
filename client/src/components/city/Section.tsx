@@ -6,10 +6,11 @@ const Section = styled.div<{ full?: boolean }>`
     align-items: ${full ? 'flex-end' : 'center'};
     flex-direction: column;
     margin: 14px 0;
+    min-width: 300px;
     
     ${full &&
       `
-        padding: 2% 14%;
+        padding: 2% 12%;
         text-align: right;
       `};
   `}

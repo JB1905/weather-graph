@@ -16,10 +16,10 @@ import Time from '../components/city/Time';
 import Temperature from '../components/shared/Temperature';
 import UnitSwitch from '../components/shared/UnitSwitch';
 
-import { toUnit, sm } from '../helpers';
+import { toUnit } from '../helpers';
 
 const Wrapper = styled.div`
-  @media (min-width: ${sm}) {
+  @media (min-width: 680px) {
     transform: scale(1.1);
   }
 `;
@@ -32,7 +32,7 @@ const Inline = styled.div`
 
 const Item = styled.p`
   svg {
-    width: 24px;
+    min-width: 20px;
     margin-left: 8px;
   }
 `;
@@ -61,8 +61,8 @@ const Details = ({ data }: any) => {
       type: 'SET_BACKGROUND_COLOR',
       payload: weather[0].description,
       isNight: Date.now() < sys.sunrise * 1000 || Date.now() > sys.sunset * 1000
-    })
-  }, [])
+    });
+  }, [dispatch, sys.sunrise, sys.sunset, weather]);
 
   return (
     <Wrapper>

@@ -9,10 +9,9 @@ const Search = styled.input<{ visible?: boolean }>`
   -webkit-appearance: none;
   display: ${({ visible }) => (visible ? 'block' : 'none')};
   border-bottom: 3px solid #ffffff;
-  border-left: 3px solid #ffffff;
   max-width: calc(100% - 110px);
   font-family: inherit;
-  padding: 8px 14px;
+  padding: 8px;
   margin: 7px 0;
   color: #fff;
 

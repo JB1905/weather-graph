@@ -24,11 +24,7 @@ const App: React.FC = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [search, setSearch] = useState('');
 
-  const gradientStart = useSelector(
-    (state: any) => state.settings.gradientStart
-  );
-
-  const gradientStop = useSelector((state: any) => state.settings.gradientStop);
+  const gradient = useSelector((state: any) => state.settings.gradient);
 
   const getDataByCoords = () => {
     if ('geolocation' in navigator) {
@@ -84,7 +80,7 @@ const App: React.FC = () => {
         </Switch>
       </Main>
 
-      <Background start={gradientStart} stop={gradientStop} />
+      <Background gradient={gradient} />
     </Layout>
   );
 };
