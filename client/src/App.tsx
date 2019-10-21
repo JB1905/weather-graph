@@ -59,11 +59,11 @@ const App: React.FC = () => {
         />
 
         <Actions>
-          <Button onClick={getDataByCoords}>
+          <Button onClick={getDataByCoords} aria-label="Current Location">
             <FontAwesomeIcon icon={faLocationArrow} />
           </Button>
 
-          <Button onClick={() => setIsSearch(!isSearch)}>
+          <Button onClick={() => setIsSearch(!isSearch)} aria-label="Toggle Search">
             <FontAwesomeIcon icon={faSearch} />
           </Button>
         </Actions>
