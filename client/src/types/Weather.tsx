@@ -8,4 +8,5 @@ export type Weather =
   | 'few clouds'
   | 'light rain'
   | 'fog'
-  | 'moderate rain';
+  | 'moderate rain'
+  | null;

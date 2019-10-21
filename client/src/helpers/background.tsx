@@ -19,6 +19,7 @@ export const setBackground = (weather: Weather, isNight?: boolean) => {
     'scattered clouds': ['#aac9fa', '#8b9ed6'],
     'clear sky': ['#03b1fc', '#0380fc'],
     'heavy intensity rain': ['#708494', '#707a94'],
+    'very heavy rain': ['#708494', '#707a94'],
     'overcast clouds': ['#708494', '#707a94'],
     'broken clouds': ['#6572ab', '#6665ab'],
     'light snow': ['#5c81fa', '#707a94'],
@@ -29,5 +30,7 @@ export const setBackground = (weather: Weather, isNight?: boolean) => {
     'moderate rain': ['#28506b', '#b8c7d1']
   };
 
-  return updateColor(colors[weather] || ['#4844eb', '#0400ba'], isNight);
+  if (weather) {
+    return updateColor(colors[weather] || ['#4844eb', '#0400ba'], isNight)
+  };
 };
