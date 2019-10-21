@@ -4,8 +4,8 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  min-height: 120px;
+  padding: 20px 30px 0;
+  min-height: 100px;
   width: 100%;
 
   @supports (padding-top: env(safe-area-inset-top)) {

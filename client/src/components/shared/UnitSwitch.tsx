@@ -2,36 +2,64 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
-const Input = styled.input`
-  display: none;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  padding: 5px 0;
 `;
 
-export default () => {
+const Input = styled.div`
+  padding: 7px 0;
+
+  input {
+    display: none;
+
+    & + label {
+      font-size: 18px;
+      width: 24px;
+      height: 20px;
+    }
+
+    &:not(:checked) + label {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+`;
+
+const UnitSwitch = () => {
   const unit = useSelector((state: any) => state.settings.unit);
 
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <label>
-        <Input
+    <Wrapper>
+      <Input>
+        <input
           type="radio"
           name="unit"
           checked={unit === 'C'}
           onChange={() => dispatch({ type: 'SET_UNIT', payload: 'C' })}
+          id="celsius"
         />
-        C
-      </label>
 
-      <label>
-        <Input
+        <label htmlFor="celsius">ºC</label>
+      </Input>
+
+      <Input>
+        <input
           type="radio"
           name="unit"
           checked={unit === 'F'}
           onChange={() => dispatch({ type: 'SET_UNIT', payload: 'F' })}
+          id="fahrenheit"
         />
-        F
-      </label>
-    </div>
+
+        <label htmlFor="fahrenheit">ºF</label>
+      </Input>
+    </Wrapper>
   );
 };
+
+export default UnitSwitch;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
+import { useHistory, Switch, Route, Redirect, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -18,22 +18,20 @@ import Actions from './components/Actions';
 import Button from './components/shared/Button';
 import Main from './components/shared/Main';
 
-const App: React.FC = ({ history }: any) => {
+const App: React.FC = () => {
+  const history = useHistory();
+
   const [isSearch, setIsSearch] = useState(false);
   const [search, setSearch] = useState('');
 
-  const gradientStart = useSelector(
-    (state: any) => state.settings.gradientStart
-  );
-
-  const gradientStop = useSelector((state: any) => state.settings.gradientStop);
+  const gradient = useSelector((state: any) => state.settings.gradient);
 
   const getDataByCoords = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
 
-        history.push(`/coords?${latitude},${longitude}`);
+        history.push(`/coords?lat=${latitude}&lon=${longitude}`);
       });
     }
   };
@@ -82,9 +80,9 @@ const App: React.FC = ({ history }: any) => {
         </Switch>
       </Main>
 
-      <Background start={gradientStart} stop={gradientStop} />
+      <Background gradient={gradient} />
     </Layout>
   );
 };
 
-export default withRouter(App);
+export default App;

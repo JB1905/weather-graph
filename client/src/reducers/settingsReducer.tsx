@@ -1,32 +1,24 @@
 import { setBackground } from '../helpers';
+import { getUnit } from '../helpers/units';
 
 const defaultSettings = {
-  gradientStart: '#4844eb',
-  gradientStop: '#0400ba',
-  unit: 'C'
+  unit: getUnit() || 'C'
 };
 
 const settingsReducer = (state = defaultSettings, action: any) => {
   switch (action.type) {
     case 'SET_BACKGROUND_COLOR': {
-      const colors = setBackground(action.payload);
+      const gradient = setBackground(action.payload, action.isNight);
 
-      return {
-        gradientStart: colors[0],
-        gradientStop: colors[1],
-        ...state
-      };
+      return { ...state, gradient };
     }
 
     case 'SET_UNIT': {
-      return {
-        unit: action.payload,
-        ...state
-      };
+      return { ...state, unit: action.payload };
     }
 
     default:
-      return state;
+      return defaultSettings;
   }
 };
 

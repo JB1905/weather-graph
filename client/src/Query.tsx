@@ -2,26 +2,27 @@ import gql from 'graphql-tag';
 
 export const FORECAST_QUERY = gql`
   query Location($name: String!) {
-    hourlyForecastByName(name: $name) {
-      city {
-        name
+    currentForecastByName(name: $name) {
+      name
+      dt
+      main {
+        temp
+        pressure
+        humidity
       }
-      list {
-        dt
-        main {
-          temp
-          pressure
-          humidity
-        }
-        weather {
-          description
-        }
-        wind {
-          speed
-        }
-        clouds {
-          all
-        }
+      weather {
+        description
+      }
+      wind {
+        speed
+        deg
+      }
+      sys {
+        sunrise
+        sunset
+      }
+      clouds {
+        all
       }
     }
   }
@@ -29,26 +30,27 @@ export const FORECAST_QUERY = gql`
 
 export const COORDS_QUERY = gql`
   query Location($lon: Float!, $lat: Float!) {
-    hourlyForecastByCoords(lon: $lon, lat: $lat) {
-      city {
-        name
+    currentForecastByCoords(lon: $lon, lat: $lat) {
+      name
+      dt
+      main {
+        temp
+        pressure
+        humidity
       }
-      list {
-        dt
-        main {
-          temp
-          pressure
-          humidity
-        }
-        weather {
-          description
-        }
-        wind {
-          speed
-        }
-        clouds {
-          all
-        }
+      weather {
+        description
+      }
+      wind {
+        speed
+        deg
+      }
+      sys {
+        sunrise
+        sunset
+      }
+      clouds {
+        all
       }
     }
   }
