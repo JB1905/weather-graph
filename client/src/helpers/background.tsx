@@ -24,9 +24,10 @@ export const setBackground = (weather: Weather, isNight?: boolean) => {
     'light snow': ['#5c81fa', '#707a94'],
     'few clouds': ['#5c81fa', '#707a94'],
     'light rain': ['#28506b', '#b8c7d1'],
+    'shower rain': ['#28506b', '#b8c7d1'],
     fog: ['#28506b', '#b8c7d1'],
     'moderate rain': ['#28506b', '#b8c7d1']
-  } || ['#4844eb', '#0400ba'];
+  };
 
-  return updateColor(colors[weather], isNight);
+  return updateColor(colors[weather] || ['#4844eb', '#0400ba'], isNight);
 };
