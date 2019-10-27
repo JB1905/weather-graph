@@ -31,6 +31,6 @@ export const setBackground = (weather: Weather, isNight?: boolean) => {
   };
 
   if (weather) {
-    return updateColor(colors[weather] || ['#4844eb', '#0400ba'], isNight)
-  };
+    return updateColor(colors[weather] || ['#4844eb', '#0400ba'], isNight);
+  }
 };

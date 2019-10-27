@@ -63,7 +63,10 @@ const App: React.FC = () => {
             <FontAwesomeIcon icon={faLocationArrow} />
           </Button>
 
-          <Button onClick={() => setIsSearch(!isSearch)} aria-label="Toggle Search">
+          <Button
+            onClick={() => setIsSearch(!isSearch)}
+            aria-label="Toggle Search"
+          >
             <FontAwesomeIcon icon={faSearch} />
           </Button>
         </Actions>
