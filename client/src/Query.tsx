@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const FORECAST_QUERY = gql`
   query Location($name: String!) {
