@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 import fetch from 'node-fetch';
 
-import endpoint from '../utils';
+import { endpoint, appid } from '../utils';
 
 const typeDefs = gql`
   type CurrentForecast {
@@ -66,7 +66,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     currentForecastByName: async (parent: any, { name }: { name: string }) => {
-      const res = await fetch(`${endpoint}&q=${name}`);
+      const res = await fetch(`${endpoint}weather${appid}&q=${name}`);
 
       const data = await res.json();
 
@@ -80,7 +80,9 @@ const resolvers = {
       parent: any,
       { lon, lat }: { lon: number; lat: number }
     ) => {
-      const res = await fetch(`${endpoint}&lat=${lat}&lon=${lon}`);
+      const res = await fetch(
+        `${endpoint}weather${appid}&lat=${lat}&lon=${lon}`
+      );
 
       const data = await res.json();
 

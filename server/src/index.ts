@@ -4,7 +4,10 @@ import { config } from 'dotenv';
 config();
 
 const server = new ApolloServer({
-  modules: [require('./modules/current-forecast')]
+  modules: [
+    require('./modules/current-forecast'),
+    require('./modules/uv-index')
+  ]
 });
 
 server.listen().then(({ url }: { url: string }) => {
