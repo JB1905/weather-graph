@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 8px;
-  padding: 5px 0;
+  padding: 12px 0;
 `;
 
 const Input = styled.div`

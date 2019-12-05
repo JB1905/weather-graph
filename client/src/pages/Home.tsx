@@ -2,7 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useQuery } from '@apollo/client';
+import { BeatLoader } from 'react-spinners';
+
+import { HOME_PAGE_QUERY } from '../Query';
+
+import FavoritesGrid from '../components/home/FavoritesGrid';
+import Favorite from '../components/home/Favorite';
 
 const Icon = styled(FontAwesomeIcon)`
   font-size: 100px;
@@ -18,12 +25,34 @@ const Message = styled.p`
 const Home: React.FC = () => {
   const dispatch = useDispatch();
 
+  const favorite = useSelector((state: any) => state.favorite.items);
+
+  const { loading, error, data } = useQuery(HOME_PAGE_QUERY, {
+    variables: {
+      ids: favorite
+    }
+  });
+
   dispatch({
     type: 'SET_BACKGROUND_COLOR',
     payload: null
   });
 
-  return (
+  return error ? (
+    error.networkError ? (
+      <p>Connection error!</p>
+    ) : (
+      error.graphQLErrors && <p>{error.graphQLErrors[0].message}!</p>
+    )
+  ) : loading ? (
+    <BeatLoader color="#fff" />
+  ) : data.currentForecastByIDs.length > 0 ? (
+    <FavoritesGrid>
+      {data.currentForecastByIDs.map((forecast: any) => (
+        <Favorite data={forecast} />
+      ))}
+    </FavoritesGrid>
+  ) : (
     <>
       <Icon icon={faCloudSun} />
 

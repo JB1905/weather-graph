@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Background = styled.figure<{ gradient?: [string, string] }>`
-  z-index: -1;
+  z-index: -2;
   position: fixed;
   width: 100%;
   height: 100%;

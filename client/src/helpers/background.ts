@@ -27,7 +27,8 @@ export const setBackground = (weather: Weather, isNight?: boolean) => {
     'light rain': ['#28506b', '#b8c7d1'],
     'shower rain': ['#28506b', '#b8c7d1'],
     fog: ['#28506b', '#b8c7d1'],
-    'moderate rain': ['#28506b', '#b8c7d1']
+    'moderate rain': ['#28506b', '#b8c7d1'],
+    smoke: ['#000', '#3f403f']
   };
 
   if (weather) {

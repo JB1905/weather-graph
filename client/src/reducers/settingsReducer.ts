@@ -2,7 +2,8 @@ import { setBackground } from '../helpers';
 import { getUnit } from '../helpers/units';
 
 const defaultSettings = {
-  unit: getUnit() || 'C'
+  unit: getUnit() || 'C',
+  hourlyDisplay: 'summary'
 };
 
 const settingsReducer = (state = defaultSettings, action: any) => {
@@ -17,8 +18,12 @@ const settingsReducer = (state = defaultSettings, action: any) => {
       return { ...state, unit: action.payload };
     }
 
+    case 'SET_HOURLY_DISPLAY': {
+      return { ...state, hourlyDisplay: action.payload };
+    }
+
     default:
-      return defaultSettings;
+      return state;
   }
 };
 

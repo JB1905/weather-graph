@@ -12,7 +12,7 @@ import {
 
 import Title from '../components/shared/Title';
 import Section from '../components/city/Section';
-import Time from '../components/city/Time';
+// import Time from "../components/city/Time";
 import Temperature from '../components/shared/Temperature';
 import UnitSwitch from '../components/shared/UnitSwitch';
 
@@ -31,30 +31,47 @@ const Inline = styled.div`
 `;
 
 const Item = styled.p`
+  margin: 0 10px;
+
   svg {
     min-width: 20px;
     margin-left: 8px;
   }
 `;
 
+const Z = styled.div`
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+`;
+
 const Details = ({ data }: any) => {
-  const { name, weather, main, wind, sys } = data;
+  const { name, weather, main, /* visibility,*/ wind, sys, id } = data;
 
   const dispatch = useDispatch();
 
   const unit = useSelector((state: any) => state.settings.unit);
 
-  const date = new Intl.DateTimeFormat('en-us', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
+  // const date = new Intl.DateTimeFormat("en-us", {
+  //   weekday: "long",
+  //   day: "numeric",
+  //   month: "long",
+  //   year: "numeric"
+  // });
 
   const time = new Intl.DateTimeFormat('en-us', {
     hour: 'numeric',
     minute: 'numeric'
   });
+
+  // const add = () => {
+  //   dispatch({
+  //     type: "ADD_FAVORITE",
+  //     payload: id
+  //   });
+  // };
 
   useEffect(() => {
     dispatch({
@@ -62,18 +79,15 @@ const Details = ({ data }: any) => {
       payload: weather[0].description,
       isNight: Date.now() < sys.sunrise * 1000 || Date.now() > sys.sunset * 1000
     });
-  }, [dispatch, sys.sunrise, sys.sunset, weather]);
+  }, [dispatch, sys.sunrise, sys.sunset, weather, id]);
 
   return (
     <Wrapper>
+      {/* <button onClick={add}>Favorite</button> */}
+      {/* <Section><Time>{date.format(Date.now())}</Time></Section> */}
+
       <Section>
         <Title>{name}</Title>
-
-        <Time>{date.format(Date.now())}</Time>
-      </Section>
-
-      <Section full>
-        <span>{weather[0].description}</span>
 
         <Inline>
           <Temperature>{toUnit(main.temp, unit)}</Temperature>
@@ -81,35 +95,47 @@ const Details = ({ data }: any) => {
           <UnitSwitch />
         </Inline>
 
-        <Item>
-          Pressure: {main.pressure}
-          <FontAwesomeIcon icon={faCompress} />
-        </Item>
+        <span>{weather[0].description}</span>
 
-        <Item>
-          Wind: {wind.speed} km/h
-          <FontAwesomeIcon
+        <Z>
+          <Item>
+            Pressure: {main.pressure}
+            <FontAwesomeIcon icon={faCompress} />
+          </Item>
+
+          <Item>
+            Wind: {wind.speed} km/h
+            <FontAwesomeIcon
+              icon={faArrowUp}
+              style={{ transform: `rotate(${wind.deg}deg)` }}
+            />
+          </Item>
+
+          {/* <Item>
+            Visibility: {visibility} mi
+            <FontAwesomeIcon
             icon={faArrowUp}
             style={{ transform: `rotate(${wind.deg}deg)` }}
           />
-        </Item>
+          </Item> */}
 
-        <Item>
-          Humidity: {main.humidity}
-          <FontAwesomeIcon icon={faTint} />
-        </Item>
-
-        <Inline>
           <Item>
-            {time.format(sys.sunrise * 1000)}
-            <FontAwesomeIcon icon={faArrowCircleUp} />
+            Humidity: {main.humidity}
+            <FontAwesomeIcon icon={faTint} />
           </Item>
 
-          <Item style={{ marginLeft: 20 }}>
-            {time.format(sys.sunset * 1000)}
-            <FontAwesomeIcon icon={faArrowCircleDown} />
-          </Item>
-        </Inline>
+          <Inline>
+            <Item>
+              {time.format(sys.sunrise * 1000)}
+              <FontAwesomeIcon icon={faArrowCircleUp} />
+            </Item>
+
+            <Item>
+              {time.format(sys.sunset * 1000)}
+              <FontAwesomeIcon icon={faArrowCircleDown} />
+            </Item>
+          </Inline>
+        </Z>
       </Section>
     </Wrapper>
   );

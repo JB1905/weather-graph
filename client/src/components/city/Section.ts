@@ -5,7 +5,7 @@ const Section = styled.div<{ full?: boolean }>`
     display: flex;
     align-items: ${full ? 'flex-end' : 'center'};
     flex-direction: column;
-    margin: 14px 0;
+    margin: 14px;
     min-width: 300px;
     
     ${full &&

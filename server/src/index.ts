@@ -5,9 +5,14 @@ config();
 
 const server = new ApolloServer({
   modules: [
-    require('./modules/current-forecast'),
-    require('./modules/uv-index')
+    require('./modules/current-weather'),
+    require('./modules/forecast'),
+    require('./modules/uv-index'),
+    // require('./modules/map'),
+    require('./modules/cities')
   ]
+  // playground: true,
+  // introspection: true
 });
 
 server.listen().then(({ url }: { url: string }) => {
