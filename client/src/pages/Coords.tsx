@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import Details from '../containers/Details';
 import Forecast from '../containers/Forecast';
 // import Image from "../containers/Image";
-// import Maps from "../containers/Maps";
+import Maps from '../containers/Maps';
 
 import { COORDS_QUERY } from '../Query';
 
@@ -16,7 +16,7 @@ const Coords: React.FC = () => {
 
   const { lat, lon } = queryString.parse(location.search);
 
-  const { loading, error, data } = useQuery(COORDS_QUERY, {
+  const { loading, error, data, refetch } = useQuery(COORDS_QUERY, {
     variables: {
       lat: parseFloat(lat as string),
       lon: parseFloat(lon as string)
@@ -33,20 +33,16 @@ const Coords: React.FC = () => {
     <BeatLoader color="#fff" />
   ) : (
     <>
-      {/* <button>Refresh</button> */}
+      <button onClick={() => refetch()}>Refresh</button>
       {/* <Image src={data.cityByName.photos[0].image.web} /> */}
       <Details data={data.currentForecastByCoords} />
-
-      {/* <h3>Daily</h3> */}
+      <h3>Daily</h3>
+      <button onClick={() => null}>Summary</button>
+      <button onClick={() => null}>Details</button>
       <Forecast data={data.forecastByCoords} />
-
-      {/* <h3>Hourly</h3> */}
-      {/* <button onClick={() => null}>Summary</button> */}
-      {/* <button>Details</button>
-      <Forecast data={data.forecastByCoords} />
-
-      <h3>Day Details</h3>*/}
-      {/* <Maps /> */}
+      <h3>Hourly</h3>
+      <h3>Day Details</h3>
+      <Maps />
     </>
   );
 };

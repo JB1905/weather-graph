@@ -8,6 +8,6 @@ const Img = styled.img`
   z-index: -1;
 `;
 
-const Image = ({ src }: { src: string }) => <Img src={src} />;
+const Image = ({ src }: { src: string }) => <Img src={src} alt="" />;
 
 export default Image;
