@@ -8,7 +8,7 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
-    "apollo-server": "^2.9.12",
+    "apollo-server": "^2.9.14",
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
     "node-fetch": "^2.6.0"
@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/graphql": "^14.5.0",
-    "@types/node": "^12.12.14",
+    "@types/node": "^12.12.21",
     "@types/node-fetch": "^2.5.4",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
