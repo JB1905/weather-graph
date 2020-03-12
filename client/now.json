@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "weather-graph",
   "builds": [
     {
       "src": "package.json",

@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "weather-graph-server",
   "env": {
     "WEATHER_API_KEY": "@weather-api-key"
   },
