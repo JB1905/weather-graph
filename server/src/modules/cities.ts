@@ -22,7 +22,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    cityByName: async (parent: any, { name }: { name: string }) => {
+    cityByName: async (_: any, { name }: { name: string }) => {
       const res = await fetch(
         `https://api.teleport.org/api/urban_areas/slug:${name}/images/`
       );

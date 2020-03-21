@@ -66,7 +66,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    currentForecastByName: async (parent: any, { name }: { name: string }) => {
+    currentForecastByName: async (_: any, { name }: { name: string }) => {
       const res = await fetch(`${endpoint}weather${appid}&q=${name}`);
 
       const data = await res.json();
@@ -77,7 +77,7 @@ const resolvers = {
 
       return data;
     },
-    currentForecastByIDs: async (parent: any, { ids }: { ids: string[] }) => {
+    currentForecastByIDs: async (_: any, { ids }: { ids: string[] }) => {
       const forecasts = [];
 
       for (const id of ids) {
@@ -95,7 +95,7 @@ const resolvers = {
       return forecasts;
     },
     currentForecastByCoords: async (
-      parent: any,
+      _: any,
       { lon, lat }: { lon: number; lat: number }
     ) => {
       const res = await fetch(

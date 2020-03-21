@@ -20,7 +20,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     currentUVIndexByCoords: async (
-      parent: any,
+      _: any,
       { lon, lat }: { lon: number; lat: number }
     ) => {
       const res = await fetch(`${endpoint}uvi${appid}&lat=${lat}&lon=${lon}`);

@@ -18,8 +18,6 @@ const typeDefs = gql`
     weather: [ForecastWeather!]!
     clouds: ForecastClouds!
     wind: ForecastWind!
-    # rain: ForecastRain
-    # snow: ForecastSnow
     sys: ForecastSys!
     dt_txt: String!
   }
@@ -51,12 +49,6 @@ const typeDefs = gql`
     deg: Float!
   }
 
-  # type ForecastRain {}
-
-  # type ForecastSnow {
-  #   3h: Float
-  # }
-
   type ForecastSys {
     pod: String!
   }
@@ -81,7 +73,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    forecastByName: async (parent: any, { name }: { name: string }) => {
+    forecastByName: async (_: any, { name }: { name: string }) => {
       const res = await fetch(`${endpoint}forecast${appid}&q=${name}`);
 
       const data = await res.json();
@@ -93,7 +85,7 @@ const resolvers = {
       return data;
     },
     forecastByCoords: async (
-      parent: any,
+      _: any,
       { lon, lat }: { lon: number; lat: number }
     ) => {
       const res = await fetch(
