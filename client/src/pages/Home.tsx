@@ -28,7 +28,7 @@ const Home: React.FC = () => {
 
   const favorite = useSelector((state: any) => state.favorite.items);
 
-  const { loading, error, data } = useQuery(HOME_PAGE_QUERY, {
+  const { loading, error, data } = useQuery<any>(HOME_PAGE_QUERY, {
     variables: {
       ids: favorite,
     },
@@ -39,15 +39,17 @@ const Home: React.FC = () => {
     payload: null,
   });
 
-  return error ? (
-    error.networkError ? (
-      <p>Connection error!</p>
-    ) : (
-      error.graphQLErrors && <p>{error.graphQLErrors[0].message}!</p>
-    )
-  ) : loading ? (
-    <BeatLoader color="#fff" />
-  ) : data.currentForecastByIDs.length > 0 ? (
+  if (loading) return <BeatLoader color="#fff" />;
+
+  if (error) {
+    if (error.networkError) {
+      return <p>Connection error!</p>;
+    } else {
+      return <p>{error.graphQLErrors[0].message}!</p>;
+    }
+  }
+
+  return data.currentForecastByIDs.length > 0 ? (
     <FavoritesGrid>
       {data.currentForecastByIDs.map((forecast: any) => (
         <Favorite data={forecast} />

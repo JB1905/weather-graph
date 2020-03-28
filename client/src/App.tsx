@@ -27,6 +27,8 @@ import Main from './components/shared/Main';
 import { useGeolocation } from './hooks/useGeolocation';
 import { useSearch } from './hooks/useSearch';
 
+import { ReactComponent as Logo } from './assets/logo.svg';
+
 const List = styled.ul`
   display: flex;
   list-style: none;
@@ -49,14 +51,21 @@ const ListItem = styled.li`
 
 const HeaderInner = styled.div`
   display: flex;
-  max-width: 700px;
   width: 100%;
   margin: 0 auto;
   justify-content: space-between;
 `;
 
+const AppLogo = styled(Logo)`
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+`;
+
 const App: React.FC = () => {
-  const gradient = useSelector((state: any) => state.settings.gradient);
+  const gradient: any = useSelector<{
+    settings: { gradient: [string, string] };
+  }>((state) => state.settings.gradient);
 
   const { getDataByCoords } = useGeolocation();
 
@@ -67,23 +76,25 @@ const App: React.FC = () => {
       <Header>
         <HeaderInner>
           <List>
-            {/* <ListItem>
-              <Link to="/">Home</Link>
-            </ListItem> */}
+            <Link to="/">
+              <AppLogo />
+            </Link>
 
-            <ListItem>
-              <Link to="/maps">
-                <FontAwesomeIcon icon={faMap} />
-                Maps
-              </Link>
-            </ListItem>
+            <List>
+              <ListItem>
+                <Link to="/maps">
+                  <FontAwesomeIcon icon={faMap} />
+                  Maps
+                </Link>
+              </ListItem>
 
-            <ListItem>
-              <Link to="/favorite">
-                <FontAwesomeIcon icon={faStar} />
-                Favorite
-              </Link>
-            </ListItem>
+              <ListItem>
+                <Link to="/favorite">
+                  <FontAwesomeIcon icon={faStar} />
+                  Favorite
+                </Link>
+              </ListItem>
+            </List>
           </List>
 
           <Actions>

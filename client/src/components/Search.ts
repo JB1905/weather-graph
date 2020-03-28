@@ -8,8 +8,6 @@ const Search = styled.input<{ visible?: boolean }>`
   text-transform: inherit;
   -webkit-appearance: none;
   display: ${({ visible }) => (visible ? 'block' : 'none')};
-  // border-bottom: 3px solid #ffffff;
-  // max-width: calc(100% - 110px);
   font-family: inherit;
   padding: 8px;
   margin: 7px 0;

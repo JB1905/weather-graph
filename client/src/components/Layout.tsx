@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from 'react-viewport-hooks';
 
-import { Children } from '../types/Children';
-
 const Layout = styled.div<{ size: string }>`
-  // max-width: 650px;
+  max-width: 650px;
   margin: 0 auto;
   min-height: 100vh;
   min-height: ${({ size }) => size};
@@ -19,7 +17,7 @@ const Layout = styled.div<{ size: string }>`
   // }
 `;
 
-export default ({ children }: { children: Children }) => {
+export default ({ children }: any) => {
   const { vh } = useViewport();
 
   const { matches } = window.matchMedia('(display-mode: standalone)');
