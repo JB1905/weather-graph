@@ -8,11 +8,13 @@ const Section = styled.div<{ full?: boolean }>`
     margin: 14px;
     min-width: 300px;
     
-    ${full &&
+    ${
+      full &&
       `
         padding: 2% 12%;
         text-align: right;
-      `};
+      `
+    };
   `}
 
   p {

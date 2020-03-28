@@ -4,13 +4,14 @@ const Title = styled.h1<{ sub?: boolean; visible?: boolean }>`
   ${({ sub }) =>
     sub
       ? `
-    font-size: 24px;
+    font-size: 2.4rem;
     margin: 0 14px;
   `
       : `
-    font-size: 20px;
+    font-size: 2.4rem;
   `}
 
+  text-align: center;
   display: ${({ visible = true }) => (visible ? 'block' : 'none')};
   padding: 16px 0;
 

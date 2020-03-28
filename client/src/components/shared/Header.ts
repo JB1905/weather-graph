@@ -4,13 +4,13 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px 0;
-  height: 100px;
+  padding: 0 30px;
+  min-height: 60px;
   width: 100%;
 
-  @supports (padding-top: env(safe-area-inset-top)) {
-    padding-top: calc(env(safe-area-inset-top) + 20px);
-  }
+  // background-color: #4844eb;
+
+  padding-top: env(safe-area-inset-top);
 `;
 
 export default Header;

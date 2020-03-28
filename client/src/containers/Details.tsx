@@ -7,7 +7,7 @@ import {
   faArrowCircleDown,
   faCompress,
   faTint,
-  faArrowUp
+  faArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Title from '../components/shared/Title';
@@ -63,7 +63,7 @@ const Details = ({ data }: any) => {
 
   const time = new Intl.DateTimeFormat('en-us', {
     hour: 'numeric',
-    minute: 'numeric'
+    minute: 'numeric',
   });
 
   // const add = () => {
@@ -77,7 +77,8 @@ const Details = ({ data }: any) => {
     dispatch({
       type: 'SET_BACKGROUND_COLOR',
       payload: weather[0].description,
-      isNight: Date.now() < sys.sunrise * 1000 || Date.now() > sys.sunset * 1000
+      isNight:
+        Date.now() < sys.sunrise * 1000 || Date.now() > sys.sunset * 1000,
     });
   }, [dispatch, sys.sunrise, sys.sunset, weather, id]);
 

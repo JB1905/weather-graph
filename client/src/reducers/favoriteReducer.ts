@@ -1,7 +1,7 @@
 import { getFavorite, setFavorite } from '../helpers/favorite';
 
 const defaultSettings = {
-  items: JSON.parse(getFavorite() as string) || []
+  items: JSON.parse(getFavorite() as string) || [],
 };
 
 const favoriteReducer = (state = defaultSettings, action: any) => {

@@ -6,7 +6,7 @@ const Map = ReactMapboxGl({
     'pk.eyJ1IjoiamJpZXNpYWRhIiwiYSI6ImNrM2Rqd29kYzE1enkzY21yNmd1bWpyZjEifQ.hW3qkXhLpbvOdG5_-PYAVw',
 });
 
-const Maps = () => {
+const Maps: React.FC = () => {
   const [layer, setLayer] = useState('clouds_new');
 
   const RASTER_SOURCE_OPTIONS = {
@@ -18,7 +18,7 @@ const Maps = () => {
   };
 
   return (
-    <div style={{ height: 300, width: 700, zIndex: 100 }}>
+    <div style={{ height: 300, width: '100%' }}>
       <button onClick={() => setLayer('clouds_new')}>Clouds</button>
 
       <button onClick={() => setLayer('precipitation_new')}>

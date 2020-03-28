@@ -8,7 +8,7 @@ const Background = styled.figure<{ gradient?: [string, string] }>`
   top: 0;
   left: 0;
 
-  ${({ gradient = ['#4844eb', '#0400ba'] }) => `
+  ${({ gradient = ['#0400ba', '#4844eb'] }) => `
     background: linear-gradient(160deg, ${gradient[0]} 0%, ${gradient[1]} 100%);
   `}
 `;

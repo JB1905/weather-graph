@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Time = styled.time`
-  font-size: 14px;
+  font-size: 1.4rem;
   display: block;
   text-align: center;
 `;

@@ -6,10 +6,10 @@ import queryString from 'query-string';
 
 import Details from '../containers/Details';
 import Forecast from '../containers/Forecast';
-// import Image from "../containers/Image";
+import Image from '../containers/Image';
 import Maps from '../containers/Maps';
 
-import { COORDS_QUERY } from '../Query';
+import { COORDS_QUERY } from '../api/query';
 
 const Coords: React.FC = () => {
   const location = useLocation();
@@ -19,8 +19,8 @@ const Coords: React.FC = () => {
   const { loading, error, data, refetch } = useQuery(COORDS_QUERY, {
     variables: {
       lat: parseFloat(lat as string),
-      lon: parseFloat(lon as string)
-    }
+      lon: parseFloat(lon as string),
+    },
   });
 
   return error ? (
@@ -34,7 +34,7 @@ const Coords: React.FC = () => {
   ) : (
     <>
       <button onClick={() => refetch()}>Refresh</button>
-      {/* <Image src={data.cityByName.photos[0].image.web} /> */}
+      <Image src={data.cityByName.photos[0].image.web} />
       <Details data={data.currentForecastByCoords} />
       <h3>Daily</h3>
       <button onClick={() => null}>Summary</button>
@@ -42,7 +42,6 @@ const Coords: React.FC = () => {
       <Forecast data={data.forecastByCoords} />
       <h3>Hourly</h3>
       <h3>Day Details</h3>
-      <Maps />
     </>
   );
 };

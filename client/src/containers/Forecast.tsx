@@ -15,7 +15,7 @@ const Item = styled.div`
 `;
 
 const Forecast = ({ data }: any) => {
-  console.log(data.list);
+  // console.log(data.list);
 
   const [chart, setChart] = useState('wind');
 

@@ -5,7 +5,7 @@ import { BeatLoader } from 'react-spinners';
 
 import Details from '../containers/Details';
 
-import { FORECAST_QUERY } from '../Query';
+import { FORECAST_QUERY } from '../api/query';
 
 const parseError = (message: string) => {
   switch (message) {
@@ -25,8 +25,8 @@ const City: React.FC = () => {
 
   const { error, loading, data } = useQuery(FORECAST_QUERY, {
     variables: {
-      name: match.params.id
-    }
+      name: match.params.id,
+    },
   });
 
   return error ? (

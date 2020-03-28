@@ -16,7 +16,7 @@ const Input = styled.div`
     display: none;
 
     & + label {
-      font-size: 18px;
+      font-size: 1.8rem;
       width: 24px;
       height: 20px;
     }

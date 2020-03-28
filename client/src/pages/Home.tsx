@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@apollo/client';
 import { BeatLoader } from 'react-spinners';
 
-import { HOME_PAGE_QUERY } from '../Query';
+import { HOME_PAGE_QUERY } from '../api/query';
 
 import FavoritesGrid from '../components/home/FavoritesGrid';
 import Favorite from '../components/home/Favorite';
+import Title from '../components/shared/Title';
 
 const Icon = styled(FontAwesomeIcon)`
-  font-size: 100px;
+  font-size: 10rem;
   margin-bottom: 36px;
 `;
 
@@ -29,13 +30,13 @@ const Home: React.FC = () => {
 
   const { loading, error, data } = useQuery(HOME_PAGE_QUERY, {
     variables: {
-      ids: favorite
-    }
+      ids: favorite,
+    },
   });
 
   dispatch({
     type: 'SET_BACKGROUND_COLOR',
-    payload: null
+    payload: null,
   });
 
   return error ? (
@@ -55,6 +56,8 @@ const Home: React.FC = () => {
   ) : (
     <>
       <Icon icon={faCloudSun} />
+
+      <Title visible>Weather Graph</Title>
 
       <Message>Type city name or get wather for current location</Message>
     </>

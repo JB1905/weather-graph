@@ -4,11 +4,7 @@ import { Weather } from '../types/Weather';
 
 const updateColor = (colors: string[], isNight?: boolean) => {
   if (isNight) {
-    colors = colors.map(color =>
-      Color(color)
-        .darken(0.5)
-        .hex()
-    );
+    colors = colors.map((color) => Color(color).darken(0.5).hex());
   }
 
   return colors;
@@ -28,7 +24,7 @@ export const setBackground = (weather: Weather, isNight?: boolean) => {
     'shower rain': ['#28506b', '#b8c7d1'],
     fog: ['#28506b', '#b8c7d1'],
     'moderate rain': ['#28506b', '#b8c7d1'],
-    smoke: ['#000', '#3f403f']
+    smoke: ['#000', '#3f403f'],
   };
 
   if (weather) {

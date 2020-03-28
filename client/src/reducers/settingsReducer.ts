@@ -3,7 +3,7 @@ import { getUnit } from '../helpers/units';
 
 const defaultSettings = {
   unit: getUnit() || 'C',
-  hourlyDisplay: 'summary'
+  hourlyDisplay: 'summary',
 };
 
 const settingsReducer = (state = defaultSettings, action: any) => {
