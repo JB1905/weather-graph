@@ -1,68 +1,59 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
+import { RouteComponentProps } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { useQuery } from '@apollo/client';
-import { BeatLoader } from 'react-spinners';
+import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
 
-import { HOME_PAGE_QUERY } from '../api/query';
+const FavoriteList = lazy(() => import('../containers/FavoriteList'));
 
-import FavoritesGrid from '../components/home/FavoritesGrid';
-import Favorite from '../components/home/Favorite';
-import Title from '../components/shared/Title';
+const mixin = `
+  display: inline-block;
+  margin: 10px 0;
+`;
+
+const ContentWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto 25px;
+`;
 
 const Icon = styled(FontAwesomeIcon)`
   font-size: 10rem;
-  margin-bottom: 36px;
+  margin: 0 auto 20px;
 `;
 
-const Message = styled.p`
-  max-width: 280px;
-  text-align: center;
-  line-height: 1.6;
+const Title = styled.h1`
+  font-size: 2.4rem;
+
+  ${mixin}
 `;
 
-const Home: React.FC = () => {
-  const dispatch = useDispatch();
+const SubTitle = styled.h2`
+  font-size: 1.6rem;
 
-  const favorite = useSelector((state: any) => state.favorite.items);
+  ${mixin}
+`;
 
-  const { loading, error, data } = useQuery<any>(HOME_PAGE_QUERY, {
-    variables: {
-      ids: favorite,
-    },
-  });
+const Home: React.FC<RouteComponentProps> = () => {
+  const favorites = useSelector((state: any) => state.favorite);
 
-  dispatch({
-    type: 'SET_BACKGROUND_COLOR',
-    payload: null,
-  });
-
-  if (loading) return <BeatLoader color="#fff" />;
-
-  if (error) {
-    if (error.networkError) {
-      return <p>Connection error!</p>;
-    } else {
-      return <p>{error.graphQLErrors[0].message}!</p>;
-    }
-  }
-
-  return data.currentForecastByIDs.length > 0 ? (
-    <FavoritesGrid>
-      {data.currentForecastByIDs.map((forecast: any) => (
-        <Favorite data={forecast} />
-      ))}
-    </FavoritesGrid>
+  return favorites.length > 0 ? (
+    <Suspense fallback="Favorites">
+      <FavoriteList items={favorites} />
+    </Suspense>
   ) : (
-    <>
-      <Icon icon={faCloudSun} />
+    <ContentWrapper>
+      <Icon icon={faCloudSunRain} />
 
-      <Title visible>Weather Graph</Title>
+      <Title>Weather Graph</Title>
 
-      <Message>Type city name or get wather for current location</Message>
-    </>
+      <SubTitle>Type city name or get wather for current location</SubTitle>
+    </ContentWrapper>
   );
 };
 

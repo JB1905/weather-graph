@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const HOME_PAGE_QUERY = gql`
+export const FORECAST_BY_IDS = gql`
   query Location($ids: [ID!]!) {
     currentForecastByIDs(ids: $ids) {
       id
@@ -13,10 +13,15 @@ export const HOME_PAGE_QUERY = gql`
         temp_min
         temp_max
         humidity
+        pressure
       }
       wind {
         deg
         speed
+      }
+      sys {
+        sunrise
+        sunset
       }
     }
   }
@@ -27,112 +32,33 @@ export const FORECAST_QUERY = gql`
     currentForecastByName(name: $name) {
       id
       name
-      dt
-      main {
-        temp
-        pressure
-        humidity
-      }
-      visibility
-      weather {
-        description
-      }
-      wind {
-        speed
-        deg
-      }
-      sys {
-        sunrise
-        sunset
-      }
-      clouds {
-        all
+      coord {
+        lat
+        lon
       }
     }
-
-    # forecastByName(name: $name) {
-    #   list {
-    #     main {
-    #       temp
-    #       temp_min
-    #       temp_max
-    #       pressure
-    #       humidity
-    #     }
-    #     # weather {
-    #     #   description
-    #     # }
-    #     # clouds {
-    #     # }
-    #     wind {
-    #       deg
-    #       speed
-    #     }
-    #   }
-    # }
   }
 `;
 
 export const COORDS_QUERY = gql`
   query Location($lon: Float!, $lat: Float!) {
-    currentForecastByCoords(lon: $lon, lat: $lat) {
-      id
-      name
-      dt
-      main {
-        temp
-        pressure
-        humidity
-      }
-      visibility
-      weather {
-        description
-      }
-      wind {
-        speed
-        deg
-      }
-      sys {
-        sunrise
-        sunset
-      }
-      clouds {
-        all
-      }
-    }
-
     forecastByCoords(lon: $lon, lat: $lat) {
-      list {
-        main {
-          temp
-          temp_min
-          temp_max
-          pressure
-          humidity
-        }
-        # weather {
-        #   description
-        # }
-        # clouds {
-        # }
-        wind {
-          deg
-          speed
+      city {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const CITY_IMAGE = gql`
+  query CityImage($name: String!) {
+    cityByName(name: $name) {
+      photos {
+        image {
+          web
         }
       }
     }
-
-    # currentUVIndexByCoords(lon: $lon, lat: $lat) {
-    #   value
-    # }
-
-    # cityByName(name: "paris") {
-    #   photos {
-    #     image {
-    #       mobile
-    #       web
-    #     }
-    #   }
-    # }
   }
 `;

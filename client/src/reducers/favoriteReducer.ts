@@ -1,21 +1,23 @@
-import { getFavorite, setFavorite } from '../helpers/favorite';
+import { FavoriteAction } from '../enums/favoriteAction';
 
-const defaultSettings = {
-  items: JSON.parse(getFavorite() as string) || [],
-};
+const initialState: string[] = [];
 
-const favoriteReducer = (state = defaultSettings, action: any) => {
+const favoriteReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case 'ADD_FAVORITE': {
-      const favorite = [...state.items, action.payload];
+    case FavoriteAction.ADD: {
+      if (!state.includes(action.payload)) {
+        return [...state, action.payload];
+      }
 
-      setFavorite(JSON.stringify(favorite));
-
-      return { ...state, favorite };
+      return state;
     }
 
-    case 'REMOVE_FAVORITE': {
-      return { ...state };
+    case FavoriteAction.DELETE: {
+      return state.filter((favorite: string) => favorite !== action.payload);
+    }
+
+    case FavoriteAction.CLEAR: {
+      return initialState;
     }
 
     default:

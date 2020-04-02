@@ -3,6 +3,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './reducers';
 
-const store = createStore(rootReducer, composeWithDevTools());
+import { loadState, saveState } from './helpers/storeManager';
+
+const persistedState = loadState();
+
+const store = createStore(rootReducer, persistedState, composeWithDevTools());
+
+store.subscribe(() => {
+  saveState({
+    favorite: store.getState().favorite,
+  });
+});
 
 export default store;

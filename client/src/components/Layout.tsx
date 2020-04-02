@@ -2,25 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import { useViewport } from 'react-viewport-hooks';
 
-const Layout = styled.div<{ size: string }>`
+const LayoutWrapper = styled.div<{ size: string }>`
   max-width: 650px;
   margin: 0 auto;
-  min-height: 100vh;
-  min-height: ${({ size }) => size};
+  height: 100vh;
+  height: ${({ size }) => size};
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  // @media (min-width: 680px) {
-  //   padding: 0 20px;
-  // }
+  // justify-content: center;
+  padding: 0 12px;
 `;
 
-export default ({ children }: any) => {
+const Layout: React.FC = ({ children }) => {
   const { vh } = useViewport();
 
   const { matches } = window.matchMedia('(display-mode: standalone)');
 
-  return <Layout size={matches ? '100vh' : `${vh}px`}>{children}</Layout>;
+  return (
+    <LayoutWrapper size={matches ? '100vh' : `${vh}px`}>
+      {children}
+    </LayoutWrapper>
+  );
 };
+
+export default Layout;

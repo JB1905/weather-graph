@@ -17,7 +17,7 @@ import * as serviceWorker from './serviceWorker';
 
 const httpLink = createHttpLink({
   uri: 'https://weather-graph-server.jb1905.now.sh',
-  // uri: "http://localhost:4000"
+  // uri: 'http://localhost:4000/',
 });
 
 const client = new ApolloClient({

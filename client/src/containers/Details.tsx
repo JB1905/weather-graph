@@ -1,144 +1,92 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { BeatLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
 import {
-  faArrowCircleUp,
-  faArrowCircleDown,
   faCompress,
   faTint,
   faArrowUp,
+  faArrowCircleUp,
+  faArrowCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 
-import Title from '../components/shared/Title';
-import Section from '../components/city/Section';
-// import Time from "../components/city/Time";
-import Temperature from '../components/shared/Temperature';
-import UnitSwitch from '../components/shared/UnitSwitch';
+import { formatTime } from '../helpers/formatDate';
 
-import { toUnit } from '../helpers';
+import { FORECAST_BY_IDS } from '../api/query';
 
-const Wrapper = styled.div`
-  @media (min-width: 680px) {
-    transform: scale(1.1);
-  }
+interface Props {
+  cityId: string;
+}
+
+const DetailsWrapper = styled.div``;
+
+const Description = styled.h3`
+  text-align: center;
+  margin: 10px 0;
 `;
 
-const Inline = styled.div`
+const BadgeWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
+  list-style: none;
+  margin: 0 auto;
+  max-width: 500px;
 `;
 
-const Item = styled.p`
-  margin: 0 10px;
+const Badge = styled.li`
+  margin: 5px 10px;
 
   svg {
-    min-width: 20px;
     margin-left: 8px;
   }
 `;
 
-const Z = styled.div`
-  max-width: 500px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px 0;
-`;
+const Item: React.FC<{ icon: any }> = ({ children, icon }) => {
+  return (
+    <Badge>
+      {children}
+      <FontAwesomeIcon icon={icon} />
+    </Badge>
+  );
+};
 
-const Details = ({ data }: any) => {
-  const { name, weather, main, /* visibility,*/ wind, sys, id } = data;
-
-  const dispatch = useDispatch();
-
-  const unit = useSelector((state: any) => state.settings.unit);
-
-  // const date = new Intl.DateTimeFormat("en-us", {
-  //   weekday: "long",
-  //   day: "numeric",
-  //   month: "long",
-  //   year: "numeric"
-  // });
-
-  const time = new Intl.DateTimeFormat('en-us', {
-    hour: 'numeric',
-    minute: 'numeric',
+const Details: React.FC<Props> = ({ cityId }) => {
+  const { error, loading, data } = useQuery<any>(FORECAST_BY_IDS, {
+    variables: {
+      ids: [cityId],
+    },
   });
 
-  // const add = () => {
-  //   dispatch({
-  //     type: "ADD_FAVORITE",
-  //     payload: id
-  //   });
-  // };
+  if (loading) return <BeatLoader color="#fff" />;
 
-  useEffect(() => {
-    dispatch({
-      type: 'SET_BACKGROUND_COLOR',
-      payload: weather[0].description,
-      isNight:
-        Date.now() < sys.sunrise * 1000 || Date.now() > sys.sunset * 1000,
-    });
-  }, [dispatch, sys.sunrise, sys.sunset, weather, id]);
+  if (error) return <p>{error.graphQLErrors[0].message}</p>;
+
+  const { weather, main, wind, sys } = data.currentForecastByIDs[0];
 
   return (
-    <Wrapper>
-      {/* <button onClick={add}>Favorite</button> */}
-      {/* <Section><Time>{date.format(Date.now())}</Time></Section> */}
+    <DetailsWrapper>
+      <Description>{weather[0].description}</Description>
 
-      <Section>
-        <Title>{name}</Title>
+      {/* <Badge>{main.temp}</Badge> */}
+      {/* <Item>{main.temp_min}</Item> */}
+      {/* <Badge>{main.temp_max}</Badge> */}
 
-        <Inline>
-          <Temperature>{toUnit(main.temp, unit)}</Temperature>
+      <BadgeWrapper>
+        <Item icon={faCompress}>Pressure: {main.pressure} hPa</Item>
 
-          <UnitSwitch />
-        </Inline>
+        <Item icon={faArrowUp}>
+          Wind: {wind.speed} km/h
+          {/* {wind.deg} */}
+        </Item>
 
-        <span>{weather[0].description}</span>
+        <Item icon={faTint}>Humidity: {main.humidity}%</Item>
 
-        <Z>
-          <Item>
-            Pressure: {main.pressure}
-            <FontAwesomeIcon icon={faCompress} />
-          </Item>
-
-          <Item>
-            Wind: {wind.speed} km/h
-            <FontAwesomeIcon
-              icon={faArrowUp}
-              style={{ transform: `rotate(${wind.deg}deg)` }}
-            />
-          </Item>
-
-          {/* <Item>
-            Visibility: {visibility} mi
-            <FontAwesomeIcon
-            icon={faArrowUp}
-            style={{ transform: `rotate(${wind.deg}deg)` }}
-          />
-          </Item> */}
-
-          <Item>
-            Humidity: {main.humidity}
-            <FontAwesomeIcon icon={faTint} />
-          </Item>
-
-          <Inline>
-            <Item>
-              {time.format(sys.sunrise * 1000)}
-              <FontAwesomeIcon icon={faArrowCircleUp} />
-            </Item>
-
-            <Item>
-              {time.format(sys.sunset * 1000)}
-              <FontAwesomeIcon icon={faArrowCircleDown} />
-            </Item>
-          </Inline>
-        </Z>
-      </Section>
-    </Wrapper>
+        <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
+        <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
+      </BadgeWrapper>
+    </DetailsWrapper>
   );
 };
 

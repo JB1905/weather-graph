@@ -1,17 +1,11 @@
-import { useHistory } from 'react-router-dom';
-
 export const useGeolocation = () => {
-  const history = useHistory();
-
-  const getDataByCoords = () => {
+  const getCoords = (currentCoords: (coords: Coordinates) => void) => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-
-        history.push(`/coords?lat=${latitude}&lon=${longitude}`);
+        currentCoords(position.coords);
       });
     }
   };
 
-  return { getDataByCoords };
+  return { getCoords };
 };
