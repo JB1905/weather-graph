@@ -10,7 +10,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Background from './components/Background';
 import Global from './components/Global';
-import Brand from './components/Brand';
+import BrandLink from './components/BrandLink';
 import ActionButton from './components/ActionButton';
 
 import SearchForm from './containers/SearchForm';
@@ -18,6 +18,8 @@ import SearchForm from './containers/SearchForm';
 import { useUrl } from './hooks/useUrl';
 import { useGeolocation } from './hooks/useGeolocation';
 import { useBackground } from './hooks/useBackground';
+
+import { ReactComponent as Logo } from './assets/logo.svg';
 
 const App: React.FC = () => {
   const history = useHistory();
@@ -40,7 +42,9 @@ const App: React.FC = () => {
 
       <Layout>
         <Header>
-          <Brand to="/" />
+          <BrandLink to="/">
+            <Logo />
+          </BrandLink>
 
           <SearchForm
             onSubmit={(query) => history.push(`/city/${formatUrl(query)}`)}

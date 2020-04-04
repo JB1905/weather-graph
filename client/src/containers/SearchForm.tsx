@@ -12,19 +12,21 @@ const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
   overflow: hidden;
+  max-width: 300px;
+  width: 100%;
 `;
 
 const SearchField = styled.input`
   flex: 1;
   border: 0;
-  font-size: 1.8rem;
+  // font-size: 1.8rem;
   background: none;
   border-radius: 2px;
   text-transform: inherit;
   -webkit-appearance: none;
   font-family: inherit;
-  padding: 8px;
-  margin: 7px 0;
+  padding: 0 8px;
+  // margin: 7px 0;
   color: #fff;
 
   &::placeholder {

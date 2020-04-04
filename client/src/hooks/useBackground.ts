@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import Color from 'color';
 
 import { SET_BACKGROUND_COLOR } from '../actions/appearanceActions';
 
@@ -7,7 +8,7 @@ import { weatherThemes } from '../constants/weatherThemes';
 export const useBackground = () => {
   const dispatch = useDispatch();
 
-  const setBackground = (description: string) => {
+  const setBackground = (description: string, isDark: boolean) => {
     dispatch({
       type: SET_BACKGROUND_COLOR,
       // payload: weatherThemes[description],
