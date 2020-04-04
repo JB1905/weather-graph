@@ -47,6 +47,8 @@ const ItemSection = styled.div`
   }
 `;
 
+const Pin = styled.button``;
+
 const FavoriteList: React.FC<Props> = ({ items }) => {
   const { error, loading, data } = useQuery<{
     currentForecastByIDs: Favorite[] | any;
@@ -75,6 +77,8 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
               <p>{main.temp_max}</p>
               <p>{main.temp_min}</p>
             </ItemSection>
+
+            {/* <Pin onClick={null}></Pin> */}
           </Item>
         )
       )}

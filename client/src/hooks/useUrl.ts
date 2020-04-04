@@ -1,7 +1,11 @@
 export const useUrl = () => {
-  const parseUrl = (url: string) => {
+  const formatUrl = (url: string) => {
     return url.toLowerCase().replace(' ', '-');
   };
 
-  return { parseUrl };
+  const parseUrl = (url: string) => {
+    return url.replace('-', ' ');
+  };
+
+  return { formatUrl, parseUrl };
 };

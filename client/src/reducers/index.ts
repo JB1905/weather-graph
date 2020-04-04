@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
-// import settingsReducer from './settingsReducer';
 import favoriteReducer from './favoriteReducer';
+import appearanceReducer from './appearanceReducer';
+import unitReducer from './unitReducer';
 
 const rootReducer = combineReducers({
-  // settings: settingsReducer,
   favorite: favoriteReducer,
+  appearance: appearanceReducer,
+  unit: unitReducer,
 });
 
 export default rootReducer;

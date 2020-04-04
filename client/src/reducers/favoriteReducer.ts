@@ -1,10 +1,14 @@
-import { FavoriteAction } from '../enums/favoriteAction';
+import {
+  ADD_FAVORITE,
+  DELETE_FAVORITE,
+  CLEAR_FAVORITE,
+} from '../actions/favoriteActions';
 
 const initialState: string[] = [];
 
 const favoriteReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case FavoriteAction.ADD: {
+    case ADD_FAVORITE: {
       if (!state.includes(action.payload)) {
         return [...state, action.payload];
       }
@@ -12,11 +16,11 @@ const favoriteReducer = (state = initialState, action: any) => {
       return state;
     }
 
-    case FavoriteAction.DELETE: {
+    case DELETE_FAVORITE: {
       return state.filter((favorite: string) => favorite !== action.payload);
     }
 
-    case FavoriteAction.CLEAR: {
+    case CLEAR_FAVORITE: {
       return initialState;
     }
 

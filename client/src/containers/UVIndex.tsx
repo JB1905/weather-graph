@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UVIndex = () => {
+const UVIndex: React.FC = () => {
   return <></>;
 };
 

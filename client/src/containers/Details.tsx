@@ -13,6 +13,8 @@ import styled from 'styled-components';
 
 import { formatTime } from '../helpers/formatDate';
 
+import { useUnits } from '../hooks/useUnits';
+
 import { FORECAST_BY_IDS } from '../api/query';
 
 interface Props {
@@ -59,6 +61,8 @@ const Details: React.FC<Props> = ({ cityId }) => {
     },
   });
 
+  const { setUnit } = useUnits();
+
   if (loading) return <BeatLoader color="#fff" />;
 
   if (error) return <p>{error.graphQLErrors[0].message}</p>;
@@ -67,11 +71,9 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
   return (
     <DetailsWrapper>
-      <Description>{weather[0].description}</Description>
+      <Badge>{main.temp}</Badge>
 
-      {/* <Badge>{main.temp}</Badge> */}
-      {/* <Item>{main.temp_min}</Item> */}
-      {/* <Badge>{main.temp_max}</Badge> */}
+      <Description>{weather[0].description}</Description>
 
       <BadgeWrapper>
         <Item icon={faCompress}>Pressure: {main.pressure} hPa</Item>

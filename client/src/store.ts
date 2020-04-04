@@ -12,6 +12,7 @@ const store = createStore(rootReducer, persistedState, composeWithDevTools());
 store.subscribe(() => {
   saveState({
     favorite: store.getState().favorite,
+    unit: store.getState().unit,
   });
 });
 

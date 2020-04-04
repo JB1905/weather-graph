@@ -1,6 +1,5 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
 import { useQuery } from '@apollo/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +11,9 @@ import ErrorMessage from '../components/ErrorMessage';
 
 import { FORECAST_QUERY } from '../api/query';
 
-import { FavoriteAction } from '../enums/favoriteAction';
+import { useUrl } from '../hooks/useUrl';
+import { useFavorite } from '../hooks/useFavorite';
+import { useBackground } from '../hooks/useBackground';
 
 import CurrentForecastByName from '../interfaces/CurrentForecastByName';
 
@@ -29,26 +30,25 @@ const PageWrapper = styled.div`
 `;
 
 const City: React.FC<RouteComponentProps | any> = ({ match }) => {
-  const dispatch = useDispatch();
+  const { toggleFavorite } = useFavorite();
 
-  const favorites = useSelector((state: any) => state.favorite);
+  const { parseUrl } = useUrl();
 
-  const togglePin = () => {
-    dispatch({
-      type: favorites.includes(id) ? FavoriteAction.DELETE : FavoriteAction.ADD,
-      payload: id,
-    });
-  };
+  const { setBackground } = useBackground();
 
   const { error, loading, data } = useQuery<{
     currentForecastByName: CurrentForecastByName;
   }>(FORECAST_QUERY, {
     variables: {
-      name: match.params.id,
+      name: parseUrl(match.params.id),
     },
   });
 
-  console.log(error, loading, data);
+  // useEffect(() => {
+  //   setBackground()
+  // }, [])
+
+  // console.log(error, loading, data);
 
   if (loading) return <BeatLoader color="#fff" />;
 
@@ -59,33 +59,25 @@ const City: React.FC<RouteComponentProps | any> = ({ match }) => {
   const { name, id, coord } = data!.currentForecastByName;
 
   return (
-    <PageWrapper>
-      <button onClick={togglePin}>
-        <FontAwesomeIcon icon={faThumbtack} />
-      </button>
+    <Suspense fallback={<BeatLoader color="#fff" />}>
+      <PageWrapper>
+        {/* <button onClick={() => toggleFavorite(id)}>
+          <FontAwesomeIcon icon={faThumbtack} />
+        </button> */}
 
-      <Suspense fallback="Image">
-        <FeaturedImage cityName={name} />
-      </Suspense>
+        {/* <FeaturedImage cityName={name} /> */}
 
-      <Title>{name}</Title>
+        <Title>{name}</Title>
 
-      <Suspense fallback="Details">
         <Details cityId={id} />
-      </Suspense>
 
-      <Suspense fallback="UV Index">
-        <UVIndex />
-      </Suspense>
+        {/* <UVIndex /> */}
 
-      <Suspense fallback="Forecast">
         <Forecast />
-      </Suspense>
 
-      <Suspense fallback="Map">
-        <Map lat={coord.lat} lon={coord.lon} />
-      </Suspense>
-    </PageWrapper>
+        {/* <Map lat={coord.lat} lon={coord.lon} /> */}
+      </PageWrapper>
+    </Suspense>
   );
 };
 

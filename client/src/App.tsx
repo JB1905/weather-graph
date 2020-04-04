@@ -4,7 +4,6 @@ import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
 import Home from './pages/Home';
 import City from './pages/City';
-import Coords from './pages/Coords';
 
 import Layout from './components/Layout';
 import Header from './components/Header';
@@ -16,12 +15,18 @@ import ActionButton from './components/ActionButton';
 
 import SearchForm from './containers/SearchForm';
 
+import { useUrl } from './hooks/useUrl';
 import { useGeolocation } from './hooks/useGeolocation';
+import { useBackground } from './hooks/useBackground';
 
 const App: React.FC = () => {
   const history = useHistory();
 
   const { getCoords } = useGeolocation();
+
+  const { backgroundColor } = useBackground();
+
+  const { formatUrl } = useUrl();
 
   const getLocalForecast = () => {
     getCoords(({ latitude, longitude }) => {
@@ -37,7 +42,9 @@ const App: React.FC = () => {
         <Header>
           <Brand to="/" />
 
-          <SearchForm onSubmit={(query) => history.push(`/city/${query}`)} />
+          <SearchForm
+            onSubmit={(query) => history.push(`/city/${formatUrl(query)}`)}
+          />
 
           <ActionButton icon={faLocationArrow} onClick={getLocalForecast} />
         </Header>
@@ -46,14 +53,14 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/city/:id" component={City} />
-            {/* <Route path="/coords" component={Coords} /> */}
+            <Route path="/coords" component={City} />
 
             <Redirect from="*" to="/" />
           </Switch>
         </Main>
       </Layout>
 
-      <Background />
+      <Background gradient={backgroundColor} />
     </>
   );
 };

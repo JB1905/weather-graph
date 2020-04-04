@@ -1,9 +1,11 @@
 import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
 import { RouteComponentProps } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
+import { BeatLoader } from 'react-spinners';
+
+import { useFavorite } from '../hooks/useFavorite';
 
 const FavoriteList = lazy(() => import('../containers/FavoriteList'));
 
@@ -40,10 +42,10 @@ const SubTitle = styled.h2`
 `;
 
 const Home: React.FC<RouteComponentProps> = () => {
-  const favorites = useSelector((state: any) => state.favorite);
+  const { favorites } = useFavorite();
 
   return favorites.length > 0 ? (
-    <Suspense fallback="Favorites">
+    <Suspense fallback={<BeatLoader color="#fff" />}>
       <FavoriteList items={favorites} />
     </Suspense>
   ) : (
