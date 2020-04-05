@@ -25,7 +25,7 @@ const SearchField = styled.input`
   text-transform: inherit;
   -webkit-appearance: none;
   font-family: inherit;
-  padding: 0 8px;
+  // padding: 0 8px;
   // margin: 7px 0;
   color: #fff;
 

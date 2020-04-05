@@ -11,9 +11,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-import { formatTime } from '../helpers/formatDate';
-
 import { useUnits } from '../hooks/useUnits';
+import { useBackground } from '../hooks/useBackground';
+
+import { formatTime } from '../helpers/formatDate';
 
 import { FORECAST_BY_IDS } from '../api/query';
 
@@ -37,31 +38,41 @@ const BadgeWrapper = styled.ul`
   max-width: 500px;
 `;
 
-const Badge = styled.li`
+const Badge = styled.li<{ iconRotate?: number }>`
   margin: 5px 10px;
 
   svg {
     margin-left: 8px;
+
+    ${({ iconRotate }) =>
+      iconRotate ? `transform: rotate(${iconRotate})` : ''}
   }
 `;
 
-const Item: React.FC<{ icon: any }> = ({ children, icon }) => {
+const Item: React.FC<{ icon: any; iconRotate?: number }> = ({
+  iconRotate,
+  children,
+  icon,
+}) => {
   return (
-    <Badge>
+    <Badge iconRotate={iconRotate}>
       {children}
+
       <FontAwesomeIcon icon={icon} />
     </Badge>
   );
 };
 
 const Details: React.FC<Props> = ({ cityId }) => {
+  const { setBackground } = useBackground();
+
+  const { setUnit } = useUnits();
+
   const { error, loading, data } = useQuery<any>(FORECAST_BY_IDS, {
     variables: {
       ids: [cityId],
     },
   });
-
-  const { setUnit } = useUnits();
 
   if (loading) return <BeatLoader color="#fff" />;
 
@@ -78,15 +89,16 @@ const Details: React.FC<Props> = ({ cityId }) => {
       <BadgeWrapper>
         <Item icon={faCompress}>Pressure: {main.pressure} hPa</Item>
 
-        <Item icon={faArrowUp}>
+        <Item icon={faArrowUp} iconRotate={wind.deg}>
           Wind: {wind.speed} km/h
-          {/* {wind.deg} */}
         </Item>
 
         <Item icon={faTint}>Humidity: {main.humidity}%</Item>
 
+        {/* <div> */}
         <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
         <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
+        {/* </div> */}
       </BadgeWrapper>
     </DetailsWrapper>
   );

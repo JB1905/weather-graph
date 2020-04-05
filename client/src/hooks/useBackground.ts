@@ -9,6 +9,8 @@ export const useBackground = () => {
   const dispatch = useDispatch();
 
   const setBackground = (description: string, isDark: boolean) => {
+    // console.log(description, isDark);
+
     dispatch({
       type: SET_BACKGROUND_COLOR,
       // payload: weatherThemes[description],

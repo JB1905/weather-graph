@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { useQuery } from '@apollo/client';
@@ -9,11 +9,10 @@ import styled from 'styled-components';
 import { Title } from '../components/Typography';
 import ErrorMessage from '../components/ErrorMessage';
 
-import { FORECAST_QUERY } from '../api/query';
-
 import { useUrl } from '../hooks/useUrl';
 import { useFavorite } from '../hooks/useFavorite';
-import { useBackground } from '../hooks/useBackground';
+
+import { FORECAST_QUERY } from '../api/query';
 
 import CurrentForecastByName from '../interfaces/CurrentForecastByName';
 
@@ -21,7 +20,7 @@ const FeaturedImage = lazy(() => import('../containers/FeaturedImage'));
 const Details = lazy(() => import('../containers/Details'));
 const UVIndex = lazy(() => import('../containers/UVIndex'));
 const Forecast = lazy(() => import('../containers/Forecast'));
-const Map = lazy(() => import('../containers/Map'));
+const Maps = lazy(() => import('../containers/Maps'));
 
 const PageWrapper = styled.div`
   display: flex;
@@ -34,8 +33,6 @@ const City: React.FC<RouteComponentProps | any> = ({ match }) => {
 
   const { parseUrl } = useUrl();
 
-  const { setBackground } = useBackground();
-
   const { error, loading, data } = useQuery<{
     currentForecastByName: CurrentForecastByName;
   }>(FORECAST_QUERY, {
@@ -43,12 +40,6 @@ const City: React.FC<RouteComponentProps | any> = ({ match }) => {
       name: parseUrl(match.params.id),
     },
   });
-
-  // useEffect(() => {
-  //   setBackground()
-  // }, [])
-
-  // console.log(error, loading, data);
 
   if (loading) return <BeatLoader color="#fff" />;
 
@@ -61,21 +52,21 @@ const City: React.FC<RouteComponentProps | any> = ({ match }) => {
   return (
     <Suspense fallback={<BeatLoader color="#fff" />}>
       <PageWrapper>
-        {/* <button onClick={() => toggleFavorite(id)}>
+        <button onClick={() => toggleFavorite(id)}>
           <FontAwesomeIcon icon={faThumbtack} />
-        </button> */}
+        </button>
 
-        {/* <FeaturedImage cityName={name} /> */}
+        <FeaturedImage cityName={match.params.id} />
 
         <Title>{name}</Title>
 
         <Details cityId={id} />
 
-        {/* <UVIndex /> */}
+        <UVIndex />
 
         <Forecast />
 
-        {/* <Map lat={coord.lat} lon={coord.lon} /> */}
+        <Maps lat={coord.lat} lon={coord.lon} />
       </PageWrapper>
     </Suspense>
   );
