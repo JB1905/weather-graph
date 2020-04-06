@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { useQuery } from '@apollo/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import { Title } from '../components/Typography';
@@ -33,7 +33,7 @@ const City: React.FC<RouteComponentProps | any> = ({ match }) => {
 
   const { parseUrl } = useUrl();
 
-  const { error, loading, data } = useQuery<{
+  const { error, loading, data, refetch } = useQuery<{
     currentForecastByName: CurrentForecastByName;
   }>(FORECAST_QUERY, {
     variables: {
@@ -53,7 +53,11 @@ const City: React.FC<RouteComponentProps | any> = ({ match }) => {
     <Suspense fallback={<BeatLoader color="#fff" />}>
       <PageWrapper>
         <button onClick={() => toggleFavorite(id)}>
-          <FontAwesomeIcon icon={faThumbtack} />
+          <FontAwesomeIcon icon={faStar} />
+        </button>
+
+        <button onClick={() => refetch()}>
+          <FontAwesomeIcon icon={faStar} />
         </button>
 
         <FeaturedImage cityName={match.params.id} />
@@ -62,9 +66,9 @@ const City: React.FC<RouteComponentProps | any> = ({ match }) => {
 
         <Details cityId={id} />
 
-        <UVIndex />
+        <UVIndex lat={coord.lat} lon={coord.lon} />
 
-        <Forecast />
+        <Forecast cityId={name} />
 
         <Maps lat={coord.lat} lon={coord.lon} />
       </PageWrapper>

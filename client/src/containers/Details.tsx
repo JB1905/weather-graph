@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { BeatLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,11 +18,13 @@ import { formatTime } from '../helpers/formatDate';
 
 import { FORECAST_BY_IDS } from '../api/query';
 
+import { TemperatureUnit } from '../enums/temperatureUnit';
+
 interface Props {
   cityId: string;
 }
 
-const DetailsWrapper = styled.div``;
+const DetailsWrapper = styled.section``;
 
 const Description = styled.h3`
   text-align: center;
@@ -66,13 +68,23 @@ const Item: React.FC<{ icon: any; iconRotate?: number }> = ({
 const Details: React.FC<Props> = ({ cityId }) => {
   const { setBackground } = useBackground();
 
-  const { setUnit } = useUnits();
+  const { temperatureUnit, setUnit, convertUnit } = useUnits();
 
   const { error, loading, data } = useQuery<any>(FORECAST_BY_IDS, {
     variables: {
       ids: [cityId],
     },
   });
+
+  useEffect(() => {
+    if (data) {
+      setBackground(data.currentForecastByIDs[0].weather[0].description, false);
+    }
+
+    // return () => setBackground('', false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (loading) return <BeatLoader color="#fff" />;
 
@@ -82,7 +94,12 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
   return (
     <DetailsWrapper>
-      <Badge>{main.temp}</Badge>
+      <Badge>
+        {convertUnit(main.temp)}
+
+        <button onClick={() => setUnit(TemperatureUnit.CELSIUS)}>C</button>
+        <button onClick={() => setUnit(TemperatureUnit.FAHRENHEIT)}>F</button>
+      </Badge>
 
       <Description>{weather[0].description}</Description>
 
@@ -95,10 +112,10 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
         <Item icon={faTint}>Humidity: {main.humidity}%</Item>
 
-        {/* <div> */}
-        <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
-        <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
-        {/* </div> */}
+        <div>
+          <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
+          <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
+        </div>
       </BadgeWrapper>
     </DetailsWrapper>
   );

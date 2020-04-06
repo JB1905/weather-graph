@@ -12,4 +12,4 @@ export const weatherThemes = {
   fog: ['#28506b', '#b8c7d1'],
   'moderate rain': ['#28506b', '#b8c7d1'],
   smoke: ['#000', '#3f403f'],
-};
+} as any;

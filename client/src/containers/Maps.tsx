@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import ReactMapboxGl, { Source } from 'react-mapbox-gl';
+import ReactMapboxGl, { Source, Layer } from 'react-mapbox-gl';
 import styled from 'styled-components';
 
 interface Props {
   lat: number;
   lon: number;
 }
+
+const MapWrapper = styled.section`
+  flex: 1;
+`;
 
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -37,7 +41,9 @@ const Maps: React.FC<Props> = ({ lat, lon }) => {
   });
 
   return (
-    <>
+    <MapWrapper>
+      <h3>Maps</h3>
+
       <ButtonsWrapper>
         {LAYERS.map((layer) => (
           <Button onClick={() => setLayer(layer)} key={layer}>
@@ -55,8 +61,9 @@ const Maps: React.FC<Props> = ({ lat, lon }) => {
         }}
       >
         <Source id="source_id" tileJsonSource={RASTER_SOURCE_OPTIONS} />
+        <Layer type="raster" id="layer_id" sourceId="source_id" />
       </Map>
-    </>
+    </MapWrapper>
   );
 };
 

@@ -2,8 +2,6 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 
-// import { useUrl } from '../hooks/useUrl';
-
 import { CITY_IMAGE } from '../api/query';
 
 interface Props {
@@ -18,11 +16,17 @@ const Image = styled.img`
   font-size: 0;
 `;
 
+// const Image = styled.img`
+//   position: absolute;
+//   width: 100vw;
+//   height: 240px;
+//   object-fit: cover;
+//   top: 0;
+//   z-index: 0;
+//   font-size: 0;
+// `;
+
 const FeaturedImage: React.FC<Props> = ({ cityName }) => {
-  // console.log(cityName);
-
-  // const { formatUrl } = useUrl();
-
   const { data } = useQuery<any>(CITY_IMAGE, {
     variables: {
       name: cityName,
