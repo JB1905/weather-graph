@@ -3,7 +3,7 @@ import { SET_TEMPERATURE_UNIT } from '../actions/settingsActions';
 import { TemperatureUnit } from '../enums/temperatureUnit';
 
 const initialState = {
-  temperatureUnit: TemperatureUnit.CELSIUS,
+  temperatureUnit: TemperatureUnit.Celsius,
 };
 
 const unitReducer = (state = initialState, action: any) => {

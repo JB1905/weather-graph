@@ -21,7 +21,7 @@ export const useUnits = () => {
 
   const convertUnit = (value: number) => {
     return Math.round(
-      temperatureUnit === TemperatureUnit.CELSIUS
+      temperatureUnit === TemperatureUnit.Celsius
         ? tuc.k2c(value)
         : tuc.k2f(value)
     );

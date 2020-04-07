@@ -97,8 +97,8 @@ const Details: React.FC<Props> = ({ cityId }) => {
       <Badge>
         {convertUnit(main.temp)}
 
-        <button onClick={() => setUnit(TemperatureUnit.CELSIUS)}>C</button>
-        <button onClick={() => setUnit(TemperatureUnit.FAHRENHEIT)}>F</button>
+        <button onClick={() => setUnit(TemperatureUnit.Celsius)}>C</button>
+        <button onClick={() => setUnit(TemperatureUnit.Fahrenheit)}>F</button>
       </Badge>
 
       <Description>{weather[0].description}</Description>

@@ -1,4 +1,4 @@
 export enum TemperatureUnit {
-  CELSIUS = 'C',
-  FAHRENHEIT = 'F',
+  Celsius = 'C',
+  Fahrenheit = 'F',
 }
