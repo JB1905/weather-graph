@@ -15,6 +15,7 @@ import { useUnits } from '../hooks/useUnits';
 import { useBackground } from '../hooks/useBackground';
 
 import { formatTime } from '../helpers/formatDate';
+import { checkInRange } from '../helpers/checkInRange';
 
 import { FORECAST_BY_IDS } from '../api/query';
 
@@ -78,7 +79,13 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
   useEffect(() => {
     if (data) {
-      setBackground(data.currentForecastByIDs[0].weather[0].description, false);
+      setBackground(
+        data.currentForecastByIDs[0].weather[0].description,
+        !checkInRange(
+          data.currentForecastByIDs[0].sys.sunrise,
+          data.currentForecastByIDs[0].sys.sunset
+        )
+      );
     }
 
     // return () => setBackground('', false);

@@ -9,13 +9,23 @@ export const useBackground = () => {
   const dispatch = useDispatch();
 
   const setBackground = (description: string, isDark: boolean) => {
-    // console.log(description, isDark);
-
-    // console.log(weatherThemes[description], description);
+    const transformColors = () => {
+      if (weatherThemes[description]) {
+        if (isDark) {
+          return weatherThemes[description].map((color: string) =>
+            Color(color).darken(0.5)
+          );
+        } else {
+          return weatherThemes[description];
+        }
+      } else {
+        return weatherThemes[description];
+      }
+    };
 
     dispatch({
       type: SET_BACKGROUND_COLOR,
-      payload: weatherThemes[description],
+      payload: transformColors(),
     });
   };
 
