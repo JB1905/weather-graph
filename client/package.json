@@ -41,11 +41,6 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.13.2",
-    "@graphql-codegen/introspection": "1.13.2",
-    "@graphql-codegen/typescript": "1.13.2",
-    "@graphql-codegen/typescript-operations": "1.13.2",
-    "@graphql-codegen/typescript-react-apollo": "1.13.2",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.2",
     "@testing-library/user-event": "^10.0.2",
@@ -63,7 +58,7 @@
     "@types/styled-components": "^5.1.0",
     "graphql": "^15.0.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.1.5",
+    "lint-staged": "^10.1.6",
     "prettier": "^2.0.4"
   },
   "eslintConfig": {
