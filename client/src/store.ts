@@ -1,19 +1,21 @@
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './reducers';
 
-import { loadState, saveState } from './helpers/storeManager';
+const persistConfig = {
+  key: 'store',
+  storage,
+  blacklist: ['appearance'],
+};
 
-const persistedState = loadState();
+const store = createStore(
+  persistReducer(persistConfig, rootReducer),
+  composeWithDevTools()
+);
 
-const store = createStore(rootReducer, persistedState, composeWithDevTools());
-
-store.subscribe(() => {
-  saveState({
-    favorite: store.getState().favorite,
-    unit: store.getState().unit,
-  });
-});
+persistStore(store);
 
 export default store;

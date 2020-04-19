@@ -5,12 +5,12 @@ import { TemperatureUnit } from '../enums/temperatureUnit';
 
 import { SET_TEMPERATURE_UNIT } from '../actions/settingsActions';
 
+import { RootState } from '../reducers';
+
 export const useUnits = () => {
   const dispatch = useDispatch();
 
-  const { temperatureUnit } = useSelector(
-    (state: { unit: { temperatureUnit: TemperatureUnit } }) => state.unit
-  );
+  const { temperatureUnit } = useSelector((state: RootState) => state.unit);
 
   const setUnit = (unit: TemperatureUnit) => {
     dispatch({

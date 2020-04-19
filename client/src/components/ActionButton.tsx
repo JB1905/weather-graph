@@ -1,9 +1,9 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: IconProp;
 }
 
@@ -23,7 +23,7 @@ const Wrapper = styled.button`
   }
 `;
 
-const ActionButton: React.FC<Props | any> = ({ icon, children, ...props }) => (
+const ActionButton: React.FC<Props> = ({ icon, children, ...props }) => (
   <Wrapper {...props}>
     <FontAwesomeIcon icon={icon} />
   </Wrapper>

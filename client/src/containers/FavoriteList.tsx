@@ -8,7 +8,9 @@ import { FORECAST_BY_IDS } from '../api/query';
 
 import { breakpoints } from '../constants/breakpoints';
 
-import Favorite from '../interfaces/Favorite';
+// import Favorite from '../interfaces/Favorite';
+
+import { CurrentForecastByIDs } from '../generated';
 
 interface Props {
   items: string[];
@@ -50,13 +52,14 @@ const ItemSection = styled.div`
 const Pin = styled.button``;
 
 const FavoriteList: React.FC<Props> = ({ items }) => {
-  const { error, loading, data } = useQuery<{
-    currentForecastByIDs: Favorite[] | any;
-  }>(FORECAST_BY_IDS, {
-    variables: {
-      ids: items,
-    },
-  });
+  const { error, loading, data } = useQuery<CurrentForecastByIDs>(
+    FORECAST_BY_IDS,
+    {
+      variables: {
+        ids: items,
+      },
+    }
+  );
 
   if (loading) return <BeatLoader color="#fff" />;
 
@@ -65,7 +68,7 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
   return data ? (
     <List>
       {data.currentForecastByIDs.map(
-        ({ name, weather, main, id }: any, index: number) => (
+        ({ name, weather, main, id }, index: number) => (
           <Item key={id} as={Link} to={`/city/${name}`}>
             <ItemSection>
               <h3>{name}</h3>

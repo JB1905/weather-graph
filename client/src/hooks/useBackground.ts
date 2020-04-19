@@ -5,6 +5,8 @@ import { SET_BACKGROUND_COLOR } from '../actions/appearanceActions';
 
 import { weatherThemes } from '../constants/weatherThemes';
 
+import { RootState } from '../reducers';
+
 export const useBackground = () => {
   const dispatch = useDispatch();
 
@@ -30,8 +32,7 @@ export const useBackground = () => {
   };
 
   const { backgroundColor } = useSelector(
-    (state: { appearance: { backgroundColor: [string, string] } }) =>
-      state.appearance
+    (state: RootState) => state.appearance
   );
 
   return { setBackground, backgroundColor };

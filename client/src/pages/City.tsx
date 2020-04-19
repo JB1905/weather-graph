@@ -14,7 +14,7 @@ import { useFavorite } from '../hooks/useFavorite';
 
 import { FORECAST_QUERY } from '../api/query';
 
-import CurrentForecastByName from '../interfaces/CurrentForecastByName';
+import { CurrentForecastByName } from '../generated';
 
 const FeaturedImage = lazy(() => import('../containers/FeaturedImage'));
 const Details = lazy(() => import('../containers/Details'));
@@ -28,18 +28,19 @@ const PageWrapper = styled.div`
   align-items: center;
 `;
 
-const City: React.FC<RouteComponentProps | any> = ({ match }) => {
+const City: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { toggleFavorite } = useFavorite();
 
   const { parseUrl } = useUrl();
 
-  const { error, loading, data, refetch } = useQuery<{
-    currentForecastByName: CurrentForecastByName;
-  }>(FORECAST_QUERY, {
-    variables: {
-      name: parseUrl(match.params.id),
-    },
-  });
+  const { error, loading, data, refetch } = useQuery<CurrentForecastByName>(
+    FORECAST_QUERY,
+    {
+      variables: {
+        name: parseUrl(match.params.id),
+      },
+    }
+  );
 
   if (loading) return <BeatLoader color="#fff" />;
 

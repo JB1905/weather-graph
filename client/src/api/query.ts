@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const FORECAST_BY_IDS = gql`
-  query Location($ids: [ID!]!) {
+  query CurrentForecastByIDs($ids: [ID!]!) {
     currentForecastByIDs(ids: $ids) {
       id
       name
@@ -28,7 +28,7 @@ export const FORECAST_BY_IDS = gql`
 `;
 
 export const FORECAST_QUERY = gql`
-  query Location($name: String!) {
+  query CurrentForecastByName($name: String!) {
     currentForecastByName(name: $name) {
       id
       name
@@ -41,7 +41,7 @@ export const FORECAST_QUERY = gql`
 `;
 
 export const UV_INDEX = gql`
-  query Location($lon: Float!, $lat: Float!) {
+  query CurrentUVIndexByCoords($lon: Float!, $lat: Float!) {
     currentUVIndexByCoords(lon: $lon, lat: $lat) {
       value
     }
@@ -49,7 +49,7 @@ export const UV_INDEX = gql`
 `;
 
 export const LONG_TERM_FORECAST = gql`
-  query Location($name: String!) {
+  query ForecastByName($name: String!) {
     forecastByName(name: $name) {
       list {
         main {
@@ -74,7 +74,7 @@ export const LONG_TERM_FORECAST = gql`
 `;
 
 export const COORDS_QUERY = gql`
-  query Location($lon: Float!, $lat: Float!) {
+  query ForecastByCoords($lon: Float!, $lat: Float!) {
     forecastByCoords(lon: $lon, lat: $lat) {
       city {
         id
@@ -85,7 +85,7 @@ export const COORDS_QUERY = gql`
 `;
 
 export const CITY_IMAGE = gql`
-  query CityImage($name: String!) {
+  query CityByName($name: String!) {
     cityByName(name: $name) {
       photos {
         image {

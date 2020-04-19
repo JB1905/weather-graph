@@ -1,4 +1,4 @@
-export const weatherThemes = {
+export const weatherThemes: { [key: string]: [string, string] } = {
   'scattered clouds': ['#aac9fa', '#8b9ed6'],
   'clear sky': ['#03b1fc', '#0380fc'],
   'heavy intensity rain': ['#708494', '#707a94'],
@@ -12,4 +12,4 @@ export const weatherThemes = {
   fog: ['#28506b', '#b8c7d1'],
   'moderate rain': ['#28506b', '#b8c7d1'],
   smoke: ['#000', '#3f403f'],
-} as any;
+};

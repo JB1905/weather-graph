@@ -2,19 +2,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DELETE_FAVORITE, ADD_FAVORITE } from '../actions/favoriteActions';
 
+import { RootState } from '../reducers';
+
 export const useFavorite = () => {
   const dispatch = useDispatch();
 
-  const favorites = useSelector(
-    (state: { favorite: string[] }) => state.favorite
-  );
+  const items = useSelector((state: RootState) => state.favorite.items);
 
   const toggleFavorite = (id: string) => {
     dispatch({
-      type: favorites.includes(id) ? DELETE_FAVORITE : ADD_FAVORITE,
+      type: items.includes(id) ? DELETE_FAVORITE : ADD_FAVORITE,
       payload: id,
     });
   };
 
-  return { favorites, toggleFavorite };
+  return { favorites: items, toggleFavorite };
 };

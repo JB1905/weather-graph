@@ -4,25 +4,35 @@ import {
   CLEAR_FAVORITE,
 } from '../actions/favoriteActions';
 
-const initialState: string[] = [];
+import { FavoriteState } from '../interfaces/FavoriteState';
 
-const favoriteReducer = (state = initialState, action: any) => {
+import { FavoriteActionTypes } from '../types/FavoriteActionTypes';
+
+const initialState: FavoriteState = {
+  items: [],
+};
+
+const favoriteReducer = (state = initialState, action: FavoriteActionTypes) => {
   switch (action.type) {
     case ADD_FAVORITE: {
-      if (!state.includes(action.payload)) {
-        return [...state, action.payload];
+      if (!state.items.includes(action.payload)) {
+        return {
+          ...state,
+          items: [...state.items, action.payload],
+        };
       }
 
       return state;
     }
 
-    case DELETE_FAVORITE: {
-      return state.filter((favorite: string) => favorite !== action.payload);
-    }
+    case DELETE_FAVORITE:
+      return {
+        ...state,
+        items: state.items.filter((favorite) => favorite !== action.payload),
+      };
 
-    case CLEAR_FAVORITE: {
+    case CLEAR_FAVORITE:
       return initialState;
-    }
 
     default:
       return state;

@@ -6,8 +6,13 @@ import ErrorMessage from '../components/ErrorMessage';
 
 import { UV_INDEX } from '../api/query';
 
-const UVIndex: React.FC<any> = ({ lat, lon }) => {
-  const { error, loading, data } = useQuery<any>(UV_INDEX, {
+import {
+  CurrentUVIndexByCoords,
+  CurrentUVIndexByCoordsVariables,
+} from '../generated';
+
+const UVIndex: React.FC<CurrentUVIndexByCoordsVariables> = ({ lat, lon }) => {
+  const { error, loading, data } = useQuery<CurrentUVIndexByCoords>(UV_INDEX, {
     variables: {
       lat,
       lon,
@@ -20,7 +25,7 @@ const UVIndex: React.FC<any> = ({ lat, lon }) => {
     return <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>;
   }
 
-  const { value } = data.currentUVIndexByCoords;
+  const { value } = data!.currentUVIndexByCoords;
 
   // console.log(data);
 

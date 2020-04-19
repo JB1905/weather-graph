@@ -6,6 +6,7 @@ import { BeatLoader } from 'react-spinners';
 import ErrorMessage from '../components/ErrorMessage';
 
 import { LONG_TERM_FORECAST } from '../api/query';
+import { ForecastByName } from '../generated';
 
 interface Props {
   cityId: string;
@@ -16,11 +17,14 @@ const ForecastWrapper = styled.section`
 `;
 
 const Forecast: React.FC<Props> = ({ cityId }) => {
-  const { error, loading, data } = useQuery<any>(LONG_TERM_FORECAST, {
-    variables: {
-      name: cityId,
-    },
-  });
+  const { error, loading, data } = useQuery<ForecastByName>(
+    LONG_TERM_FORECAST,
+    {
+      variables: {
+        name: cityId,
+      },
+    }
+  );
 
   if (loading) return <BeatLoader color="#fff" />;
 
@@ -28,7 +32,7 @@ const Forecast: React.FC<Props> = ({ cityId }) => {
     return <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>;
   }
 
-  const { list } = data.forecastByName;
+  const { list } = data!.forecastByName;
 
   // console.log(data);
 
@@ -36,7 +40,7 @@ const Forecast: React.FC<Props> = ({ cityId }) => {
     <ForecastWrapper>
       <h3>Forecast</h3>
 
-      {list.map((item: any, index: number) => (
+      {list.map((item, index) => (
         <p key={index}>{item.main.temp}</p>
       ))}
     </ForecastWrapper>

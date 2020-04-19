@@ -19,14 +19,12 @@ const SearchWrapper = styled.div`
 const SearchField = styled.input`
   flex: 1;
   border: 0;
-  // font-size: 1.8rem;
+  font-size: 1.6rem;
   background: none;
-  border-radius: 2px;
   text-transform: inherit;
   -webkit-appearance: none;
   font-family: inherit;
-  // padding: 0 8px;
-  // margin: 7px 0;
+  overflow: hidden;
   color: #fff;
 
   &::placeholder {
@@ -50,12 +48,14 @@ const SearchForm: React.FC<Props> = ({ onSubmit }) => {
         placeholder="City name"
         onChange={(e) => setQuery(e.target.value)}
         onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
+        aria-label="Search"
       />
 
       <ActionButton
         icon={faSearch}
         disabled={query === ''}
         onClick={handleSubmit}
+        aria-label="Submit Search"
       />
     </SearchWrapper>
   );

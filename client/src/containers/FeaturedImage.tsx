@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import { CITY_IMAGE } from '../api/query';
 
+import { CityByName } from '../generated';
+
 interface Props {
   cityName: string;
 }
@@ -27,7 +29,7 @@ const Image = styled.img`
 // `;
 
 const FeaturedImage: React.FC<Props> = ({ cityName }) => {
-  const { data } = useQuery<any>(CITY_IMAGE, {
+  const { data } = useQuery<CityByName>(CITY_IMAGE, {
     variables: {
       name: cityName,
     },

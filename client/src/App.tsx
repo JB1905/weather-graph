@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
-
-import Home from './pages/Home';
-import City from './pages/City';
+import { BeatLoader } from 'react-spinners';
 
 import Layout from './components/Layout';
 import Header from './components/Header';
@@ -20,6 +18,9 @@ import { useGeolocation } from './hooks/useGeolocation';
 import { useBackground } from './hooks/useBackground';
 
 import { ReactComponent as Logo } from './assets/logo.svg';
+
+const Home = lazy(() => import('./pages/Home'));
+const City = lazy(() => import('./pages/City'));
 
 const App: React.FC = () => {
   const history = useHistory();
@@ -42,7 +43,7 @@ const App: React.FC = () => {
 
       <Layout>
         <Header>
-          <BrandLink to="/">
+          <BrandLink to="/" aria-label="Go Home">
             <Logo />
           </BrandLink>
 
@@ -50,17 +51,23 @@ const App: React.FC = () => {
             onSubmit={(query) => history.push(`/city/${formatUrl(query)}`)}
           />
 
-          <ActionButton icon={faLocationArrow} onClick={getLocalForecast} />
+          <ActionButton
+            icon={faLocationArrow}
+            onClick={getLocalForecast}
+            aria-label="Request Geolocation"
+          />
         </Header>
 
         <Main>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/city/:id" component={City} />
-            <Route path="/coords" component={City} />
+          <Suspense fallback={<BeatLoader color="#fff" />}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/city/:id" component={City} />
+              <Route path="/coords" component={City} />
 
-            <Redirect from="*" to="/" />
-          </Switch>
+              <Redirect from="*" to="/" />
+            </Switch>
+          </Suspense>
         </Main>
       </Layout>
 

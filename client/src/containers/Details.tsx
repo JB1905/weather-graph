@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { BeatLoader } from 'react-spinners';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  FontAwesomeIcon,
+  FontAwesomeIconProps,
+} from '@fortawesome/react-fontawesome';
 import {
   faCompress,
   faTint,
@@ -20,6 +23,8 @@ import { checkInRange } from '../helpers/checkInRange';
 import { FORECAST_BY_IDS } from '../api/query';
 
 import { TemperatureUnit } from '../enums/temperatureUnit';
+
+import { CurrentForecastByIDs } from '../generated';
 
 interface Props {
   cityId: string;
@@ -52,11 +57,10 @@ const Badge = styled.li<{ iconRotate?: number }>`
   }
 `;
 
-const Item: React.FC<{ icon: any; iconRotate?: number }> = ({
-  iconRotate,
-  children,
-  icon,
-}) => {
+const Item: React.FC<{
+  icon: FontAwesomeIconProps['icon'];
+  iconRotate?: number;
+}> = ({ iconRotate, children, icon }) => {
   return (
     <Badge iconRotate={iconRotate}>
       {children}
@@ -71,11 +75,14 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
   const { temperatureUnit, setUnit, convertUnit } = useUnits();
 
-  const { error, loading, data } = useQuery<any>(FORECAST_BY_IDS, {
-    variables: {
-      ids: [cityId],
-    },
-  });
+  const { error, loading, data } = useQuery<CurrentForecastByIDs>(
+    FORECAST_BY_IDS,
+    {
+      variables: {
+        ids: [cityId],
+      },
+    }
+  );
 
   useEffect(() => {
     if (data) {
@@ -97,7 +104,7 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
   if (error) return <p>{error.graphQLErrors[0].message}</p>;
 
-  const { weather, main, wind, sys } = data.currentForecastByIDs[0];
+  const { weather, main, wind, sys } = data!.currentForecastByIDs[0];
 
   return (
     <DetailsWrapper>
@@ -113,16 +120,16 @@ const Details: React.FC<Props> = ({ cityId }) => {
       <BadgeWrapper>
         <Item icon={faCompress}>Pressure: {main.pressure} hPa</Item>
 
-        <Item icon={faArrowUp} iconRotate={wind.deg}>
+        <Item icon={faArrowUp} iconRotate={wind.deg!}>
           Wind: {wind.speed} km/h
         </Item>
 
         <Item icon={faTint}>Humidity: {main.humidity}%</Item>
 
-        <div>
-          <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
-          <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
-        </div>
+        {/* <div> */}
+        <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
+        <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
+        {/* </div> */}
       </BadgeWrapper>
     </DetailsWrapper>
   );
