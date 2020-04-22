@@ -1,8 +1,8 @@
-import { SET_BACKGROUND_COLOR } from '../actions/appearanceActions';
+import { SET_BACKGROUND_COLOR } from 'actions/appearanceActions';
 
-import { AppearanceState } from '../interfaces/AppearanceState';
+import { AppearanceState } from 'interfaces/AppearanceState';
 
-import { AppearanceActionTypes } from '../types/AppearanceActionTypes';
+import { AppearanceActionTypes } from 'types/AppearanceActionTypes';
 
 const initialState: AppearanceState = {
   backgroundColor: ['#4844eb', '#0400ba'],

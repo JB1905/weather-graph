@@ -3,24 +3,26 @@ import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import { BeatLoader } from 'react-spinners';
 
-import Layout from './components/Layout';
-import Header from './components/Header';
-import Main from './components/Main';
-import Background from './components/Background';
-import Global from './components/Global';
-import BrandLink from './components/BrandLink';
-import ActionButton from './components/ActionButton';
+import Layout from 'components/Layout';
+import Header from 'components/Header';
+import Main from 'components/Main';
+import Background from 'components/Background';
+import Global from 'components/Global';
+import BrandLink from 'components/BrandLink';
+import ActionButton from 'components/ActionButton';
 
-import SearchForm from './containers/SearchForm';
+import SearchForm from 'containers/SearchForm';
 
-import { useUrl } from './hooks/useUrl';
-import { useGeolocation } from './hooks/useGeolocation';
-import { useBackground } from './hooks/useBackground';
+import { useUrl } from 'hooks/useUrl';
+import { useGeolocation } from 'hooks/useGeolocation';
+import { useBackground } from 'hooks/useBackground';
 
-import { ReactComponent as Logo } from './assets/logo.svg';
+import { routes } from 'constants/routes';
 
-const Home = lazy(() => import('./pages/Home'));
-const City = lazy(() => import('./pages/City'));
+import { ReactComponent as Logo } from 'assets/logo.svg';
+
+const Home = lazy(() => import('pages/Home'));
+const City = lazy(() => import('pages/City'));
 
 const App: React.FC = () => {
   const history = useHistory();
@@ -61,9 +63,9 @@ const App: React.FC = () => {
         <Main>
           <Suspense fallback={<BeatLoader color="#fff" />}>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/city/:id" component={City} />
-              <Route path="/coords" component={City} />
+              <Route exact path={routes.home} component={Home} />
+              <Route path={routes.city} component={City} />
+              <Route path={routes.coords} component={City} />
 
               <Redirect from="*" to="/" />
             </Switch>

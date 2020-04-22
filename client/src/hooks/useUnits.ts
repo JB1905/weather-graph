@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import tuc from 'temp-units-conv';
 
-import { TemperatureUnit } from '../enums/temperatureUnit';
+import { TemperatureUnit } from 'enums/temperatureUnit';
 
-import { SET_TEMPERATURE_UNIT } from '../actions/settingsActions';
+import { SET_TEMPERATURE_UNIT } from 'actions/settingsActions';
 
-import { RootState } from '../reducers';
+import { RootState } from 'reducers';
 
 export const useUnits = () => {
   const dispatch = useDispatch();

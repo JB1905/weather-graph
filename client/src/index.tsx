@@ -9,9 +9,9 @@ import {
   createHttpLink,
 } from '@apollo/client';
 
-import App from './App';
+import App from 'App';
 
-import store from './store';
+import store from 'store';
 
 import * as serviceWorker from './serviceWorker';
 

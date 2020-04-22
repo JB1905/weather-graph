@@ -2,30 +2,37 @@ import React, { lazy, Suspense } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { useQuery } from '@apollo/client';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faSync } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-import { Title } from '../components/Typography';
-import ErrorMessage from '../components/ErrorMessage';
+import { Title } from 'components/Typography';
+import ErrorMessage from 'components/ErrorMessage';
+import ActionButton from 'components/ActionButton';
 
-import { useUrl } from '../hooks/useUrl';
-import { useFavorite } from '../hooks/useFavorite';
+import { useUrl } from 'hooks/useUrl';
+import { useFavorite } from 'hooks/useFavorite';
 
-import { FORECAST_QUERY } from '../api/query';
+import { FORECAST_QUERY } from 'api/query';
 
-import { CurrentForecastByName } from '../generated';
+import { CurrentForecastByName } from 'generated';
 
-const FeaturedImage = lazy(() => import('../containers/FeaturedImage'));
-const Details = lazy(() => import('../containers/Details'));
-const UVIndex = lazy(() => import('../containers/UVIndex'));
-const Forecast = lazy(() => import('../containers/Forecast'));
-const Maps = lazy(() => import('../containers/Maps'));
+const FeaturedImage = lazy(() => import('containers/FeaturedImage'));
+const Details = lazy(() => import('containers/Details'));
+const UVIndex = lazy(() => import('containers/UVIndex'));
+const Forecast = lazy(() => import('containers/Forecast'));
+const Maps = lazy(() => import('containers/Maps'));
 
 const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 `;
 
 const City: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
@@ -53,25 +60,22 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   return (
     <Suspense fallback={<BeatLoader color="#fff" />}>
       <PageWrapper>
-        <button onClick={() => toggleFavorite(id)}>
-          <FontAwesomeIcon icon={faStar} />
-        </button>
+        <Wrapper>
+          <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />
+          <ActionButton icon={faSync} onClick={() => refetch()} />
+        </Wrapper>
 
-        <button onClick={() => refetch()}>
-          <FontAwesomeIcon icon={faStar} />
-        </button>
-
-        <FeaturedImage cityName={match.params.id} />
+        {/* <FeaturedImage cityName={match.params.id} /> */}
 
         <Title>{name}</Title>
 
         <Details cityId={id} />
 
-        <UVIndex lat={coord.lat} lon={coord.lon} />
+        {/* <UVIndex lat={coord.lat} lon={coord.lon} />
 
         <Forecast cityId={name} />
 
-        <Maps lat={coord.lat} lon={coord.lon} />
+        <Maps lat={coord.lat} lon={coord.lon} /> */}
       </PageWrapper>
     </Suspense>
   );

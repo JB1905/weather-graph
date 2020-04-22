@@ -109,11 +109,11 @@ const resolvers = {
       }
 
       return data;
-    }
-  }
+    },
+  },
 };
 
 module.exports = {
   typeDefs,
-  resolvers
+  resolvers,
 };

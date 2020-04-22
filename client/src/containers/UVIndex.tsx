@@ -2,14 +2,14 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { BeatLoader } from 'react-spinners';
 
-import ErrorMessage from '../components/ErrorMessage';
+import ErrorMessage from 'components/ErrorMessage';
 
-import { UV_INDEX } from '../api/query';
+import { UV_INDEX } from 'api/query';
 
 import {
   CurrentUVIndexByCoords,
   CurrentUVIndexByCoordsVariables,
-} from '../generated';
+} from 'generated';
 
 const UVIndex: React.FC<CurrentUVIndexByCoordsVariables> = ({ lat, lon }) => {
   const { error, loading, data } = useQuery<CurrentUVIndexByCoords>(UV_INDEX, {

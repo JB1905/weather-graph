@@ -1,3 +1,3 @@
-import { SetBackgroundColorAction } from '../interfaces/AppearanceState';
+import { SetBackgroundColorAction } from 'interfaces/AppearanceState';
 
 export type AppearanceActionTypes = SetBackgroundColorAction;

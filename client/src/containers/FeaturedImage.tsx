@@ -2,9 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 
-import { CITY_IMAGE } from '../api/query';
+import { CITY_IMAGE } from 'api/query';
 
-import { CityByName } from '../generated';
+import { CityByName } from 'generated';
 
 interface Props {
   cityName: string;

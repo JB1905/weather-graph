@@ -2,7 +2,7 @@ import {
   AddFavoriteAction,
   DeleteFavoriteAction,
   ClearFavoriteAction,
-} from '../interfaces/FavoriteState';
+} from 'interfaces/FavoriteState';
 
 export type FavoriteActionTypes =
   | AddFavoriteAction

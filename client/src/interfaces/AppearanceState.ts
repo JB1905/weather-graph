@@ -1,4 +1,4 @@
-import { SET_BACKGROUND_COLOR } from '../actions/appearanceActions';
+import { SET_BACKGROUND_COLOR } from 'actions/appearanceActions';
 
 export interface AppearanceState {
   backgroundColor: [string, string];

@@ -4,13 +4,13 @@ import { useQuery } from '@apollo/client';
 import { BeatLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 
-import { FORECAST_BY_IDS } from '../api/query';
+import { FORECAST_BY_IDS } from 'api/query';
 
-import { breakpoints } from '../constants/breakpoints';
+import { breakpoints } from 'constants/breakpoints';
 
-// import Favorite from '../interfaces/Favorite';
+// import Favorite from 'interfaces/Favorite';
 
-import { CurrentForecastByIDs } from '../generated';
+import { CurrentForecastByIDs } from 'generated';
 
 interface Props {
   items: string[];

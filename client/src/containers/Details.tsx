@@ -14,17 +14,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-import { useUnits } from '../hooks/useUnits';
-import { useBackground } from '../hooks/useBackground';
+import { useUnits } from 'hooks/useUnits';
+import { useBackground } from 'hooks/useBackground';
 
-import { formatTime } from '../helpers/formatDate';
-import { checkInRange } from '../helpers/checkInRange';
+import { formatTime } from 'helpers/formatDate';
+import { checkInRange } from 'helpers/checkInRange';
 
-import { FORECAST_BY_IDS } from '../api/query';
+import { FORECAST_BY_IDS } from 'api/query';
 
-import { TemperatureUnit } from '../enums/temperatureUnit';
+import { TemperatureUnit } from 'enums/temperatureUnit';
 
-import { CurrentForecastByIDs } from '../generated';
+import { CurrentForecastByIDs } from 'generated';
 
 interface Props {
   cityId: string;
@@ -84,21 +84,19 @@ const Details: React.FC<Props> = ({ cityId }) => {
     }
   );
 
-  useEffect(() => {
-    if (data) {
-      setBackground(
-        data.currentForecastByIDs[0].weather[0].description,
-        !checkInRange(
-          data.currentForecastByIDs[0].sys.sunrise,
-          data.currentForecastByIDs[0].sys.sunset
-        )
-      );
-    }
-
-    // return () => setBackground('', false);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  // useEffect(() => {
+  // if (data) {
+  //   setBackground(
+  //     data.currentForecastByIDs[0].weather[0].description,
+  //     !checkInRange(
+  //       data.currentForecastByIDs[0].sys.sunrise,
+  //       data.currentForecastByIDs[0].sys.sunset
+  //     )
+  //   );
+  // }
+  // return () => setBackground('', false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [data]);
 
   if (loading) return <BeatLoader color="#fff" />;
 

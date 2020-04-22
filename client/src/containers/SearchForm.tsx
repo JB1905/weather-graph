@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import ActionButton from '../components/ActionButton';
+import ActionButton from 'components/ActionButton';
 
 interface Props {
   onSubmit(query: string): void;

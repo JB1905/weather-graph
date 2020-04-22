@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
 import { BeatLoader } from 'react-spinners';
 
-import { useFavorite } from '../hooks/useFavorite';
+import { useFavorite } from 'hooks/useFavorite';
 
-const FavoriteList = lazy(() => import('../containers/FavoriteList'));
+const FavoriteList = lazy(() => import('containers/FavoriteList'));
 
 const mixin = `
   display: inline-block;

@@ -2,7 +2,7 @@ import {
   ADD_FAVORITE,
   DELETE_FAVORITE,
   CLEAR_FAVORITE,
-} from '../actions/favoriteActions';
+} from 'actions/favoriteActions';
 
 export interface FavoriteState {
   items: string[];

@@ -2,11 +2,11 @@ import {
   ADD_FAVORITE,
   DELETE_FAVORITE,
   CLEAR_FAVORITE,
-} from '../actions/favoriteActions';
+} from 'actions/favoriteActions';
 
-import { FavoriteState } from '../interfaces/FavoriteState';
+import { FavoriteState } from 'interfaces/FavoriteState';
 
-import { FavoriteActionTypes } from '../types/FavoriteActionTypes';
+import { FavoriteActionTypes } from 'types/FavoriteActionTypes';
 
 const initialState: FavoriteState = {
   items: [],

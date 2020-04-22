@@ -1,6 +1,6 @@
-import { TemperatureUnit } from '../enums/temperatureUnit';
+import { TemperatureUnit } from 'enums/temperatureUnit';
 
-import { SET_TEMPERATURE_UNIT } from '../actions/settingsActions';
+import { SET_TEMPERATURE_UNIT } from 'actions/settingsActions';
 
 export interface UnitState {
   temperatureUnit: TemperatureUnit;
