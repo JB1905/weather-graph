@@ -1,5 +1,5 @@
 export const routes = {
   home: '/',
-  city: '/city/:id',
+  city: '/city',
   coords: '/coords',
 };
