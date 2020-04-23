@@ -45,7 +45,7 @@ const App: React.FC = () => {
 
       <Layout>
         <Header>
-          <BrandLink to="/" aria-label="Go Home">
+          <BrandLink to={routes.home} aria-label="Go Home">
             <Logo />
           </BrandLink>
 
