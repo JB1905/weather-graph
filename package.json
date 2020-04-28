@@ -8,7 +8,13 @@
     "packages/*"
   ],
   "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server watch",
+    "start": "concurrently --kill-others-on-fail 'yarn server' 'yarn client'",
     "commit": "git-cz"
+  },
+  "dependencies": {
+    "concurrently": "^5.2.0"
   },
   "devDependencies": {
     "cz-conventional-changelog": "3.1.0"
@@ -17,5 +23,15 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "packages/**/src/*.{tsx,ts,html}": [
+      "npm run prettier"
+    ]
   }
 }
