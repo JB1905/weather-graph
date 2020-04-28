@@ -1,11 +1,12 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
-import { BeatLoader } from 'react-spinners';
 
 import ErrorMessage from 'components/ErrorMessage';
+import Loader from 'components/Loader';
 
 import { LONG_TERM_FORECAST } from 'api/query';
+
 import { ForecastByName } from 'generated';
 
 interface Props {
@@ -48,7 +49,7 @@ const Forecast: React.FC<Props> = ({ cityId }) => {
     }
   );
 
-  if (loading) return <BeatLoader color="#fff" />;
+  if (loading) return <Loader />;
 
   if (error) {
     return <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>;

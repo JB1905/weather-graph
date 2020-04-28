@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
-import { BeatLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
+
+import Loader from 'components/Loader';
 
 import { FORECAST_BY_IDS } from 'api/query';
 
-import { breakpoints } from 'constants/breakpoints';
+import { theme } from 'constants/theme';
 
 // import Favorite from 'interfaces/Favorite';
 
 import { CurrentForecastByIDs } from 'generated';
+import { useUnits } from 'hooks/useUnits';
 
 interface Props {
   items: string[];
@@ -19,10 +21,14 @@ interface Props {
 const List = styled.ul`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 0;
+  flex: 1;
 
-  @media (min-width: ${breakpoints.sm}) {
+  @media (min-width: ${theme.breakpoints.sm}) {
     flex-direction: row;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    max-height: 200px;
   }
 `;
 
@@ -31,20 +37,24 @@ const Item = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 15px 8px;
-  color: #fff;
+  color: ${theme.colors.text};
 
   &:active {
     opacity: 0.7;
   }
 
-  @media (min-width: ${breakpoints.sm}) {
+  @media (min-width: ${theme.breakpoints.sm}) {
     flex-direction: column;
     width: 50%;
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+`;
+
 const ItemSection = styled.div`
-  @media (min-width: ${breakpoints.sm}) {
+  @media (min-width: ${theme.breakpoints.sm}) {
     width: 100%;
   }
 `;
@@ -52,6 +62,8 @@ const ItemSection = styled.div`
 const Pin = styled.button``;
 
 const FavoriteList: React.FC<Props> = ({ items }) => {
+  const { convertUnit } = useUnits();
+
   const { error, loading, data } = useQuery<CurrentForecastByIDs>(
     FORECAST_BY_IDS,
     {
@@ -61,7 +73,7 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
     }
   );
 
-  if (loading) return <BeatLoader color="#fff" />;
+  if (loading) return <Loader />;
 
   if (error) return <p>{error.graphQLErrors[0].message}</p>;
 
@@ -76,9 +88,12 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
             </ItemSection>
 
             <ItemSection>
-              <p>{main.temp}</p>
-              <p>{main.temp_max}</p>
-              <p>{main.temp_min}</p>
+              <p>{convertUnit(main.temp)}</p>
+
+              <Wrapper>
+                <p>{convertUnit(main.temp_max)}</p>
+                <p>{convertUnit(main.temp_min)}</p>
+              </Wrapper>
             </ItemSection>
 
             {/* <Pin onClick={null}></Pin> */}

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { BeatLoader } from 'react-spinners';
 import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
@@ -14,6 +13,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
+import Loader from 'components/Loader';
+
 import { useUnits } from 'hooks/useUnits';
 import { useBackground } from 'hooks/useBackground';
 
@@ -25,6 +26,7 @@ import { FORECAST_BY_IDS } from 'api/query';
 import { TemperatureUnit } from 'enums/temperatureUnit';
 
 import { CurrentForecastByIDs } from 'generated';
+import { theme } from 'constants/theme';
 
 interface Props {
   cityId: string;
@@ -32,9 +34,13 @@ interface Props {
 
 const DetailsWrapper = styled.section``;
 
+const ItemsWrapper = styled.div`
+  display: flex;
+`;
+
 const Description = styled.h3`
   text-align: center;
-  margin: 10px 0;
+  margin: 20px 0;
 `;
 
 const BadgeWrapper = styled.ul`
@@ -44,6 +50,33 @@ const BadgeWrapper = styled.ul`
   list-style: none;
   margin: 0 auto;
   max-width: 500px;
+  padding: 0;
+  margin-top: 10px;
+`;
+
+const Temperature = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TemperatureValue = styled.h3`
+  font-size: 8rem;
+  margin: 0;
+`;
+
+const TemperatureSwitch = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TemperatureUnitSwitch = styled.button`
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 2.8rem;
+  background: transparent;
+  border: 0;
+  color: ${theme.colors.text};
 `;
 
 const Badge = styled.li<{ iconRotate?: number }>`
@@ -98,7 +131,7 @@ const Details: React.FC<Props> = ({ cityId }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [data]);
 
-  if (loading) return <BeatLoader color="#fff" />;
+  if (loading) return <Loader />;
 
   if (error) return <p>{error.graphQLErrors[0].message}</p>;
 
@@ -106,12 +139,23 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
   return (
     <DetailsWrapper>
-      <Badge>
-        {convertUnit(main.temp)}
+      <Temperature>
+        <TemperatureValue>{convertUnit(main.temp)}</TemperatureValue>
 
-        <button onClick={() => setUnit(TemperatureUnit.Celsius)}>C</button>
-        <button onClick={() => setUnit(TemperatureUnit.Fahrenheit)}>F</button>
-      </Badge>
+        <TemperatureSwitch>
+          <TemperatureUnitSwitch
+            onClick={() => setUnit(TemperatureUnit.Celsius)}
+          >
+            C
+          </TemperatureUnitSwitch>
+
+          <TemperatureUnitSwitch
+            onClick={() => setUnit(TemperatureUnit.Fahrenheit)}
+          >
+            F
+          </TemperatureUnitSwitch>
+        </TemperatureSwitch>
+      </Temperature>
 
       <Description>{weather[0].description}</Description>
 
@@ -124,10 +168,10 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
         <Item icon={faTint}>Humidity: {main.humidity}%</Item>
 
-        {/* <div> */}
-        <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
-        <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
-        {/* </div> */}
+        <ItemsWrapper>
+          <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
+          <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
+        </ItemsWrapper>
       </BadgeWrapper>
     </DetailsWrapper>
   );

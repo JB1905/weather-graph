@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { RouteComponentProps } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
-import { BeatLoader } from 'react-spinners';
+
+import Loader from 'components/Loader';
 
 import { useFavorite } from 'hooks/useFavorite';
 
@@ -45,7 +46,7 @@ const Home: React.FC<RouteComponentProps> = () => {
   const { favorites } = useFavorite();
 
   return favorites.length > 0 ? (
-    <Suspense fallback={<BeatLoader color="#fff" />}>
+    <Suspense fallback={<Loader />}>
       <FavoriteList items={favorites} />
     </Suspense>
   ) : (

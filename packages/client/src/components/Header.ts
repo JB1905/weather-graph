@@ -6,7 +6,6 @@ const Header = styled.header`
   justify-content: space-between;
   padding-top: env(safe-area-inset-top);
   min-height: calc(55px + env(safe-area-inset-top));
-  // height: calc(55px + env(safe-area-inset-top));
 `;
 
 export default Header;

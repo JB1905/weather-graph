@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { BeatLoader } from 'react-spinners';
 import { useQuery } from '@apollo/client';
 import { faStar, faSync } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -8,6 +7,7 @@ import styled from 'styled-components';
 import { Title } from 'components/Typography';
 import ErrorMessage from 'components/ErrorMessage';
 import ActionButton from 'components/ActionButton';
+import Loader from 'components/Loader';
 
 import { useUrl } from 'hooks/useUrl';
 import { useFavorite } from 'hooks/useFavorite';
@@ -27,6 +27,7 @@ const PageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  flex: 1;
 `;
 
 const Wrapper = styled.div`
@@ -49,7 +50,7 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     }
   );
 
-  if (loading) return <BeatLoader color="#fff" />;
+  if (loading) return <Loader />;
 
   if (error) {
     return <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>;
@@ -58,7 +59,7 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { name, id, coord } = data!.currentForecastByName;
 
   return (
-    <Suspense fallback={<BeatLoader color="#fff" />}>
+    <Suspense fallback={<Loader />}>
       <PageWrapper>
         <Wrapper>
           <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />

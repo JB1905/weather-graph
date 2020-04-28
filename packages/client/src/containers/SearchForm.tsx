@@ -4,6 +4,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import ActionButton from 'components/ActionButton';
 
+import { theme } from 'constants/theme';
+
 interface Props {
   onSubmit(query: string): void;
 }
@@ -19,13 +21,13 @@ const SearchWrapper = styled.div`
 const SearchField = styled.input`
   flex: 1;
   border: 0;
-  font-size: 1.6rem;
+  font-size: ${theme.font.size.default};
   background: none;
   text-transform: inherit;
   -webkit-appearance: none;
   font-family: inherit;
   overflow: hidden;
-  color: #fff;
+  color: ${theme.colors.text};
 
   &::placeholder {
     color: #fff9;

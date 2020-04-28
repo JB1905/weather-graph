@@ -1,25 +1,28 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { theme } from 'constants/theme';
+
 const Global = createGlobalStyle`
   html {
     font-size: 62.5%;
   }
 
   body {
+    margin: 0;
     min-width: 320px;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
     user-select: none;
-    font-size: 1.6rem;
-    color: #fff;
+    text-transform: uppercase;
+    font-family: ${theme.font.family.body};
+    font-size: ${theme.font.size.default};
+    color: ${theme.colors.text};
   }
 
   *,
   *::before,
   *::after {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a {

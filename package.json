@@ -1,0 +1,10 @@
+{
+  "name": "weather-graph",
+  "description": "Weather app built with GraphQL",
+  "author": "Jakub Biesiada",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

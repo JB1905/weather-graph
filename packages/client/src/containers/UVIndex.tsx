@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { BeatLoader } from 'react-spinners';
 
 import ErrorMessage from 'components/ErrorMessage';
+import Loader from 'components/Loader';
 
 import { UV_INDEX } from 'api/query';
 
@@ -19,7 +19,7 @@ const UVIndex: React.FC<CurrentUVIndexByCoordsVariables> = ({ lat, lon }) => {
     },
   });
 
-  if (loading) return <BeatLoader color="#fff" />;
+  if (loading) return <Loader />;
 
   if (error) {
     return <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>;
