@@ -13,9 +13,5 @@ git clone https://github.com/JB1905/weather-graph.git
 cd weather-graph
 ```
 
-#### Client
-
-#### Server
-
 ## License
 This project is licensed under the MIT License © 2019-present Jakub Biesiada
