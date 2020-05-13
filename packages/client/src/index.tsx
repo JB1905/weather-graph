@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import {
   ApolloClient,
   InMemoryCache,
@@ -13,11 +14,12 @@ import App from 'App';
 
 import store from 'store';
 
+import { theme } from 'constants/theme';
+
 import * as serviceWorker from './serviceWorker';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/',
-  // uri: 'https://weather-graph-server.jb1905.now.sh',
 });
 
 const client = new ApolloClient({
@@ -26,13 +28,17 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ApolloProvider client={client}>
-      <Router basename="/">
-        <App />
-      </Router>
-    </ApolloProvider>
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <ApolloProvider client={client}>
+          <Router basename="/">
+            <App />
+          </Router>
+        </ApolloProvider>
+      </ThemeProvider>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
