@@ -57,28 +57,30 @@ export interface CurrentForecastByIDsVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: CurrentForecastByName
+// GraphQL query operation: CurrentForecast
 // ====================================================
 
-export interface CurrentForecastByName_currentForecastByName_coord {
+export interface CurrentForecast_currentForecast_coord {
   __typename: 'CurrentForecastCoord';
   lat: number;
   lon: number;
 }
 
-export interface CurrentForecastByName_currentForecastByName {
+export interface CurrentForecast_currentForecast {
   __typename: 'CurrentForecast';
   id: string;
   name: string;
-  coord: CurrentForecastByName_currentForecastByName_coord;
+  coord: CurrentForecast_currentForecast_coord;
 }
 
-export interface CurrentForecastByName {
-  currentForecastByName: CurrentForecastByName_currentForecastByName;
+export interface CurrentForecast {
+  currentForecast: CurrentForecast_currentForecast;
 }
 
-export interface CurrentForecastByNameVariables {
-  name: string;
+export interface CurrentForecastVariables {
+  name?: string | null;
+  lon?: number | null;
+  lat?: number | null;
 }
 
 /* tslint:disable */
@@ -144,67 +146,6 @@ export interface ForecastByName {
 }
 
 export interface ForecastByNameVariables {
-  name: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ForecastByCoords
-// ====================================================
-
-export interface ForecastByCoords_forecastByCoords_city {
-  __typename: 'ForecastCity';
-  id: string;
-  name: string;
-}
-
-export interface ForecastByCoords_forecastByCoords {
-  __typename: 'Forecast';
-  city: ForecastByCoords_forecastByCoords_city;
-}
-
-export interface ForecastByCoords {
-  forecastByCoords: ForecastByCoords_forecastByCoords;
-}
-
-export interface ForecastByCoordsVariables {
-  lon: number;
-  lat: number;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: CityByName
-// ====================================================
-
-export interface CityByName_cityByName_photos_image {
-  __typename: 'CityImage';
-  web: string;
-}
-
-export interface CityByName_cityByName_photos {
-  __typename: 'CityPhotos';
-  image: CityByName_cityByName_photos_image;
-}
-
-export interface CityByName_cityByName {
-  __typename: 'City';
-  photos: CityByName_cityByName_photos[];
-}
-
-export interface CityByName {
-  cityByName: CityByName_cityByName;
-}
-
-export interface CityByNameVariables {
   name: string;
 }
 

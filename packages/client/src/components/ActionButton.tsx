@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-import { theme } from 'constants/theme';
-
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: IconProp;
+  readonly icon: IconProp;
 }
 
 const Wrapper = styled.button`
@@ -16,7 +14,7 @@ const Wrapper = styled.button`
   width: 34px;
   height: 34px;
   cursor: pointer;
-  color: ${theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
   border: 0;
 
   &:disabled {

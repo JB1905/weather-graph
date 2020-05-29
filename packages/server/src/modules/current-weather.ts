@@ -58,6 +58,7 @@ const typeDefs = gql`
   }
 
   extend type Query {
+    currentForecast(name: String, lon: Float, lat: Float): CurrentForecast!
     currentForecastByName(name: String!): CurrentForecast!
     currentForecastByIDs(ids: [ID!]!): [CurrentForecast!]!
     currentForecastByCoords(lon: Float!, lat: Float!): CurrentForecast!
@@ -66,6 +67,25 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    currentForecast: async (_: any, { name, lon, lat }: any) => {
+      let end: any;
+
+      if (name) {
+        end = `${endpoint}weather${appid}&q=${name}`;
+      } else {
+        end = `${endpoint}weather${appid}&lat=${lat}&lon=${lon}`;
+      }
+
+      const res = await fetch(end);
+
+      const data = await res.json();
+
+      if (data.cod === '404') {
+        throw new Error(data.message);
+      }
+
+      return data;
+    },
     currentForecastByName: async (_: any, { name }: { name: string }) => {
       const res = await fetch(`${endpoint}weather${appid}&q=${name}`);
 

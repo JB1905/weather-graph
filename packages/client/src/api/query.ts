@@ -28,8 +28,9 @@ export const FORECAST_BY_IDS = gql`
 `;
 
 export const FORECAST_QUERY = gql`
-  query CurrentForecastByName($name: String!) {
-    currentForecastByName(name: $name) {
+  # query CurrentForecastByName($name: String!) {
+  query CurrentForecast($name: String, $lon: Float, $lat: Float) {
+    currentForecast(name: $name, lon: $lon, lat: $lat) {
       id
       name
       coord {
@@ -59,37 +60,9 @@ export const LONG_TERM_FORECAST = gql`
           pressure
           humidity
         }
-        # weather {
-        #   description
-        # }
-        # clouds {
-        # }
         wind {
           deg
           speed
-        }
-      }
-    }
-  }
-`;
-
-export const COORDS_QUERY = gql`
-  query ForecastByCoords($lon: Float!, $lat: Float!) {
-    forecastByCoords(lon: $lon, lat: $lat) {
-      city {
-        id
-        name
-      }
-    }
-  }
-`;
-
-export const CITY_IMAGE = gql`
-  query CityByName($name: String!) {
-    cityByName(name: $name) {
-      photos {
-        image {
-          web
         }
       }
     }

@@ -1,10 +1,10 @@
 import { SET_TEMPERATURE_UNIT } from 'actions/settingsActions';
 
-import { TemperatureUnit } from 'enums/temperatureUnit';
+import { TemperatureUnit } from 'enums/TemperatureUnit';
 
 import { UnitState } from 'interfaces/UnitState';
 
-import { UnitActionTypes } from 'types/UnitActionTypes';
+import type { UnitActionTypes } from 'types/UnitActionTypes';
 
 const initialState: UnitState = {
   temperatureUnit: TemperatureUnit.Celsius,

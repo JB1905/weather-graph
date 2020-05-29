@@ -2,12 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Main from 'components/Main';
-import Background from 'components/Background';
 import Global from 'components/Global';
-import BrandLink from 'components/BrandLink';
 import ActionButton from 'components/ActionButton';
 import Loader from 'components/Loader';
 
@@ -21,13 +16,15 @@ import { routes } from 'constants/routes';
 
 import { ReactComponent as Logo } from 'assets/logo.svg';
 
+import { Layout, Header, BrandLink, Main, Background } from 'App.styled';
+
 const Home = lazy(() => import('pages/Home'));
 const City = lazy(() => import('pages/City'));
 
 const App: React.FC = () => {
   const history = useHistory();
 
-  const { getCoords } = useGeolocation();
+  const { isGeolocationAvailable, getCoords } = useGeolocation();
 
   const { backgroundColor } = useBackground();
 
@@ -55,11 +52,13 @@ const App: React.FC = () => {
             }
           />
 
-          <ActionButton
-            icon={faLocationArrow}
-            onClick={getLocalForecast}
-            aria-label="Request Geolocation"
-          />
+          {isGeolocationAvailable && (
+            <ActionButton
+              icon={faLocationArrow}
+              onClick={getLocalForecast}
+              aria-label="Request Geolocation"
+            />
+          )}
         </Header>
 
         <Main>

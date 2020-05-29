@@ -1,10 +1,17 @@
-import { SET_BACKGROUND_COLOR } from 'actions/appearanceActions';
+import {
+  SET_BACKGROUND_COLOR,
+  RESET_BACKGROUND_COLOR,
+} from 'actions/appearanceActions';
 
 export interface AppearanceState {
-  backgroundColor: [string, string];
+  readonly backgroundColor: [string, string];
 }
 
 export interface SetBackgroundColorAction {
-  type: typeof SET_BACKGROUND_COLOR;
-  payload: [string, string];
+  readonly type: typeof SET_BACKGROUND_COLOR;
+  readonly payload: [string, string];
+}
+
+export interface ResetBackgroundColorAction {
+  readonly type: typeof RESET_BACKGROUND_COLOR;
 }

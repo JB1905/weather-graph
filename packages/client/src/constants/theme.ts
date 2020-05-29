@@ -15,5 +15,4 @@ export const theme = {
       default: '1.6rem',
     },
   },
-  spacing: {},
 };

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BeatLoader } from 'react-spinners';
+import { ThemeContext } from 'styled-components';
 
-import { theme } from 'constants/theme';
+interface Props {
+  readonly color?: string;
+}
 
-const Loader = ({ color = theme.colors.text }) => <BeatLoader color={color} />;
+const Loader: React.FC<Props> = ({ color }) => {
+  const theme = useContext(ThemeContext);
+
+  return <BeatLoader color={color || theme.colors.text} />;
+};
 
 export default Loader;

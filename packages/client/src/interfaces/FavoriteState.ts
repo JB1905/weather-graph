@@ -5,19 +5,19 @@ import {
 } from 'actions/favoriteActions';
 
 export interface FavoriteState {
-  items: string[];
+  readonly items: string[];
 }
 
 export interface AddFavoriteAction {
-  type: typeof ADD_FAVORITE;
-  payload: string;
+  readonly type: typeof ADD_FAVORITE;
+  readonly payload: string;
 }
 
 export interface DeleteFavoriteAction {
-  type: typeof DELETE_FAVORITE;
-  payload: string;
+  readonly type: typeof DELETE_FAVORITE;
+  readonly payload: string;
 }
 
 export interface ClearFavoriteAction {
-  type: typeof CLEAR_FAVORITE;
+  readonly type: typeof CLEAR_FAVORITE;
 }

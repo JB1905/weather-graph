@@ -8,8 +8,7 @@ const server = new ApolloServer({
     require('./modules/current-weather'),
     require('./modules/forecast'),
     require('./modules/uv-index'),
-    require('./modules/cities')
-  ]
+  ],
 });
 
 server.listen().then(({ url }: { url: string }) => {

@@ -6,10 +6,12 @@ import {
 
 import { FavoriteState } from 'interfaces/FavoriteState';
 
-import { FavoriteActionTypes } from 'types/FavoriteActionTypes';
+import type { FavoriteActionTypes } from 'types/FavoriteActionTypes';
 
 const initialState: FavoriteState = {
   items: [],
+  // favorite: []
+  // history: []
 };
 
 const favoriteReducer = (state = initialState, action: FavoriteActionTypes) => {

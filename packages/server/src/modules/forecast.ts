@@ -73,6 +73,28 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    // forecast: async (
+    //   _: any,
+    //   { name, lon, lat }: { name: string; lon: number; lat: number }
+    // ) => {
+    //   let res: any;
+
+    //   if (name) {
+    //     res = await fetch(`${endpoint}forecast${appid}&q=${name}`);
+    //   } else {
+    //     res = await fetch(`${endpoint}forecast${appid}&lat=${lat}&lon=${lon}`);
+    //   }
+
+    //   const res = await fetch(`${endpoint}forecast${appid}&q=${name}`);
+
+    //   const data = await res.json();
+
+    //   if (data.cod === '404') {
+    //     throw new Error(data.message);
+    //   }
+
+    //   return data;
+    // },
     forecastByName: async (_: any, { name }: { name: string }) => {
       const res = await fetch(`${endpoint}forecast${appid}&q=${name}`);
 
@@ -99,11 +121,11 @@ const resolvers = {
       }
 
       return data;
-    }
-  }
+    },
+  },
 };
 
 module.exports = {
   typeDefs,
-  resolvers
+  resolvers,
 };

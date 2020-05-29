@@ -1,12 +1,12 @@
-import { TemperatureUnit } from 'enums/temperatureUnit';
+import { TemperatureUnit } from 'enums/TemperatureUnit';
 
 import { SET_TEMPERATURE_UNIT } from 'actions/settingsActions';
 
 export interface UnitState {
-  temperatureUnit: TemperatureUnit;
+  readonly temperatureUnit: TemperatureUnit;
 }
 
 export interface SetTemperatureUnitAction {
-  type: typeof SET_TEMPERATURE_UNIT;
-  payload: TemperatureUnit;
+  readonly type: typeof SET_TEMPERATURE_UNIT;
+  readonly payload: TemperatureUnit;
 }
