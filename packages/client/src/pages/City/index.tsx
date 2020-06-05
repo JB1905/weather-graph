@@ -81,11 +81,11 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({
           <Details cityId={id} />
         </Summary>
 
-        <Forecast cityId={name} />
+        {/* <Forecast cityId={name} /> */}
 
-        <UVIndex lat={coord.lat} lon={coord.lon} />
+        {/* <UVIndex lat={coord.lat} lon={coord.lon} /> */}
 
-        <AirQuality />
+        {/* <AirQuality /> */}
 
         {/* <Maps lat={coord.lat} lon={coord.lon} /> */}
       </PageWrapper>

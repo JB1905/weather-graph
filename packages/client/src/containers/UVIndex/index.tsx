@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useQuery } from '@apollo/client';
+import * as d3 from 'd3';
 
 import Section from 'components/Section';
 import ErrorMessage from 'components/ErrorMessage';
@@ -13,7 +14,11 @@ import {
 } from 'generated';
 
 const Chart: React.FC<any> = ({ value }) => {
-  return <p>{value}</p>;
+  const ref = useRef(null);
+
+  useEffect(() => {}, []);
+
+  return <svg ref={ref} />;
 };
 
 const UVIndex: React.FC<CurrentUVIndexByCoordsVariables> = ({ lat, lon }) => {

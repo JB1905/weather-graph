@@ -17,7 +17,7 @@ const SectionWrapper = styled.section`
 
 const SectionTitle = styled.h3`
   font-size: 1.4rem;
-  padding: 0 20px;
+  padding: 14px 20px;
 `;
 
 const SectionContent = styled.div`

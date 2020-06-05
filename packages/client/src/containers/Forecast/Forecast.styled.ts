@@ -7,7 +7,7 @@ export const ForecastWrapper = styled.section`
 export const ForecastList = styled.ul`
   display: flex;
   overflow: auto;
-  padding: 0 10px 20px;
+  /* padding: 0 10px 20px; */
   margin-bottom: 0px;
 `;
 
@@ -20,7 +20,7 @@ export const ItemWrapper = styled.div`
   border-radius: 25px;
   height: 140px;
   min-width: 50px;
-  margin: 10px;
+  /* margin: 10px; */
   color: #fff;
   font-size: 1rem;
 `;

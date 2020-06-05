@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
+import ItemsCarousel from 'react-items-carousel';
 
 import ErrorMessage from 'components/ErrorMessage';
 import Loader from 'components/Loader';
@@ -32,6 +33,9 @@ const ForecastItem: React.FC<any> = ({ data }) => {
 };
 
 const Forecast: React.FC<Props> = ({ cityId }) => {
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 20;
+
   const { error, loading, data } = useQuery<ForecastByName>(
     LONG_TERM_FORECAST,
     {
@@ -53,11 +57,23 @@ const Forecast: React.FC<Props> = ({ cityId }) => {
 
   return (
     <Section title="Forecast">
-      <ForecastList>
-        {list.map((item, index) => (
-          <ForecastItem data={item} />
-        ))}
-      </ForecastList>
+      {/* <div style={{ padding: `0 ${chevronWidth}px 20px` }}>
+        <ItemsCarousel
+          requestToChangeActive={setActiveItemIndex}
+          activeItemIndex={activeItemIndex}
+          numberOfCards={8}
+          slidesToScroll={8}
+          gutter={24}
+          leftChevron={<button>{'<'}</button>}
+          rightChevron={<button>{'>'}</button>}
+          outsideChevron
+          chevronWidth={20}
+        >
+          {list.map((item, index) => (
+            <ForecastItem data={item} />
+          ))}
+        </ItemsCarousel>
+      </div> */}
     </Section>
   );
 };

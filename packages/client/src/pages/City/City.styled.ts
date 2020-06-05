@@ -5,11 +5,13 @@ import Wrapper from 'components/Wrapper';
 const flexbox = css``;
 
 export const PageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;
+  max-height: 100%;
+  max-width: 650px;
   width: 100%;
-  flex: 1;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 `;
 
 export const ActionButtonsWrapper = styled(Wrapper)``;
@@ -20,9 +22,7 @@ export const Summary = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 20px;
-  /* max-height: 250px; */
-  max-width: 650px;
+  padding: 20px;
   width: 100%;
   flex: 1;
 `;
