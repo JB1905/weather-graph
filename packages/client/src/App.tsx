@@ -68,7 +68,7 @@ const App: React.FC = () => {
               <Route path={`${routes.city}/:id`} component={City} />
               <Route path={routes.coords} component={City} />
 
-              <Redirect from="*" to="/" />
+              <Redirect from="*" to={routes.home} />
             </Switch>
           </Suspense>
         </Main>
