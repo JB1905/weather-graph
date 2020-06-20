@@ -8,6 +8,8 @@ import { useFavorite } from 'hooks/useFavorite';
 
 import { ContentWrapper, Icon, Title, SubTitle } from './Home.styled';
 
+import { isFeatureEnabled } from 'features';
+
 const FavoriteList = lazy(() => import('containers/FavoriteList'));
 
 const Home: React.FC<RouteComponentProps> = () => {
@@ -15,7 +17,7 @@ const Home: React.FC<RouteComponentProps> = () => {
 
   return (
     <ContentWrapper>
-      {favorites.length > 0 ? (
+      {favorites.length > 0 && isFeatureEnabled('favorites') ? (
         <Suspense fallback={<Loader />}>
           <FavoriteList items={favorites} />
         </Suspense>

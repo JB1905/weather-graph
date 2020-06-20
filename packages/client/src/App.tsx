@@ -18,6 +18,8 @@ import { ReactComponent as Logo } from 'assets/logo.svg';
 
 import { Layout, Header, BrandLink, Main, Background } from 'App.styled';
 
+import { isFeatureEnabled } from 'features';
+
 const Home = lazy(() => import('pages/Home'));
 const City = lazy(() => import('pages/City'));
 
@@ -52,11 +54,12 @@ const App: React.FC = () => {
             }
           />
 
-          {isGeolocationAvailable && (
+          {isFeatureEnabled('currentGeolocation') && (
             <ActionButton
               icon={faLocationArrow}
               onClick={getLocalForecast}
               aria-label="Request Geolocation"
+              disabled={!isGeolocationAvailable}
             />
           )}
         </Header>

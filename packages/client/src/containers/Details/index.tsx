@@ -16,15 +16,17 @@ import Loader from 'components/Loader';
 
 import TemperatureSwitch from 'containers/TemperatureSwitch';
 
-// import { useBackground } from 'hooks/useBackground';
-// import { useUnits } from 'hooks/useUnits';
+import { useBackground } from 'hooks/useBackground';
+import { useUnits } from 'hooks/useUnits';
 
 import { formatTime } from 'helpers/formatDate';
-// import { checkInRange } from 'helpers/checkInRange';
+import { checkInRange } from 'helpers/checkInRange';
 
 import { FORECAST_BY_IDS } from 'api/query';
 
 import { CurrentForecastByIDs } from 'generated';
+
+import { isFeatureEnabled } from 'features';
 
 import {
   Badge,
@@ -52,9 +54,9 @@ const Item: React.FC<{
 };
 
 const Details: React.FC<Props> = ({ cityId }) => {
-  // const { setBackground, resetBackground } = useBackground();
+  const { setBackground, resetBackground } = useBackground();
 
-  // const { convertUnit } = useUnits();
+  const { convertUnit } = useUnits();
 
   const { error, loading, data } = useQuery<CurrentForecastByIDs>(
     FORECAST_BY_IDS,
@@ -73,13 +75,17 @@ const Details: React.FC<Props> = ({ cityId }) => {
 
   return (
     <DetailsWrapper>
-      <TemperatureSwitch temp={main.temp} />
+      <div>
+        <TemperatureSwitch temp={main.temp} />
 
-      {/* <>
-        {convertUnit(main.temp_min)}° / {convertUnit(main.temp_max)}°
-      </> */}
+        {isFeatureEnabled('minMaxTemp') && (
+          <>
+            {convertUnit(main.temp_min)}° / {convertUnit(main.temp_max)}°
+          </>
+        )}
 
-      <Description>{weather[0].description}</Description>
+        <Description>{weather[0].description}</Description>
+      </div>
 
       <BadgeWrapper>
         <Item icon={faCompress}>Pressure: {main.pressure} hPa</Item>

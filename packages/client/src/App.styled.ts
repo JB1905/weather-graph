@@ -38,7 +38,7 @@ export const BrandLink = styled(Link)`
 
 export const Main = styled.main`
   flex: 1;
-  overflow: auto;
+  /* overflow: auto; */
   display: flex;
   align-items: center;
   justify-content: center;

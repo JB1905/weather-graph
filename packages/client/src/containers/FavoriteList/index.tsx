@@ -1,10 +1,14 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import Loader from 'components/Loader';
+import ActionButton from 'components/ActionButton';
 
 import { useUnits } from 'hooks/useUnits';
+
+import { routes } from 'constants/routes';
 
 import { FORECAST_BY_IDS } from 'api/query';
 
@@ -38,7 +42,7 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
     <List>
       {data.currentForecastByIDs.map(
         ({ name, weather, main, id }, index: number) => (
-          <Item key={id} as={Link} to={`/city/${name}`}>
+          <Item key={id} as={Link} to={`${routes.city}/${name}`}>
             <ItemSection>
               <h3>{name}</h3>
               <p>{weather[0].description}</p>
@@ -53,7 +57,7 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
               </Wrapper>
             </ItemSection>
 
-            {/* <Pin onClick={null}></Pin> */}
+            <ActionButton icon={faStar} onClick={() => null} />
           </Item>
         )
       )}

@@ -4,6 +4,7 @@ export const DetailsWrapper = styled.section`
   /* height: 100%; */
   /* min-height: 300px; */
   /* max-height: 600px; */
+  /* display: flex; */
 `;
 
 export const ItemsWrapper = styled.div`

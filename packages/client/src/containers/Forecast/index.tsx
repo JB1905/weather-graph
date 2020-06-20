@@ -18,7 +18,7 @@ interface Props {
 }
 
 const ForecastItem: React.FC<any> = ({ data }) => {
-  console.log(data);
+  // console.log(data);
 
   const { dt, main } = data;
 

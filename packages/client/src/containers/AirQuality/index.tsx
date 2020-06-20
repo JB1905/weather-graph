@@ -3,9 +3,14 @@ import { useQuery } from '@apollo/client';
 
 import Section from 'components/Section';
 
+// import { AIR_QUALITY_QUERY } from 'api/query';
+
 const AirQuality: React.FC = () => {
   // const { error, loading, data, refetch } = useQuery<>(
-  //   FORECAST_QUERY
+  //   AIR_QUALITY_QUERY,
+  //   {
+  //     variables: {}
+  //   }
   // );
 
   return (

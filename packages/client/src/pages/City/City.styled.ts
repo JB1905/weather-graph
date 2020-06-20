@@ -14,7 +14,10 @@ export const PageWrapper = styled.div`
   align-items: center; */
 `;
 
-export const ActionButtonsWrapper = styled(Wrapper)``;
+export const ActionButtonsWrapper = styled(Wrapper)`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 export const Summary = styled.div`
   display: flex;
@@ -36,4 +39,10 @@ export const More = styled.div`
   section {
     margin: 20px;
   }
+`;
+
+export const Xapper = styled.div`
+  max-width: 650px;
+  width: 100%;
+  padding: 0 12px;
 `;
