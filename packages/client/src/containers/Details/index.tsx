@@ -34,7 +34,7 @@ import {
   Description,
   BadgeWrapper,
   ItemsWrapper,
-} from './Details.styled';
+} from './Details.styles';
 
 interface Props {
   readonly cityId: string;

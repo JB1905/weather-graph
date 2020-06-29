@@ -8,6 +8,7 @@ import LazyLoad from 'react-lazyload';
 import ErrorMessage from 'components/ErrorMessage';
 import ActionButton from 'components/ActionButton';
 import Loader from 'components/Loader';
+import Page from 'components/Page';
 import { Title } from 'components/Typography';
 
 import { useUrl } from 'hooks/useUrl';
@@ -18,15 +19,20 @@ import { FORECAST_QUERY } from 'api/query';
 
 import { CurrentForecast } from 'generated';
 
-import { PageWrapper, Summary, ActionButtonsWrapper,Xapper } from './City.styled';
+import * as S from './City.styles';
 
 import { isFeatureEnabled } from 'features';
 
-const Details = lazy(() => import('containers/Details'));
-const Forecast = lazy(() => import('containers/Forecast'));
-const UVIndex = lazy(() => import('containers/UVIndex'));
-const AirQuality = lazy(() => import('containers/AirQuality'));
-const Maps = lazy(() => import('containers/Maps'));
+import Details from 'containers/Details'
+import Forecast from 'containers/Forecast';
+import UVIndex from 'containers/UVIndex';
+import AirQuality from 'containers/AirQuality';
+
+// const Details = lazy(() => import('containers/Details'));
+// const Forecast = lazy(() => import('containers/Forecast'));
+// const UVIndex = lazy(() => import('containers/UVIndex'));
+// const AirQuality = lazy(() => import('containers/AirQuality'));
+// const Maps = lazy(() => import('containers/Maps'));
 
 const City: React.FC<RouteComponentProps<{ id: string }>> = ({
   match,
@@ -77,59 +83,36 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({
   const { name, id, coord } = data!.currentForecast;
 
   return (
-    <Suspense fallback={<Loader />}>
-      <Xapper>
-        <ActionButtonsWrapper>
-          {isFeatureEnabled('favorites') && (
-            <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />
-          )}
+    // <Suspense fallback={<Loader />}>
+      <Page>
+        <S.ActionButtons>
+          <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />
+        </S.ActionButtons>
 
-          {isFeatureEnabled('reload') && (
-            <ActionButton
-              icon={faSync}
-              // spin={loading}
-              onClick={() => refetch()}
-            />
-          )}
-        </ActionButtonsWrapper>
-
-        <PageWrapper>
-          <Summary>
+        <S.Content>
+          <S.Summary>
             <Title>{name}</Title>
 
-            {isFeatureEnabled('today') && (
-              <LazyLoad height={200}>
-                <Details cityId={id} />
-              </LazyLoad>
-            )}
-          </Summary>
+            <div style={{
+              width: '100%',
+              height: 300,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <Details cityId={id} />
+            </div>
+          </S.Summary>
 
-          {isFeatureEnabled('forecast') && (
-            <LazyLoad height={200}>
-              <Forecast cityId={name} />
-            </LazyLoad>
-          )}
+          <Forecast cityId={name} />
 
-          {isFeatureEnabled('uvIndex') && (
-            <LazyLoad height={200}>
-              <UVIndex lat={coord.lat} lon={coord.lon} />
-            </LazyLoad>
-          )}
+          <UVIndex lat={coord.lat} lon={coord.lon} />
 
-          {isFeatureEnabled('airPollution') && (
-            <LazyLoad height={200}>
-              <AirQuality />
-            </LazyLoad>
-          )}
+          <AirQuality />
 
-          {isFeatureEnabled('maps') && (
-            <LazyLoad height={200}>
-              <Maps lat={coord.lat} lon={coord.lon} />
-            </LazyLoad>
-          )}
-        </PageWrapper>
-      </Xapper>
-    </Suspense>
+          {/* <Maps lat={coord.lat} lon={coord.lon} /> */}
+        </S.Content>
+    </Page>
   );
 };
 

@@ -6,7 +6,7 @@ import Loader from 'components/Loader';
 
 import { useFavorite } from 'hooks/useFavorite';
 
-import { ContentWrapper, Icon, Title, SubTitle } from './Home.styled';
+import { ContentWrapper, Icon, Title, SubTitle } from './Home.styles';
 
 import { isFeatureEnabled } from 'features';
 

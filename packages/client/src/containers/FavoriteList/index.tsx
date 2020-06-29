@@ -16,7 +16,7 @@ import { FORECAST_BY_IDS } from 'api/query';
 
 import { CurrentForecastByIDs } from 'generated';
 
-import { List, Item, ItemSection, Wrapper } from './FavoriteList.styled';
+import { List, Item, ItemSection, Wrapper } from './FavoriteList.styles';
 
 interface Props {
   readonly items: string[];

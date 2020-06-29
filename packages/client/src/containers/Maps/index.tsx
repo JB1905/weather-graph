@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
 
-import { ButtonsWrapper, Button } from './Maps.styled';
+import { ButtonsWrapper, Button } from './Maps.styles';
 
 import { LAYERS, RASTER_SOURCE_OPTIONS } from '../../constants/mapOptions';
 

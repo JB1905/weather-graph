@@ -11,7 +11,7 @@ import { ForecastByName } from 'generated';
 
 import Section from 'components/Section';
 
-import { ForecastList, ItemWrapper } from './Forecast.styled';
+import { ForecastList, ItemWrapper } from './Forecast.styles';
 
 interface Props {
   readonly cityId: string;

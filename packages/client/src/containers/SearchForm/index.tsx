@@ -3,7 +3,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import ActionButton from 'components/ActionButton';
 
-import { SearchWrapper, SearchField } from './SearchForm.styled';
+import { SearchWrapper, SearchField } from './SearchForm.styles';
 
 interface Props {
   onSubmit(query: string): void;

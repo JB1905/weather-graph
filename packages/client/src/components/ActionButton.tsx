@@ -8,12 +8,12 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Wrapper = styled.button`
-  background: transparent;
+  cursor: pointer;
   margin-left: 10px;
   font-size: 1.5rem;
   min-width: 34px;
   height: 34px;
-  cursor: pointer;
+  background: transparent;
   color: ${({ theme }) => theme.colors.text};
   border: 0;
 
@@ -24,7 +24,8 @@ const Wrapper = styled.button`
 `;
 
 const ActionButton: React.FC<Props> = ({ icon, children, ...props }) => (
-  <Wrapper {...props}>
+  // <Wrapper {...props}>
+  <Wrapper>
     <FontAwesomeIcon icon={icon} />
   </Wrapper>
 );

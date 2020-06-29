@@ -8,7 +8,7 @@ import {
   TemperatureSwitchWrapper,
   TemperatureValue,
   TemperatureUnitSwitch,
-} from './TemperatureSwitch.styled';
+} from './TemperatureSwitch.styles';
 
 const TemperatureSwitch: React.FC<any> = ({ temp }) => {
   const { temperatureUnit, setUnit, convertUnit } = useUnits();

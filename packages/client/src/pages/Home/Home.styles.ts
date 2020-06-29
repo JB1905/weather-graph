@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const mixin = css`
-  display: inline-block;
-  margin: 10px 0;
-`;
+// const mixin = css`
+//   display: inline-block;
+//   margin: 10px 0;
+// `;
 
 export const ContentWrapper = styled.div`
   height: 100%;
@@ -23,12 +23,8 @@ export const Icon = styled(FontAwesomeIcon)`
 
 export const Title = styled.h1`
   font-size: 2.4rem;
-
-  ${mixin}
 `;
 
 export const SubTitle = styled.h2`
   font-size: 1.6rem;
-
-  ${mixin}
 `;

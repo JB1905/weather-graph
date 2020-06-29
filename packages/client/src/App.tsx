@@ -16,9 +16,7 @@ import { routes } from 'constants/routes';
 
 import { ReactComponent as Logo } from 'assets/logo.svg';
 
-import { Layout, Header, BrandLink, Main, Background } from 'App.styled';
-
-import { isFeatureEnabled } from 'features';
+import { Layout, Header, BrandLink, Main, Background } from 'App.styles';
 
 const Home = lazy(() => import('pages/Home'));
 const City = lazy(() => import('pages/City'));
@@ -31,6 +29,10 @@ const App: React.FC = () => {
   const { backgroundColor } = useBackground();
 
   const { formatUrl } = useUrl();
+
+  const submitForm = (query: string) => {
+    history.push(`${routes.city}/${formatUrl(query)}`)
+  }
 
   const getLocalForecast = () => {
     getCoords(({ latitude, longitude }) => {
@@ -48,20 +50,14 @@ const App: React.FC = () => {
             <Logo />
           </BrandLink>
 
-          <SearchForm
-            onSubmit={(query) =>
-              history.push(`${routes.city}/${formatUrl(query)}`)
-            }
-          />
+          <SearchForm onSubmit={submitForm} />
 
-          {isFeatureEnabled('currentGeolocation') && (
-            <ActionButton
-              icon={faLocationArrow}
-              onClick={getLocalForecast}
-              aria-label="Request Geolocation"
-              disabled={!isGeolocationAvailable}
-            />
-          )}
+          <ActionButton
+            icon={faLocationArrow}
+            onClick={getLocalForecast}
+            aria-label="Request Geolocation"
+            disabled={!isGeolocationAvailable}
+          />
         </Header>
 
         <Main>
