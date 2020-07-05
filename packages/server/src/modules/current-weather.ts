@@ -67,16 +67,19 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    currentForecast: async (_: any, { name, lon, lat }: any) => {
-      let end: any;
+    currentForecast: async (
+      _: any,
+      { name, lon, lat }: { name: string; lon: number; lat: number }
+    ) => {
+      let conditionalEndpoint: any;
 
       if (name) {
-        end = `${endpoint}weather${appid}&q=${name}`;
+        conditionalEndpoint = `${endpoint}weather${appid}&q=${name}`;
       } else {
-        end = `${endpoint}weather${appid}&lat=${lat}&lon=${lon}`;
+        conditionalEndpoint = `${endpoint}weather${appid}&lat=${lat}&lon=${lon}`;
       }
 
-      const res = await fetch(end);
+      const res = await fetch(conditionalEndpoint);
 
       const data = await res.json();
 
