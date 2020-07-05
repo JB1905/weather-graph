@@ -17,35 +17,39 @@ describe('SearchForm', () => {
 
     const sbmButton = container.getElementsByTagName('button')[0];
 
-    searchForm.value = 'paris';
+    const inputValue = 'paris';
+
+    searchForm.value = inputValue;
 
     fireEvent.click(sbmButton);
 
-    expect(onSubmit).toHaveBeenCalled();
+    expect(onSubmit).toHaveBeenCalledWith(inputValue);
   });
 
-  // it('should not call onSubmit callback', () => {
-  //   const searchForm = container.getElementsByTagName('input')[0];
+  it('should not call onSubmit callback', () => {
+    const searchForm = container.getElementsByTagName('input')[0];
 
-  //   const sbmButton = container.getElementsByTagName('button')[0];
+    const sbmButton = container.getElementsByTagName('button')[0];
 
-  //   searchForm.value = '';
+    searchForm.value = '';
 
-  //   fireEvent.click(sbmButton);
+    fireEvent.click(sbmButton);
 
-  //   expect(onSubmit).not.toHaveBeenCalled();
-  // });
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
 
-  // it('should not call onSubmit callback', () => {
-  //   const searchForm = container.getElementsByTagName('input')[0];
+  it('should call onSubmit callback', () => {
+    const searchForm = container.getElementsByTagName('input')[0];
 
-  //   searchForm.value = 'paris';
+    const inputValue = 'paris';
 
-  //   fireEvent.keyPress(searchForm, {
-  //     key: 'Enter',
-  //     code: 'Enter',
-  //   });
+    searchForm.value = inputValue;
 
-  //   expect(onSubmit).toHaveBeenCalled();
-  // });
+    fireEvent.keyPress(searchForm, {
+      key: 'Enter',
+      code: 'Enter',
+    });
+
+    expect(onSubmit).toHaveBeenCalledWith(inputValue);
+  });
 });

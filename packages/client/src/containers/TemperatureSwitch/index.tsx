@@ -17,16 +17,17 @@ const TemperatureSwitch: React.FC<any> = ({ temp }) => {
     <TemperatureSwitchWrapper>
       <TemperatureValue>{convertUnit(temp)}</TemperatureValue>
 
-      {/* <TemperatureSwitch>
-        {Object.values(TemperatureUnit).map((unit) => (
-          <TemperatureUnitSwitch
-            onClick={() => setUnit(unit)}
-            active={unit === temperatureUnit}
-          >
-            {unit}
-          </TemperatureUnitSwitch>
-        ))}
-      </TemperatureSwitch> */}
+      {/* <TemperatureUnitSwitch> */}
+      {Object.values(TemperatureUnit).map((unit) => (
+        <TemperatureUnitSwitch
+          active={unit === temperatureUnit}
+          onClick={() => setUnit(unit)}
+          key={unit}
+        >
+          {unit}
+        </TemperatureUnitSwitch>
+      ))}
+      {/* </TemperatureUnitSwitch> */}
     </TemperatureSwitchWrapper>
   );
 };

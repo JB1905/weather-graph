@@ -10,8 +10,6 @@ import type { FavoriteActionTypes } from 'types/FavoriteActionTypes';
 
 const initialState: FavoriteState = {
   items: [],
-  // favorite: []
-  // history: []
 };
 
 const favoriteReducer = (state = initialState, action: FavoriteActionTypes) => {

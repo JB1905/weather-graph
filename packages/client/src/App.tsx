@@ -2,17 +2,18 @@ import React, { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
-import Global from 'components/Global';
 import ActionButton from 'components/ActionButton';
 import Loader from 'components/Loader';
 
 import SearchForm from 'containers/SearchForm';
 
+import Global from 'styles/Global';
+
 import { useUrl } from 'hooks/useUrl';
 import { useGeolocation } from 'hooks/useGeolocation';
 import { useBackground } from 'hooks/useBackground';
 
-import { routes } from 'constants/routes';
+import { routes } from 'routes';
 
 import { ReactComponent as Logo } from 'assets/logo.svg';
 
@@ -31,8 +32,8 @@ const App: React.FC = () => {
   const { formatUrl } = useUrl();
 
   const submitForm = (query: string) => {
-    history.push(`${routes.city}/${formatUrl(query)}`)
-  }
+    history.push(`${routes.city}/${formatUrl(query)}`);
+  };
 
   const getLocalForecast = () => {
     getCoords(({ latitude, longitude }) => {
@@ -44,10 +45,10 @@ const App: React.FC = () => {
     <>
       <Global />
 
-      <Layout>
-        <Header>
+      <Layout data-testid="app-layout">
+        <Header data-testid="app-header">
           <BrandLink to={routes.home} aria-label="Go Home">
-            <Logo />
+            <Logo data-testid="app-logo" />
           </BrandLink>
 
           <SearchForm onSubmit={submitForm} />
@@ -60,7 +61,7 @@ const App: React.FC = () => {
           />
         </Header>
 
-        <Main>
+        <Main data-testid="app-main">
           <Suspense fallback={<Loader />}>
             <Switch>
               <Route exact path={routes.home} component={Home} />

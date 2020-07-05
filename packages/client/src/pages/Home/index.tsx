@@ -19,13 +19,13 @@ const Home: React.FC<RouteComponentProps> = () => {
     <ContentWrapper>
       {favorites.length > 0 && isFeatureEnabled('favorites') ? (
         <Suspense fallback={<Loader />}>
-          <FavoriteList items={favorites} />
+          <FavoriteList items={favorites} data-testid="favorite-list" />
         </Suspense>
       ) : (
         <>
           <Icon icon={faCloudSunRain} />
 
-          <Title>Weather Graph</Title>
+          <Title data-testid="app-title">Weather Graph</Title>
 
           <SubTitle>Type city name or get wather for current location</SubTitle>
         </>

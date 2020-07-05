@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { theme } from 'constants/theme';
+import { theme } from './theme';
 
 const Global = createGlobalStyle`
   html {

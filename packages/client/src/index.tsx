@@ -14,12 +14,12 @@ import App from 'App';
 
 import store from 'store';
 
-import { theme } from 'constants/theme';
+import { theme } from 'styles/theme';
 
 import * as serviceWorker from './serviceWorker';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/',
+  uri: process.env.REACT_APP_SERVER_ORIGIN,
 });
 
 const client = new ApolloClient({

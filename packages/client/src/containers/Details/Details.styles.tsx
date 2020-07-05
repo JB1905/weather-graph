@@ -16,7 +16,7 @@ export const Description = styled.h4`
   margin: 20px 0;
 `;
 
-export const BadgeWrapper = styled.ul`
+export const ConditionsInfo = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -24,7 +24,6 @@ export const BadgeWrapper = styled.ul`
   margin: 0 auto;
   max-width: 500px;
   padding: 0;
-  margin: 10px 0;
 `;
 
 export const Badge = styled.li<{ iconRotate?: number }>`

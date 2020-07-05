@@ -5,6 +5,6 @@ import FavoriteList from '.';
 
 describe('FavoriteList', () => {
   it('should render FavoriteList component', () => {
-    // const { container } = render(<FavoriteList />);
+    const { container } = render(<FavoriteList />);
   });
 });

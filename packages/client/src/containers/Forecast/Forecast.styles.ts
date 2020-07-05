@@ -14,10 +14,10 @@ export const ForecastList = styled.ul`
 export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #0004;
-  border: 2px solid #fff;
+  /* background-color: #fff3; */
+  border: 3px solid #fff;
   /* background-color: #fff; */
-  border-radius: 25px;
+  border-radius: 40px;
   height: 140px;
   min-width: 50px;
   /* margin: 10px; */

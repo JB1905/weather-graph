@@ -15,4 +15,11 @@ export const theme = {
       default: '1.6rem',
     },
   },
+  size: {
+    full: '100%',
+    actionButton: '34px',
+  },
+  spaces: {
+    content: '12px',
+  },
 };

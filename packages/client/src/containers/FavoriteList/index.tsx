@@ -8,7 +8,7 @@ import ActionButton from 'components/ActionButton';
 
 import { useUnits } from 'hooks/useUnits';
 
-import { routes } from 'constants/routes';
+import { routes } from 'routes';
 
 import { FORECAST_BY_IDS } from 'api/query';
 
@@ -49,12 +49,12 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
             </ItemSection>
 
             <ItemSection>
-              <p>{convertUnit(main.temp)}</p>
+              {/* <p>{convertUnit(main.temp)}</p>
 
               <Wrapper>
                 <p>{convertUnit(main.temp_max)}</p>
                 <p>{convertUnit(main.temp_min)}</p>
-              </Wrapper>
+              </Wrapper> */}
             </ItemSection>
 
             <ActionButton icon={faStar} onClick={() => null} />

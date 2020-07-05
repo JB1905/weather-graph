@@ -17,7 +17,6 @@ Weather app built with GraphQL
 ## Prerequisites
 
 - Yarn
-- Node.js
 
 ## Setup
 

@@ -5,6 +5,6 @@ import Details from '.';
 
 describe('Details', () => {
   it('should render Details component', () => {
-    // const { container } = render(<Details />);
+    const { container } = render(<Details />);
   });
 });

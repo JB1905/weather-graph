@@ -11,17 +11,15 @@ const server = new ApolloServer({
   ],
   cors: {
     credentials: true,
-    // origin: (origin, callback) => {
-    //   const whitelist = [
-    //     // "http://site1.com"
-    //   ];
+    origin: (origin, callback) => {
+      const allowlist = [process.env.CLIENT_ORIGIN];
 
-    //   if (whitelist.indexOf(origin) !== -1) {
-    //     callback(null, true)
-    //   } else {
-    //     callback(new Error("Not allowed by CORS"))
-    //   }
-    // }
+      if (allowlist.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
   },
 });
 

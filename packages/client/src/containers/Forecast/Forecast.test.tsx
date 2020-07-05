@@ -5,6 +5,6 @@ import Forecast from '.';
 
 describe('Forecast', () => {
   it('should render Forecast component', () => {
-    // const { container } = render(<Forecast />);
+    const { container } = render(<Forecast />);
   });
 });

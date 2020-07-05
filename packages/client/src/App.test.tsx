@@ -5,8 +5,11 @@ import App from './App';
 
 describe('App', () => {
   it('should render App component', () => {
-    const { container } = render(<App />);
+    const { getByTestId } = render(<App />);
 
-    expect(container);
+    expect(getByTestId('app-layout')).toBeInTheDocument();
+    expect(getByTestId('app-header')).toBeInTheDocument();
+    expect(getByTestId('app-logo')).toBeInTheDocument();
+    expect(getByTestId('app-main')).toBeInTheDocument();
   });
 });

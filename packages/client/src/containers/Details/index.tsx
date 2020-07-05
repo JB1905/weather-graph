@@ -26,13 +26,11 @@ import { FORECAST_BY_IDS } from 'api/query';
 
 import { CurrentForecastByIDs } from 'generated';
 
-import { isFeatureEnabled } from 'features';
-
 import {
   Badge,
   DetailsWrapper,
   Description,
-  BadgeWrapper,
+  ConditionsInfo,
   ItemsWrapper,
 } from './Details.styles';
 
@@ -78,16 +76,10 @@ const Details: React.FC<Props> = ({ cityId }) => {
       <div>
         <TemperatureSwitch temp={main.temp} />
 
-        {isFeatureEnabled('minMaxTemp') && (
-          <>
-            {convertUnit(main.temp_min)}° / {convertUnit(main.temp_max)}°
-          </>
-        )}
-
         <Description>{weather[0].description}</Description>
       </div>
 
-      <BadgeWrapper>
+      <ConditionsInfo>
         <Item icon={faCompress}>Pressure: {main.pressure} hPa</Item>
 
         <Item icon={faArrowUp} iconRotate={wind.deg!}>
@@ -100,7 +92,7 @@ const Details: React.FC<Props> = ({ cityId }) => {
           <Item icon={faArrowCircleUp}>{formatTime(sys.sunrise * 1000)}</Item>
           <Item icon={faArrowCircleDown}>{formatTime(sys.sunset * 1000)}</Item>
         </ItemsWrapper>
-      </BadgeWrapper>
+      </ConditionsInfo>
     </DetailsWrapper>
   );
 };

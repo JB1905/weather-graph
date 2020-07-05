@@ -3,7 +3,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import queryString from 'query-string';
 import { faStar, faSync } from '@fortawesome/free-solid-svg-icons';
-import LazyLoad from 'react-lazyload';
 
 import ErrorMessage from 'components/ErrorMessage';
 import ActionButton from 'components/ActionButton';
@@ -19,11 +18,14 @@ import { FORECAST_QUERY } from 'api/query';
 
 import { CurrentForecast } from 'generated';
 
-import * as S from './City.styles';
+import {
+  ManagementActions,
+  BoardSkeleton,
+  Content,
+  Summary,
+} from './City.styles';
 
-import { isFeatureEnabled } from 'features';
-
-import Details from 'containers/Details'
+import Details from 'containers/Details';
 import Forecast from 'containers/Forecast';
 import UVIndex from 'containers/UVIndex';
 import AirQuality from 'containers/AirQuality';
@@ -44,8 +46,11 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({
 
   const { resetBackground } = useBackground();
 
+  console.log('kurwa');
+
   const prepareParams = () => {
     const variables = {} as any;
+    //  { name: string } | { lat: string; lon: string };
 
     if (match.params.id) {
       const name = parseUrl(match.params.id);
@@ -69,9 +74,9 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({
   );
 
   if (loading) {
-    if (isFeatureEnabled('backgroundChange')) {
-      resetBackground();
-    }
+    // if (isFeatureEnabled('backgroundChange')) {
+    resetBackground();
+    // }
 
     return <Loader />;
   }
@@ -83,35 +88,29 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({
   const { name, id, coord } = data!.currentForecast;
 
   return (
-    // <Suspense fallback={<Loader />}>
-      <Page>
-        <S.ActionButtons>
-          <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />
-        </S.ActionButtons>
+    <Page>
+      <ManagementActions>
+        <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />
+        <ActionButton icon={faSync} onClick={refetch} />
+      </ManagementActions>
 
-        <S.Content>
-          <S.Summary>
-            <Title>{name}</Title>
+      <Content>
+        <Summary>
+          <Title>{name}</Title>
 
-            <div style={{
-              width: '100%',
-              height: 300,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <Details cityId={id} />
-            </div>
-          </S.Summary>
+          <BoardSkeleton>
+            <Details cityId={id} />
+          </BoardSkeleton>
+        </Summary>
 
-          <Forecast cityId={name} />
+        {/* <Forecast cityId={name} /> */}
 
-          <UVIndex lat={coord.lat} lon={coord.lon} />
+        <UVIndex lat={coord.lat} lon={coord.lon} />
 
-          <AirQuality />
+        <AirQuality />
 
-          {/* <Maps lat={coord.lat} lon={coord.lon} /> */}
-        </S.Content>
+        {/* <Maps lat={coord.lat} lon={coord.lon} /> */}
+      </Content>
     </Page>
   );
 };

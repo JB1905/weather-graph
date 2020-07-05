@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import ItemsCarousel from 'react-items-carousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 import ErrorMessage from 'components/ErrorMessage';
 import Loader from 'components/Loader';
@@ -18,18 +20,12 @@ interface Props {
 }
 
 const ForecastItem: React.FC<any> = ({ data }) => {
-  // console.log(data);
-
   const { dt, main } = data;
 
   const { temp } = main;
 
-  return (
-    <ItemWrapper>
-      <p>Today</p>
-      <p>{temp}</p>
-    </ItemWrapper>
-  );
+  return <ItemWrapper>{/* <p>Today</p>
+      <p>{temp}</p> */}</ItemWrapper>;
 };
 
 const Forecast: React.FC<Props> = ({ cityId }) => {
@@ -53,27 +49,25 @@ const Forecast: React.FC<Props> = ({ cityId }) => {
 
   const { list } = data!.forecastByName;
 
-  // console.log(list);
-
   return (
     <Section title="Forecast">
-      {/* <div style={{ padding: `0 ${chevronWidth}px 20px` }}>
+      <div style={{ padding: `0 ${chevronWidth}px 20px` }}>
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
           activeItemIndex={activeItemIndex}
           numberOfCards={8}
           slidesToScroll={8}
           gutter={24}
-          leftChevron={<button>{'<'}</button>}
-          rightChevron={<button>{'>'}</button>}
+          leftChevron={<FontAwesomeIcon icon={faAngleLeft} />}
+          rightChevron={<FontAwesomeIcon icon={faAngleRight} />}
           outsideChevron
-          chevronWidth={20}
+          chevronWidth={24}
         >
           {list.map((item, index) => (
             <ForecastItem data={item} />
           ))}
         </ItemsCarousel>
-      </div> */}
+      </div>
     </Section>
   );
 };

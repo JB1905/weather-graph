@@ -1,19 +1,14 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-// const mixin = css`
-//   display: inline-block;
-//   margin: 10px 0;
-// `;
 
 export const ContentWrapper = styled.div`
   height: 100%;
+  max-width: 300px;
+  margin: 0 auto 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  max-width: 300px;
-  margin: 0 auto 25px;
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
@@ -27,4 +22,5 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
   font-size: 1.6rem;
+  margin: 12px 0 0;
 `;

@@ -13,10 +13,10 @@ export const useUnits = () => {
   const { temperatureUnit } = useSelector((state: RootState) => state.unit);
 
   const setUnit = (unit: TemperatureUnit) => {
-    dispatch({
-      type: SET_TEMPERATURE_UNIT,
-      payload: unit,
-    });
+    // dispatch({
+    //   type: SET_TEMPERATURE_UNIT,
+    //   payload: unit,
+    // });
   };
 
   const convertUnit = (value: number) => {

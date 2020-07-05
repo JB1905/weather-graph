@@ -1,29 +1,36 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-// import Wrapper from 'components/Wrapper';
+const fillSize = css`
+  flex: 1;
+  width: ${({ theme }) => theme.size.full};
+`;
 
-export const ActionButtons = styled.div`
+/* const FlexBox = styled.div<{ direction: 'row' | 'column' }>`
+  display: flex;
+  flex-direction: ${({ direction = 'row' }) => direction};
+  justify-content: center;
+  align-items: center;
+`; */
+
+export const ManagementActions = styled.div`
   display: flex;
   justify-content: flex-end;
-  /* width: 100%;
-  height: 34px; */
-`
+  width: ${({ theme }) => theme.size.full};
+  height: ${({ theme }) => theme.size.actionButton};
+  padding: ${({ theme }) => theme.spaces.content};
+`;
+
+export const BoardSkeleton = styled.div`
+  width: ${({ theme }) => theme.size.full};
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Content = styled.div`
-  flex: 1;
-  width: 100%;
-`
-
-// export const PageWrapper = styled.div`
-//   /* display: flex;
-//   flex-direction: column;
-//   align-items: center; */
-// `;
-
-// export const ActionButtonsWrapper = styled(Wrapper)`
-//   display: flex;
-//   justify-content: flex-end;
-// `;
+  ${fillSize}
+`;
 
 export const Summary = styled.div`
   display: flex;
@@ -32,23 +39,6 @@ export const Summary = styled.div`
   align-items: center;
   text-align: center;
   padding: 20px;
-  width: 100%;
+  width: ${({ theme }) => theme.size.full};
   flex: 1;
 `;
-
-// export const More = styled.div`
-//   display: flex;
-//   width: 100%;
-//   padding: 20px;
-//   flex-wrap: wrap;
-
-//   section {
-//     margin: 20px;
-//   }
-// `;
-
-// export const Xapper = styled.div`
-//   max-width: 650px;
-//   width: 100%;
-//   padding: 0 12px;
-// `;

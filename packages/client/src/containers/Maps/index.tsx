@@ -3,7 +3,7 @@ import ReactMapGL, { Source, Layer } from 'react-map-gl';
 
 import { ButtonsWrapper, Button } from './Maps.styles';
 
-import { LAYERS, RASTER_SOURCE_OPTIONS } from '../../constants/mapOptions';
+// import { LAYERS, RASTER_SOURCE_OPTIONS } from '../../constants/mapOptions';
 
 import Section from 'components/Section';
 
@@ -25,7 +25,7 @@ const Maps: React.FC<Props> = ({ lat, lon }) => {
         ))}
       </ButtonsWrapper> */}
 
-      <ReactMapGL
+      {/* <ReactMapGL
         mapboxApiAccessToken={process.env.REACT_APP_MAP_ACCESS_TOKEN}
         mapStyle="mapbox://styles/mapbox/light-v9"
         width="100%"
@@ -33,10 +33,10 @@ const Maps: React.FC<Props> = ({ lat, lon }) => {
         latitude={lat}
         longitude={lon}
         // zoom={zoomLevel}
-      >
-        {/* <Source id="source_id" tileJsonSource={RASTER_SOURCE_OPTIONS} />
+      > */}
+      {/* <Source id="source_id" tileJsonSource={RASTER_SOURCE_OPTIONS} />
         <Layer type="raster" id="layer_id" sourceId="source_id" /> */}
-      </ReactMapGL>
+      {/* </ReactMapGL> */}
     </Section>
   );
 };
