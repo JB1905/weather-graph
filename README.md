@@ -37,7 +37,6 @@ cd weather-graph
 - [TypeScript](https://www.typescriptlang.org/)
 - [Travis CI](https://travis-ci.org/)
 - [Docker](https://www.docker.com/)
-- [Jest](https://jestjs.io/)
 - [Vercel (ZEIT) Now](https://vercel.com/)
 - [OpenWeatherMap API](https://openweathermap.org/)
 
