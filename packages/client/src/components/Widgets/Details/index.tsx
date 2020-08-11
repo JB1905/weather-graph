@@ -17,7 +17,6 @@ import Loader from 'components/Loader';
 import TemperatureSwitch from 'containers/TemperatureSwitch';
 
 import { useBackground } from 'hooks/useBackground';
-import { useUnits } from 'hooks/useUnits';
 
 import { formatTime } from 'helpers/formatDate';
 import { checkInRange } from 'helpers/checkInRange';
@@ -54,8 +53,6 @@ const Item: React.FC<{
 const Details: React.FC<Props> = ({ cityId }) => {
   const { setBackground, resetBackground } = useBackground();
 
-  const { convertUnit } = useUnits();
-
   const { error, loading, data } = useQuery<CurrentForecastByIDs>(
     FORECAST_BY_IDS,
     {
@@ -64,6 +61,12 @@ const Details: React.FC<Props> = ({ cityId }) => {
       },
     }
   );
+
+  // useEffect(() => {
+  //   setBackground(data?.currentForecastByIDs?.[0]?.weather[0]?.description);
+
+  //   return () => resetBackground();
+  // }, [data, resetBackground, setBackground]);
 
   if (loading) return <Loader />;
 

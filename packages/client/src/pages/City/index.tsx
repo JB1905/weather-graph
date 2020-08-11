@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import queryString from 'query-string';
 import { faStar, faSync } from '@fortawesome/free-solid-svg-icons';
+import { useQuery, gql } from '@apollo/client';
+import queryString from 'query-string';
 
 import ErrorMessage from 'components/ErrorMessage';
 import ActionButton from 'components/ActionButton';
@@ -12,11 +12,8 @@ import { Title } from 'components/Typography';
 
 import { useUrl } from 'hooks/useUrl';
 import { useFavorite } from 'hooks/useFavorite';
-import { useBackground } from 'hooks/useBackground';
 
-import { FORECAST_QUERY } from 'api/query';
-
-import { CurrentForecast } from 'generated';
+import { CurrentForecast } from 'types/generated';
 
 import {
   ManagementActions,
@@ -25,16 +22,8 @@ import {
   Summary,
 } from './City.styles';
 
-import Details from 'containers/Details';
-import Forecast from 'containers/Forecast';
-import UVIndex from 'containers/UVIndex';
-import AirQuality from 'containers/AirQuality';
-
-// const Details = lazy(() => import('containers/Details'));
-// const Forecast = lazy(() => import('containers/Forecast'));
-// const UVIndex = lazy(() => import('containers/UVIndex'));
-// const AirQuality = lazy(() => import('containers/AirQuality'));
-// const Maps = lazy(() => import('containers/Maps'));
+const Details = lazy(() => import('components/Widgets/Details'));
+const Forecast = lazy(() => import('components/Widgets/Forecast'));
 
 const City: React.FC<RouteComponentProps<{ id: string }>> = ({
   match,
@@ -44,13 +33,8 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({
 
   const { parseUrl } = useUrl();
 
-  const { resetBackground } = useBackground();
-
-  console.log('kurwa');
-
   const prepareParams = () => {
     const variables = {} as any;
-    //  { name: string } | { lat: string; lon: string };
 
     if (match.params.id) {
       const name = parseUrl(match.params.id);
@@ -66,53 +50,53 @@ const City: React.FC<RouteComponentProps<{ id: string }>> = ({
     return variables;
   };
 
-  const { error, loading, data, refetch } = useQuery<CurrentForecast>(
-    FORECAST_QUERY,
-    {
-      variables: prepareParams(),
-    }
-  );
+  const { error, loading, data, refetch } = useQuery<CurrentForecast>(query, {
+    variables: prepareParams(),
+  });
 
-  if (loading) {
-    // if (isFeatureEnabled('backgroundChange')) {
-    resetBackground();
-    // }
-
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   if (error) {
     return <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>;
   }
 
-  const { name, id, coord } = data!.currentForecast;
+  const { name, id } = data!.currentForecast;
 
   return (
-    <Page>
-      <ManagementActions>
-        <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />
-        <ActionButton icon={faSync} onClick={refetch} />
-      </ManagementActions>
+    <Suspense fallback={<Loader />}>
+      <Page>
+        {/* <ManagementActions>
+          <ActionButton icon={faStar} onClick={() => toggleFavorite(id)} />
+          <ActionButton icon={faSync} onClick={refetch} />
+        </ManagementActions> */}
 
-      <Content>
-        <Summary>
-          <Title>{name}</Title>
+        <Content>
+          <Summary>
+            <Title>{name}</Title>
 
-          <BoardSkeleton>
-            <Details cityId={id} />
-          </BoardSkeleton>
-        </Summary>
+            <BoardSkeleton>
+              <Details cityId={id} />
+            </BoardSkeleton>
+          </Summary>
+        </Content>
 
-        {/* <Forecast cityId={name} /> */}
-
-        <UVIndex lat={coord.lat} lon={coord.lon} />
-
-        <AirQuality />
-
-        {/* <Maps lat={coord.lat} lon={coord.lon} /> */}
-      </Content>
-    </Page>
+        {/* <Forecast /> */}
+      </Page>
+    </Suspense>
   );
 };
+
+export const query = gql`
+  query CurrentForecast($name: String, $lon: Float, $lat: Float) {
+    currentForecast(name: $name, lon: $lon, lat: $lat) {
+      id
+      name
+      coord {
+        lat
+        lon
+      }
+    }
+  }
+`;
 
 export default City;

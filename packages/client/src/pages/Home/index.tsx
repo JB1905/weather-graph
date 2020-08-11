@@ -10,7 +10,7 @@ import { ContentWrapper, Icon, Title, SubTitle } from './Home.styles';
 
 import { isFeatureEnabled } from 'features';
 
-const FavoriteList = lazy(() => import('containers/FavoriteList'));
+const FavoriteList = lazy(() => import('components/FavoriteList'));
 
 const Home: React.FC<RouteComponentProps> = () => {
   const { favorites } = useFavorite();

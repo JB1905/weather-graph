@@ -27,20 +27,6 @@ export const FORECAST_BY_IDS = gql`
   }
 `;
 
-export const FORECAST_QUERY = gql`
-  # query CurrentForecastByName($name: String!) {
-  query CurrentForecast($name: String, $lon: Float, $lat: Float) {
-    currentForecast(name: $name, lon: $lon, lat: $lat) {
-      id
-      name
-      coord {
-        lat
-        lon
-      }
-    }
-  }
-`;
-
 export const UV_INDEX = gql`
   query CurrentUVIndexByCoords($lon: Float!, $lat: Float!) {
     currentUVIndexByCoords(lon: $lon, lat: $lat) {

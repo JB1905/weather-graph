@@ -7,7 +7,8 @@ import { TemperatureUnit } from 'enums/TemperatureUnit';
 import {
   TemperatureSwitchWrapper,
   TemperatureValue,
-  TemperatureUnitSwitch,
+  TemperatureSwitchUnits,
+  TemperatureSwitchUnitsItem,
 } from './TemperatureSwitch.styles';
 
 const TemperatureSwitch: React.FC<any> = ({ temp }) => {
@@ -17,17 +18,17 @@ const TemperatureSwitch: React.FC<any> = ({ temp }) => {
     <TemperatureSwitchWrapper>
       <TemperatureValue>{convertUnit(temp)}</TemperatureValue>
 
-      {/* <TemperatureUnitSwitch> */}
-      {Object.values(TemperatureUnit).map((unit) => (
-        <TemperatureUnitSwitch
-          active={unit === temperatureUnit}
-          onClick={() => setUnit(unit)}
-          key={unit}
-        >
-          {unit}
-        </TemperatureUnitSwitch>
-      ))}
-      {/* </TemperatureUnitSwitch> */}
+      <TemperatureSwitchUnits>
+        {Object.values(TemperatureUnit).map((unit) => (
+          <TemperatureSwitchUnitsItem
+            active={unit === temperatureUnit}
+            onClick={() => setUnit(unit)}
+            key={unit}
+          >
+            °{unit}
+          </TemperatureSwitchUnitsItem>
+        ))}
+      </TemperatureSwitchUnits>
     </TemperatureSwitchWrapper>
   );
 };

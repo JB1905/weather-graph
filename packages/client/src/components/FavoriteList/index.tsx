@@ -42,7 +42,7 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
     <List>
       {data.currentForecastByIDs.map(
         ({ name, weather, main, id }, index: number) => (
-          <Item key={id} as={Link} to={`${routes.city}/${name}`}>
+          <Item key={id} as={Link} to={routes.city(name)}>
             <ItemSection>
               <h3>{name}</h3>
               <p>{weather[0].description}</p>

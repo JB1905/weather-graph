@@ -4,8 +4,7 @@ import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
 import ActionButton from 'components/ActionButton';
 import Loader from 'components/Loader';
-
-import SearchForm from 'containers/SearchForm';
+import SearchForm from 'components/SearchForm';
 
 import Global from 'styles/Global';
 
@@ -32,7 +31,7 @@ const App: React.FC = () => {
   const { formatUrl } = useUrl();
 
   const submitForm = (query: string) => {
-    history.push(`${routes.city}/${formatUrl(query)}`);
+    history.push(routes.city(formatUrl(query)));
   };
 
   const getLocalForecast = () => {
@@ -65,7 +64,7 @@ const App: React.FC = () => {
           <Suspense fallback={<Loader />}>
             <Switch>
               <Route exact path={routes.home} component={Home} />
-              <Route path={`${routes.city}/:id`} component={City} />
+              <Route path={routes.city()} component={City} />
               <Route path={routes.coords} component={City} />
 
               <Redirect from="*" to={routes.home} />

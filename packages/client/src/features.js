@@ -4,7 +4,6 @@ const featureFlags = {
   uvIndex: false,
   airPollution: false,
   maps: false,
-  // currentGeolocation: false,
   favorites: true,
   reload: true,
   info: false,
