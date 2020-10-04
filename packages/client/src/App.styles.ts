@@ -6,13 +6,6 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /* TODO */
-  /* height: -webkit-fill-available; */
-
-  /* TODO */
-  /* @supports (-webkit-touch-callout: none) {
-    height: -webkit-fill-available;
-  } */
 
   @supports (-webkit-touch-callout: none) {
     height: -webkit-fill-available;
@@ -21,10 +14,6 @@ export const Layout = styled.div`
       height: 100vh;
     }
   }
-
-  /* @media (display-mode: standalone) {
-    height: 100vh;
-  } */
 `;
 
 export const Header = styled.header`
