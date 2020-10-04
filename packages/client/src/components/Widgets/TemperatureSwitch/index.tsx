@@ -11,7 +11,7 @@ import {
   TemperatureSwitchUnitsItem,
 } from './TemperatureSwitch.styles';
 
-const TemperatureSwitch: React.FC<any> = ({ temp }) => {
+const TemperatureSwitch = ({ temp }: any) => {
   const { temperatureUnit, setUnit, convertUnit } = useUnits();
 
   return (
@@ -19,7 +19,7 @@ const TemperatureSwitch: React.FC<any> = ({ temp }) => {
       <TemperatureValue>{convertUnit(temp)}</TemperatureValue>
 
       <TemperatureSwitchUnits>
-        {Object.values(TemperatureUnit).map((unit) => (
+        {/* {Object.values(TemperatureUnit).map((unit) => (
           <TemperatureSwitchUnitsItem
             active={unit === temperatureUnit}
             onClick={() => setUnit(unit)}
@@ -27,7 +27,7 @@ const TemperatureSwitch: React.FC<any> = ({ temp }) => {
           >
             °{unit}
           </TemperatureSwitchUnitsItem>
-        ))}
+        ))} */}
       </TemperatureSwitchUnits>
     </TemperatureSwitchWrapper>
   );

@@ -1,4 +1,4 @@
-import { SET_TEMPERATURE_UNIT } from 'actions/settingsActions';
+import { SET_TEMPERATURE_UNIT } from '../actions';
 
 import { TemperatureUnit } from 'enums/TemperatureUnit';
 

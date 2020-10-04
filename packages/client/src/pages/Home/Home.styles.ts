@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const ContentWrapper = styled.div`
   height: 100%;
   max-width: 300px;
-  margin: 0 auto 25px;
+  /* margin: 0 auto 25px; */
   display: flex;
   flex-direction: column;
   justify-content: center;

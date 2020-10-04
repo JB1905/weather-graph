@@ -1,7 +1,4 @@
-import {
-  SET_BACKGROUND_COLOR,
-  RESET_BACKGROUND_COLOR,
-} from 'actions/appearanceActions';
+import { SET_BACKGROUND_COLOR, RESET_BACKGROUND_COLOR } from '../actions';
 
 import { AppearanceState } from 'interfaces/AppearanceState';
 

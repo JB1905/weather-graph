@@ -25,10 +25,10 @@ import {
 const Details = lazy(() => import('components/Widgets/Details'));
 const Forecast = lazy(() => import('components/Widgets/Forecast'));
 
-const City: React.FC<RouteComponentProps<{ id: string }>> = ({
+const City = ({
   match,
   location,
-}) => {
+}: RouteComponentProps<{ readonly id: string }>) => {
   const { toggleFavorite } = useFavorite();
 
   const { parseUrl } = useUrl();

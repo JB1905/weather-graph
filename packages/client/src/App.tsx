@@ -8,9 +8,9 @@ import SearchForm from 'components/SearchForm';
 
 import Global from 'styles/Global';
 
-import { useUrl } from 'hooks/useUrl';
 import { useGeolocation } from 'hooks/useGeolocation';
 import { useBackground } from 'hooks/useBackground';
+import { useUrl } from 'hooks/useUrl';
 
 import { routes } from 'routes';
 
@@ -21,7 +21,7 @@ import { Layout, Header, BrandLink, Main, Background } from 'App.styles';
 const Home = lazy(() => import('pages/Home'));
 const City = lazy(() => import('pages/City'));
 
-const App: React.FC = () => {
+const App = () => {
   const history = useHistory();
 
   const { isGeolocationAvailable, getCoords } = useGeolocation();
@@ -44,10 +44,10 @@ const App: React.FC = () => {
     <>
       <Global />
 
-      <Layout data-testid="app-layout">
-        <Header data-testid="app-header">
+      <Layout>
+        <Header>
           <BrandLink to={routes.home} aria-label="Go Home">
-            <Logo data-testid="app-logo" />
+            <Logo />
           </BrandLink>
 
           <SearchForm onSubmit={submitForm} />
@@ -60,7 +60,7 @@ const App: React.FC = () => {
           />
         </Header>
 
-        <Main data-testid="app-main">
+        <Main>
           <Suspense fallback={<Loader />}>
             <Switch>
               <Route exact path={routes.home} component={Home} />

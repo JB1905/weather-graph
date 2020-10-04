@@ -1,8 +1,4 @@
-import {
-  ADD_FAVORITE,
-  DELETE_FAVORITE,
-  CLEAR_FAVORITE,
-} from 'actions/favoriteActions';
+import { ADD_FAVORITE, DELETE_FAVORITE, CLEAR_FAVORITE } from '../actions';
 
 import { FavoriteState } from 'interfaces/FavoriteState';
 

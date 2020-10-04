@@ -4,6 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 import SearchForm from '.';
 
 describe('SearchForm', () => {
+  // TODO handleSubmit?
   const onSubmit = jest.fn();
 
   const { container } = render(<SearchForm onSubmit={onSubmit} />);

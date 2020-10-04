@@ -10,7 +10,7 @@ import { useUnits } from 'hooks/useUnits';
 
 import { routes } from 'routes';
 
-import { FORECAST_BY_IDS } from 'api/query';
+import { FORECAST_BY_IDS } from 'api/queries';
 
 // import Favorite from 'interfaces/Favorite';
 
@@ -22,7 +22,7 @@ interface Props {
   readonly items: string[];
 }
 
-const FavoriteList: React.FC<Props> = ({ items }) => {
+const FavoriteList = ({ items }: Props) => {
   const { convertUnit } = useUnits();
 
   const { error, loading, data } = useQuery<CurrentForecastByIDs>(
@@ -38,31 +38,35 @@ const FavoriteList: React.FC<Props> = ({ items }) => {
 
   if (error) return <p>{error.graphQLErrors[0].message}</p>;
 
-  return data ? (
-    <List>
-      {data.currentForecastByIDs.map(
-        ({ name, weather, main, id }, index: number) => (
-          <Item key={id} as={Link} to={routes.city(name)}>
-            <ItemSection>
-              <h3>{name}</h3>
-              <p>{weather[0].description}</p>
-            </ItemSection>
+  return null;
 
-            <ItemSection>
-              {/* <p>{convertUnit(main.temp)}</p>
+  // return data
+  //   ? (
+  //     <List>
+  //       {data.currentForecastByIDs.map(
+  //         ({ name, weather, main, id }, index: number) => (
+  //           <Item key={id} as={Link} to={routes.city(name)}>
+  //             <ItemSection>
+  //               <h3>{name}</h3>
+  //               <p>{weather[0].description}</p>
+  //             </ItemSection>
 
-              <Wrapper>
-                <p>{convertUnit(main.temp_max)}</p>
-                <p>{convertUnit(main.temp_min)}</p>
-              </Wrapper> */}
-            </ItemSection>
+  //             <ItemSection>
+  //               <p>{convertUnit(main.temp)}</p>
 
-            <ActionButton icon={faStar} onClick={() => null} />
-          </Item>
-        )
-      )}
-    </List>
-  ) : null;
+  //             <Wrapper>
+  //               <p>{convertUnit(main.temp_max)}</p>
+  //               <p>{convertUnit(main.temp_min)}</p>
+  //             </Wrapper>
+  //             </ItemSection>
+
+  //             <ActionButton icon={faStar} onClick={() => null} />
+  //           </Item>
+  //         ),
+  //       )}
+  //     </List>
+  //   )
+  //   : null;
 };
 
 export default FavoriteList;

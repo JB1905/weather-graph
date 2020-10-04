@@ -1,8 +1,10 @@
-export const SET_BACKGROUND_COLOR = "SET_BACKGROUND_COLOR";
-export const RESET_BACKGROUND_COLOR = "RESET_BACKGROUND_COLOR";
+export const SET_BACKGROUND_COLOR = 'SET_BACKGROUND_COLOR';
+export const RESET_BACKGROUND_COLOR = 'RESET_BACKGROUND_COLOR';
 
-// TODO add types
-export const setBackgroundColor = (payload: any) => ({
+export const setBackgroundColor = (
+  payload: string[]
+  // payload: [colorStart: string, colorStop: string]
+) => ({
   type: SET_BACKGROUND_COLOR,
   payload,
 });

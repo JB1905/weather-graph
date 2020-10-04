@@ -12,7 +12,7 @@ interface Props {
   readonly lon: number;
 }
 
-const Maps: React.FC<Props> = ({ lat, lon }) => {
+const Maps = ({ lat, lon }: Props) => {
   // const [layer, setLayer] = useState('clouds_new');
 
   return (

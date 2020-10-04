@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { DELETE_FAVORITE, ADD_FAVORITE } from "actions/favoriteActions";
+import { DELETE_FAVORITE, ADD_FAVORITE } from 'state/actions';
 
-import { RootState } from "reducers";
+import { RootState } from 'state/reducers';
 
 export const useFavorite = () => {
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ interface Props {
   readonly color?: string;
 }
 
-const Loader: React.FC<Props> = ({ color }) => {
+const Loader = ({ color }: Props) => {
   const theme = useContext(ThemeContext);
 
   return <BeatLoader color={color || theme.colors.text} />;

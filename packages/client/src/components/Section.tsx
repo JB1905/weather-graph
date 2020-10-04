@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface Props {
-  readonly title: string;
-}
-
-const SectionWrapper = styled.section`
+const Wrapper = styled.section`
   width: 100%;
   /* margin: 20px 0 0; */
   /* min-height: 360px; */
@@ -15,23 +11,28 @@ const SectionWrapper = styled.section`
   max-width: 650px;
 `;
 
-const SectionTitle = styled.h3`
+const Title = styled.h3`
   font-size: 1.4rem;
   padding: 14px 20px;
 `;
 
-const SectionContent = styled.div`
+const Content = styled.div`
   /* border-radius: 20px; */
   /* background: #fff3; */
   /* padding: 20px; */
 `;
 
-const Section: React.FC<Props> = ({ children, title }) => (
-  <SectionWrapper>
-    <SectionTitle>{title}</SectionTitle>
+interface Props {
+  readonly children: React.ReactNode;
+  readonly title: string;
+}
 
-    <SectionContent>{children}</SectionContent>
-  </SectionWrapper>
+const Section = ({ children, title }: Props) => (
+  <Wrapper>
+    <Title>{title}</Title>
+
+    <Content>{children}</Content>
+  </Wrapper>
 );
 
 export default Section;

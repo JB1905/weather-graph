@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import tuc from "temp-units-conv";
+import { useDispatch, useSelector } from 'react-redux';
+import tuc from 'temp-units-conv';
 
-import { TemperatureUnit } from "enums/TemperatureUnit";
+import { TemperatureUnit } from 'enums/TemperatureUnit';
 
-import { setTemperatureUnit } from "actions/settingsActions";
+import { setTemperatureUnit } from 'state/actions';
 
-import { RootState } from "reducers";
+import { RootState } from 'state/reducers';
 
 export const useUnits = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export const useUnits = () => {
 
   const convertUnit = (value: number) => {
     return Math.round(
-      tuc[temperatureUnit === TemperatureUnit.Celsius ? "k2c" : "k2f"](value),
+      tuc[temperatureUnit === TemperatureUnit.Celsius ? 'k2c' : 'k2f'](value)
     );
   };
 

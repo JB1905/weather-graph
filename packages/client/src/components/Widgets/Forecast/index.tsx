@@ -7,7 +7,7 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import ErrorMessage from 'components/ErrorMessage';
 import Loader from 'components/Loader';
 
-import { LONG_TERM_FORECAST } from 'api/query';
+import { LONG_TERM_FORECAST } from 'api/queries';
 
 import { ForecastByName } from 'generated';
 
@@ -19,7 +19,7 @@ interface Props {
   readonly cityId: string;
 }
 
-const ForecastItem: React.FC<any> = ({ data }) => {
+const ForecastItem = ({ data }: any) => {
   const { dt, main } = data;
 
   const { temp } = main;
@@ -28,7 +28,7 @@ const ForecastItem: React.FC<any> = ({ data }) => {
       <p>{temp}</p> */}</ItemWrapper>;
 };
 
-const Forecast: React.FC<Props> = ({ cityId }) => {
+const Forecast = ({ cityId }: Props) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 20;
 
@@ -63,9 +63,9 @@ const Forecast: React.FC<Props> = ({ cityId }) => {
           outsideChevron
           chevronWidth={24}
         >
-          {list.map((item, index) => (
+          {/* {list.map((item, index) => (
             <ForecastItem data={item} />
-          ))}
+          ))} */}
         </ItemsCarousel>
       </div>
     </Section>

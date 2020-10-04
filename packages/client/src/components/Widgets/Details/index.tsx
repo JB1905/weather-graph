@@ -14,14 +14,14 @@ import {
 
 import Loader from 'components/Loader';
 
-import TemperatureSwitch from 'containers/TemperatureSwitch';
+// import TemperatureSwitch from "components/TemperatureSwitch";
 
 import { useBackground } from 'hooks/useBackground';
 
 import { formatTime } from 'helpers/formatDate';
 import { checkInRange } from 'helpers/checkInRange';
 
-import { FORECAST_BY_IDS } from 'api/query';
+import { FORECAST_BY_IDS } from 'api/queries';
 
 import { CurrentForecastByIDs } from 'generated';
 
@@ -50,8 +50,8 @@ const Item: React.FC<{
   );
 };
 
-const Details: React.FC<Props> = ({ cityId }) => {
-  const { setBackground, resetBackground } = useBackground();
+const Details = ({ cityId }: Props) => {
+  // const { setBackground, resetBackground } = useBackground();
 
   const { error, loading, data } = useQuery<CurrentForecastByIDs>(
     FORECAST_BY_IDS,
@@ -77,7 +77,7 @@ const Details: React.FC<Props> = ({ cityId }) => {
   return (
     <DetailsWrapper>
       <div>
-        <TemperatureSwitch temp={main.temp} />
+        {/* <TemperatureSwitch temp={main.temp} /> */}
 
         <Description>{weather[0].description}</Description>
       </div>

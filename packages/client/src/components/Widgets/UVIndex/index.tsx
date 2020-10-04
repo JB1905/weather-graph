@@ -6,14 +6,14 @@ import Section from 'components/Section';
 import ErrorMessage from 'components/ErrorMessage';
 import Loader from 'components/Loader';
 
-import { UV_INDEX } from 'api/query';
+import { UV_INDEX } from 'api/queries';
 
 import {
   CurrentUVIndexByCoords,
   CurrentUVIndexByCoordsVariables,
 } from 'generated';
 
-const Chart: React.FC<any> = ({ value }) => {
+const Chart = ({ value }: any) => {
   const ref = useRef(null);
 
   useEffect(() => {}, []);
@@ -21,7 +21,7 @@ const Chart: React.FC<any> = ({ value }) => {
   return <svg ref={ref} />;
 };
 
-const UVIndex: React.FC<CurrentUVIndexByCoordsVariables> = ({ lat, lon }) => {
+const UVIndex = ({ lat, lon }: CurrentUVIndexByCoordsVariables) => {
   const { error, loading, data } = useQuery<CurrentUVIndexByCoords>(UV_INDEX, {
     variables: { lat, lon },
   });

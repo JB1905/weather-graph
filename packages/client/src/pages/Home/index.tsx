@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
 
 import Loader from 'components/Loader';
@@ -10,22 +9,23 @@ import { ContentWrapper, Icon, Title, SubTitle } from './Home.styles';
 
 import { isFeatureEnabled } from 'features';
 
+// TODO withSuspense
 const FavoriteList = lazy(() => import('components/FavoriteList'));
 
-const Home: React.FC<RouteComponentProps> = () => {
+const Home = () => {
   const { favorites } = useFavorite();
 
   return (
     <ContentWrapper>
       {favorites.length > 0 && isFeatureEnabled('favorites') ? (
         <Suspense fallback={<Loader />}>
-          <FavoriteList items={favorites} data-testid="favorite-list" />
+          <FavoriteList items={favorites} />
         </Suspense>
       ) : (
         <>
           <Icon icon={faCloudSunRain} />
 
-          <Title data-testid="app-title">Weather Graph</Title>
+          <Title>Weather Graph</Title>
 
           <SubTitle>Type city name or get wather for current location</SubTitle>
         </>

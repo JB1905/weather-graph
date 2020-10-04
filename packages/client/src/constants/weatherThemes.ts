@@ -1,4 +1,7 @@
-export const weatherThemes: Record<string, [string, string]> = {
+export const weatherThemes: Record<
+  string,string[]
+  // [colorStart: string, colorStop: string]
+> = {
   'scattered clouds': ['#aac9fa', '#8b9ed6'],
   'clear sky': ['#03b1fc', '#0380fc'],
   'heavy intensity rain': ['#708494', '#707a94'],

@@ -9,7 +9,7 @@ interface Props {
   onSubmit(query: string): void;
 }
 
-const SearchForm: React.FC<Props> = ({ onSubmit }) => {
+const SearchForm = ({ onSubmit }: Props) => {
   const [query, setQuery] = useState('');
 
   const handleSubmit = () => {

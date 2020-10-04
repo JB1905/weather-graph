@@ -1,8 +1,4 @@
-import {
-  ADD_FAVORITE,
-  DELETE_FAVORITE,
-  CLEAR_FAVORITE,
-} from 'actions/favoriteActions';
+import { ADD_FAVORITE, DELETE_FAVORITE, CLEAR_FAVORITE } from 'state/actions';
 
 export interface FavoriteState {
   readonly items: string[];

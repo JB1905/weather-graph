@@ -1,38 +1,27 @@
-import { useDispatch, useSelector } from "react-redux";
-import Color from "color";
+import { useDispatch, useSelector } from 'react-redux';
+import Color from 'color';
 
 import {
-  setBackgroundColor,
+  // setBackgroundColor,
   resetBackgroundColor,
-} from "actions/appearanceActions";
+} from 'state/actions';
 
-import { weatherThemes } from "constants/weatherThemes";
+// import { weatherThemes } from 'constants/weatherThemes';
 
-import { RootState } from "reducers";
+import { RootState } from 'state/reducers';
 
 export const useBackground = () => {
   const dispatch = useDispatch();
 
   const { backgroundColor } = useSelector(
-    (state: RootState) => state.appearance,
+    (state: RootState) => state.appearance
   );
 
   const setBackground = (description: string, isDark: boolean) => {
-    const transformColors = () => {
-      if (!weatherThemes[description]) {
-        return weatherThemes[description];
-      }
+    // TODO
+    const transformColors = newFunction(description, isDark);
 
-      if (isDark) {
-        return weatherThemes[description].map((color: string) =>
-          Color(color).darken(0.5)
-        );
-      } else {
-        return weatherThemes[description];
-      }
-    };
-
-    dispatch(setBackgroundColor(transformColors()));
+    // dispatch(setBackgroundColor(transformColors()));
   };
 
   const resetBackground = () => dispatch(resetBackgroundColor());
@@ -43,3 +32,19 @@ export const useBackground = () => {
     resetBackground,
   };
 };
+
+// TODO
+function newFunction(description: string, isDark: boolean) {
+  return () => {
+    // if (!weatherThemes[description]) {
+    //   return weatherThemes[description];
+    // }
+
+    if (isDark) {
+      // return weatherThemes[description].map((color: string) => Color(color).darken(0.5)
+      // );
+    } else {
+      // return weatherThemes[description];
+    }
+  };
+}

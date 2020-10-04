@@ -6,11 +6,25 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  height: -webkit-fill-available;
+  /* TODO */
+  /* height: -webkit-fill-available; */
 
-  @media (display-mode: standalone) {
-    height: 100vh;
+  /* TODO */
+  /* @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  } */
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+
+    @media (display-mode: standalone) {
+      height: 100vh;
+    }
   }
+
+  /* @media (display-mode: standalone) {
+    height: 100vh;
+  } */
 `;
 
 export const Header = styled.header`
@@ -38,13 +52,18 @@ export const BrandLink = styled(Link)`
 
 export const Main = styled.main`
   flex: 1;
-  overflow: auto;
+  /* overflow: auto; */
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const Background = styled.figure<{ gradient: [string, string] }>`
+interface Props {
+  readonly gradient: string[];
+  // readonly gradient: [start: string, stop: string];
+}
+
+export const Background = styled.figure<Props>`
   margin: 0;
   z-index: -1;
   position: fixed;
@@ -53,7 +72,7 @@ export const Background = styled.figure<{ gradient: [string, string] }>`
   top: 0;
   left: 0;
 
-  ${({ gradient }) => `
-    background: linear-gradient(180deg, ${gradient[0]} 0%, ${gradient[1]} 100%);
+  ${({ gradient: [start, stop] }) => `
+    background: linear-gradient(180deg, ${start} 0%, ${stop} 100%);
   `}
 `;
