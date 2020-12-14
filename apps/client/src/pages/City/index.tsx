@@ -2,9 +2,9 @@ import { lazy } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
 import queryString from 'query-string';
-import { Helmet } from 'react-helmet';
 // import geoTz  from 'geo-tz'
 
+import Head from 'components/Head';
 import Page from 'components/Page';
 import Loader from 'components/Loader';
 import ErrorMessage from 'components/ErrorMessage';
@@ -66,9 +66,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
   return (
     <>
       {/* TODO */}
-      <Helmet titleTemplate="%s | Weather Graph">
-        <title>{name}</title>
-      </Helmet>
+      <Head title={name} />
 
       <Page>
         <S.ManagementActions>

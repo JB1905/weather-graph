@@ -12,8 +12,11 @@ import { routes } from 'routes';
 import { ReactComponent as Logo } from 'assets/logo.svg';
 
 import * as S from 'App.styles';
+import { useUpdates } from 'hooks/useUpdates';
 
 const App = () => {
+  const { loading, applyUpdate, showReload } = useUpdates();
+
   const history = useHistory();
 
   const { isGeolocationAvailable, getCoords } = useGeolocation();
@@ -21,6 +24,7 @@ const App = () => {
   const { backgroundColor } = useBackground();
 
   const submitSearch = (query: string) => {
+    // TODO encodeURIComponent not supported in react-router
     history.push(routes.city(encodeURIComponent(query)));
   };
 

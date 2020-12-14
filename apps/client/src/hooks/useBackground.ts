@@ -16,7 +16,7 @@ export const useBackground = () => {
     // Actions.setBackgroundColor()
   };
 
-  const resetBackground = () => {};
+  const resetBackground = () => Actions.resetBackgroundColor();
 
   return {
     backgroundColor,

@@ -10,7 +10,6 @@ export const useUnits = () => {
 
   const { temperatureUnit } = useSelector((state: RootState) => state.unit);
 
-  // TODO typeof keyof TemperatureUnit
   const setUnit = (unit: TemperatureUnit) => {
     dispatch(setTemperatureUnit(unit));
   };

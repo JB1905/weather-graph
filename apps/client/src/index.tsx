@@ -20,8 +20,6 @@ import { store, persistor } from 'state/store';
 
 import { theme } from 'styles/theme';
 
-import * as serviceWorker from './serviceWorker';
-
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_SERVER_ORIGIN,
 });
@@ -49,5 +47,3 @@ ReactDOM.render(
   </StrictMode>,
   document.getElementById('root')
 );
-
-serviceWorker.register();
