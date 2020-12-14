@@ -2,43 +2,43 @@
   "version": 2,
   "builds": [
     {
-      "src": "packages/client/package.json",
+      "src": "apps/client/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "build" }
     },
-    { "src": "packages/server/src/server.ts", "use": "@now/node" }
+    { "src": "apps/server/src/server.ts", "use": "@now/node" }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
       "headers": { "cache-control": "s-maxage=31536000,immutable" },
-      "dest": "/packages/client/static/$1"
+      "dest": "/apps/client/static/$1"
     },
-    { "src": "/favicon.ico", "dest": "/packages/client/favicon.ico" },
-    { "src": "/logo192.png", "dest": "/packages/client/logo192.png" },
-    { "src": "/logo512.png", "dest": "/packages/client/logo512.png" },
+    { "src": "/favicon.ico", "dest": "/apps/client/favicon.ico" },
+    { "src": "/logo192.png", "dest": "/apps/client/logo192.png" },
+    { "src": "/logo512.png", "dest": "/apps/client/logo512.png" },
     {
       "src": "/asset-manifest.json",
-      "dest": "/packages/client/asset-manifest.json"
+      "dest": "/apps/client/asset-manifest.json"
     },
-    { "src": "/manifest.json", "dest": "/packages/client/manifest.json" },
+    { "src": "/manifest.json", "dest": "/apps/client/manifest.json" },
     {
       "src": "/precache-manifest.(.*)",
-      "dest": "/packages/client/precache-manifest.$1"
+      "dest": "/apps/client/precache-manifest.$1"
     },
     {
       "src": "/service-worker.js",
       "headers": { "cache-control": "s-maxage=0" },
-      "dest": "/packages/client/service-worker.js"
+      "dest": "/apps/client/service-worker.js"
     },
     {
       "src": "/graphql",
-      "dest": "/packages/server/src/server.ts"
+      "dest": "/apps/server/src/server.ts"
     },
     {
       "src": "/(.*)",
       "headers": { "cache-control": "s-maxage=0" },
-      "dest": "/packages/client/index.html"
+      "dest": "/apps/client/index.html"
     }
   ]
 }

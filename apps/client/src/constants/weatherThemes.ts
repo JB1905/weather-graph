@@ -1,0 +1,17 @@
+import type { Gradient } from 'types/Gradient';
+
+export const weatherThemes: Record<string, Gradient> = {
+  'scattered clouds': ['#aac9fa', '#8b9ed6'],
+  'clear sky': ['#03b1fc', '#0380fc'],
+  'heavy intensity rain': ['#708494', '#707a94'],
+  'very heavy rain': ['#708494', '#707a94'],
+  'overcast clouds': ['#708494', '#707a94'],
+  'broken clouds': ['#6572ab', '#6665ab'],
+  'light snow': ['#5c81fa', '#707a94'],
+  'few clouds': ['#5c81fa', '#707a94'],
+  'light rain': ['#28506b', '#b8c7d1'],
+  'shower rain': ['#28506b', '#b8c7d1'],
+  fog: ['#28506b', '#b8c7d1'],
+  'moderate rain': ['#28506b', '#b8c7d1'],
+  smoke: ['#000', '#3f403f'],
+};

@@ -23,13 +23,13 @@ Weather app built with GraphQL
 ##### 1. Clone repo
 
 ```sh
-git clone https://github.com/JB1905/weather-graph.git
+$ git clone https://github.com/JB1905/weather-graph.git
 ```
 
 ##### 2. Go to directory
 
 ```sh
-cd weather-graph
+$ cd weather-graph
 ```
 
 ## Build with
