@@ -8,9 +8,8 @@ import Head from 'components/Head';
 import Page from 'components/Page';
 import Loader from 'components/Loader';
 import ErrorMessage from 'components/ErrorMessage';
-
+import { useBackground } from 'hooks/useBackground';
 import { withDynamicImport } from 'hoc/withDynamicImport';
-
 import { CurrentForecast } from 'types/generated';
 
 import * as S from './City.styles';
@@ -46,14 +45,43 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     return variables;
   };
 
+  const { resetBackground } = useBackground();
+
   const { error, loading, data, refetch } = useQuery<CurrentForecast>(query, {
     // TODO
     variables: x(),
   });
 
-  if (loading) return <Loader />;
-  if (error) return <ErrorMessage>{error.message}</ErrorMessage>;
-  if (!data) return <p>Not found</p>;
+  if (loading) {
+    resetBackground();
+
+    return (
+      <>
+        <Head title="Loading..." />
+
+        <Loader />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Head title="Oops..." />
+
+        <ErrorMessage>{error.message}</ErrorMessage>
+      </>
+    );
+  }
+
+  if (!data) {
+    return (
+      <>
+        <Head title="Oops..." />
+        <p>Not found</p>
+      </>
+    );
+  }
 
   const {
     name,
@@ -65,7 +93,6 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
   return (
     <>
-      {/* TODO */}
       <Head title={name} />
 
       <Page>
@@ -84,16 +111,13 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
           {/* </div> */}
         </S.Content>
 
-        {/* <Details cityId={id} /> */}
+        <Forecast cityId={id} />
 
-        {/* <Forecast cityId={id} /> */}
+        <UVIndex lat={lat} lon={lon} />
 
-        {/*
-      <UVIndex lat={lat} lon={lon} />
+        <AirQuality />
 
-      <AirQuality />
-
-      <Maps lat={lat} lon={lon} /> */}
+        <Maps lat={lat} lon={lon} />
       </Page>
     </>
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import * as serviceWorker from '../serviceWorker';
+import * as serviceWorker from '../serviceWorker'; // TODO 'serviceWorker'
 
 export const useUpdates = () => {
   const [loading, setLoading] = useState(false);

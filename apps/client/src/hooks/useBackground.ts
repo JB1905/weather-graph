@@ -4,6 +4,7 @@ import Color from 'color';
 import * as Actions from 'state/actions';
 import type { RootState } from 'state/reducers';
 import type { Gradient } from 'types/Gradient';
+import { weatherThemes } from 'constants/weatherThemes';
 
 export const useBackground = () => {
   const dispatch = useDispatch();
@@ -13,10 +14,25 @@ export const useBackground = () => {
   );
 
   const setBackground = (description: string, isDark: boolean) => {
-    // Actions.setBackgroundColor()
+    // TODO
+    const transformColors = () => {
+      // if (!weatherThemes[description]) {
+      //   return weatherThemes[description];
+      // }
+
+      // if (isDark) {
+      //   return weatherThemes[description].map((color: string) =>
+      //     Color(color).darken(0.5)
+      //   );
+      // }
+
+      return weatherThemes[description];
+    };
+
+    dispatch(Actions.setBackgroundColor(transformColors()));
   };
 
-  const resetBackground = () => Actions.resetBackgroundColor();
+  const resetBackground = () => dispatch(Actions.resetBackgroundColor());
 
   return {
     backgroundColor,

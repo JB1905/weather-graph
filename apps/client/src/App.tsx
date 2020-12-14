@@ -7,12 +7,12 @@ import Router from 'components/Router';
 import Global from 'styles/Global';
 import { useGeolocation } from 'hooks/useGeolocation';
 import { useBackground } from 'hooks/useBackground';
+import { useUpdates } from 'hooks/useUpdates';
 import { routes } from 'routes';
 
 import { ReactComponent as Logo } from 'assets/logo.svg';
 
 import * as S from 'App.styles';
-import { useUpdates } from 'hooks/useUpdates';
 
 const App = () => {
   const { loading, applyUpdate, showReload } = useUpdates();
@@ -25,12 +25,15 @@ const App = () => {
 
   const submitSearch = (query: string) => {
     // TODO encodeURIComponent not supported in react-router
-    history.push(routes.city(encodeURIComponent(query)));
+    history.replace(routes.city(encodeURIComponent(query)));
+    // history.push(routes.city(encodeURIComponent(query)));
   };
 
   const getLocalForecast = () => {
     getCoords(({ latitude, longitude }) => {
-      history.push(`${routes.coords}?lat=${latitude}&lon=${longitude}`);
+      // TODO
+      history.replace(`${routes.coords}?lat=${latitude}&lon=${longitude}`);
+      // history.push(`${routes.coords}?lat=${latitude}&lon=${longitude}`);
     });
   };
 
@@ -40,7 +43,7 @@ const App = () => {
 
       <S.Layout>
         <S.Header>
-          <S.BrandLink to={routes.home} aria-label="Go Home">
+          <S.BrandLink to={routes.home} replace aria-label="Go Home">
             <Logo />
           </S.BrandLink>
 

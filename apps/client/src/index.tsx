@@ -13,12 +13,10 @@ import {
 } from '@apollo/client';
 
 import App from 'App';
-
 import Loader from 'components/Loader';
-
 import { store, persistor } from 'state/store';
-
 import { theme } from 'styles/theme';
+import reportWebVitals from 'reportWebVitals';
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_SERVER_ORIGIN,
@@ -47,3 +45,5 @@ ReactDOM.render(
   </StrictMode>,
   document.getElementById('root')
 );
+
+reportWebVitals(console.log); // TODO connect reports

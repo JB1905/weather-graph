@@ -32,12 +32,6 @@ const FavoritesList = ({ items }: FavoriteListProps) => {
     }
   );
 
-  // if (loading) return <Loader />;
-
-  // if (error) {
-  //   return <ErrorMessage>{error.graphQLErrors[0].message}</ErrorMessage>;
-  // }
-
   if (loading) return <Loader />;
   if (error) return <ErrorMessage>{error.message}</ErrorMessage>;
   if (!data) return <p>Not found</p>;

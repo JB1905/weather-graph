@@ -1,11 +1,18 @@
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
 
 import Head from 'components/Head';
+import { useBackground } from 'hooks/useBackground';
+import { useEffect } from 'react';
 
 import * as S from './Home.styles';
 
 const Home = () => {
-  // TODO clear react helmet title
+  // TODO
+  const { resetBackground } = useBackground();
+
+  useEffect(() => {
+    resetBackground();
+  }, [resetBackground]);
 
   return (
     <>

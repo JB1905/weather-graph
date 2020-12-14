@@ -21,6 +21,8 @@ import { CurrentForecastByIDs } from 'generated';
 import { formatTime } from 'helpers/formatDate';
 
 import * as S from './Details.styles';
+import { useBackground } from 'hooks/useBackground';
+import { useEffect } from 'react';
 
 type DetailsProps = {
   readonly cityId: string;
@@ -50,6 +52,18 @@ const Details = ({ cityId }: DetailsProps) => {
       },
     }
   );
+
+  const { setBackground } = useBackground();
+
+  // TODO reset on exit
+  useEffect(() => {
+    if (data?.currentForecastByIDs[0].weather?.[0]?.description) {
+      setBackground(
+        data?.currentForecastByIDs[0].weather[0].description,
+        false
+      );
+    }
+  }, [data, setBackground]);
 
   if (loading) return <Loader />;
   if (error) return <ErrorMessage>{error.message}</ErrorMessage>;
