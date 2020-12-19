@@ -67,9 +67,14 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    // TODO types
     currentForecast: async (
       _: any,
-      { name, lon, lat }: { readonly name: string;readonly lon: number;readonly lat: number }
+      {
+        name,
+        lon,
+        lat,
+      }: { readonly name: string; readonly lon: number; readonly lat: number }
     ) => {
       let conditionalEndpoint: string;
 
@@ -89,7 +94,11 @@ const resolvers = {
 
       return data;
     },
-    currentForecastByName: async (_: any, { name }: {readonly name: string }) => {
+    // TODO types
+    currentForecastByName: async (
+      _: any,
+      { name }: { readonly name: string }
+    ) => {
       const res = await fetch(`${endpoint}weather${appid}&q=${name}`);
 
       const data = await res.json();
@@ -100,7 +109,11 @@ const resolvers = {
 
       return data;
     },
-    currentForecastByIDs: async (_: any, { ids }: {readonly ids: string[] }) => {
+    // TODO types
+    currentForecastByIDs: async (
+      _: any,
+      { ids }: { readonly ids: string[] }
+    ) => {
       const forecasts = [];
 
       for (const id of ids) {
@@ -117,6 +130,7 @@ const resolvers = {
 
       return forecasts;
     },
+    // TODO types
     currentForecastByCoords: async (
       _: any,
       { lon, lat }: { lon: number; lat: number }

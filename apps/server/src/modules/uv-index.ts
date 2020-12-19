@@ -19,9 +19,10 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    // TODO types
     currentUVIndexByCoords: async (
       _: any,
-      { lon, lat }: {readonly lon: number;readonly lat: number }
+      { lon, lat }: { readonly lon: number; readonly lat: number }
     ) => {
       const res = await fetch(`${endpoint}uvi${appid}&lat=${lat}&lon=${lon}`);
 
