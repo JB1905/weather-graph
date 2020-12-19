@@ -1,5 +1,5 @@
 import { withSuspense } from 'react-suspenser';
-import { compose } from 'recompose';
+// import { compose } from 'recompose';
 
 // TODO
 export const withDynamicImport = withSuspense();

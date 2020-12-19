@@ -7,7 +7,7 @@ import Router from 'components/Router';
 import Global from 'styles/Global';
 import { useGeolocation } from 'hooks/useGeolocation';
 import { useBackground } from 'hooks/useBackground';
-import { useUpdates } from 'hooks/useUpdates';
+// import { useUpdates } from 'hooks/useUpdates';
 import { routes } from 'routes';
 
 import { ReactComponent as Logo } from 'assets/logo.svg';
@@ -15,7 +15,7 @@ import { ReactComponent as Logo } from 'assets/logo.svg';
 import * as S from 'App.styles';
 
 const App = () => {
-  const { loading, applyUpdate, showReload } = useUpdates();
+  // const { loading, applyUpdate, showReload } = useUpdates();
 
   const history = useHistory();
 

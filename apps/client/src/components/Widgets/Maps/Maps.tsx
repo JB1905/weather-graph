@@ -1,27 +1,29 @@
-import { useState } from 'react';
-import ReactMapGL, { Source, Layer } from 'react-map-gl';
+// import { useState } from 'react';
+// import ReactMapGL, { Source, Layer } from 'react-map-gl';
 
 import Widget from 'components/Widget';
 
-import * as S from './Maps.styles';
+// import * as S from './Maps.styles';
 
-type MapsProps = {
-  readonly lat: number;
-  readonly lon: number;
-};
+// type MapsProps = {
+//   readonly lat: number;
+//   readonly lon: number;
+// };
 
-const LayerSelection = ({ items, selected, onSelect }: any) => {
-  return <div></div>;
-};
+// const LayerSelection = ({ items, selected, onSelect }: any) => {
+//   return <div></div>;
+// };
 
-const Maps = ({ lat, lon }: MapsProps) => {
-  const [layer, setLayer] = useState('clouds_new');
+const Maps = () =>
+  // { lat, lon }: MapsProps
+  {
+    // const [layer, setLayer] = useState('clouds_new');
 
-  return (
-    <Widget title="Maps">
-      {/* <LayerSelection items={[]} selected={layer} onSelect={() => setLayer()} /> */}
+    return (
+      <Widget title="Maps">
+        {/* <LayerSelection items={[]} selected={layer} onSelect={() => setLayer()} /> */}
 
-      {/* <ReactMapGL
+        {/* <ReactMapGL
         mapboxApiAccessToken={process.env.REACT_APP_MAP_ACCESS_TOKEN}
         mapStyle="mapbox://styles/mapbox/light-v9"
         width="100%"
@@ -33,8 +35,8 @@ const Maps = ({ lat, lon }: MapsProps) => {
         <Source id="source_id" tileJsonSource={RASTER_SOURCE_OPTIONS} />
         <Layer type="raster" id="layer_id" sourceId="source_id" />
       </ReactMapGL> */}
-    </Widget>
-  );
-};
+      </Widget>
+    );
+  };
 
 export default Maps;
