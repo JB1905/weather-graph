@@ -6,21 +6,10 @@ export const Wrapper = styled.section`
   overflow: hidden;
 `;
 
-export const Header = styled.header`
-  /* padding: 14px 20px; */
-`;
+export const Header = styled.header``;
 
 export const Title = styled.h3`
   font-size: 1.4rem;
 `;
 
-export const Content = styled.div`
-  /* border-radius: 20px; */
-  /* background: #fff3; */
-  /* padding: 20px; */
-
-  /* display: flex;
-  align-items: center;
-  justify-content:center;
-  min-height: 200px; */
-`;
+export const Content = styled.div``;

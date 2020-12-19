@@ -10,7 +10,6 @@ export const ManagementActions = styled.div`
   justify-content: flex-end;
   width: ${({ theme }) => theme.size.full};
   height: ${({ theme }) => theme.size.actionButton};
-  /* padding: ${({ theme }) => theme.spaces.content}; */
 `;
 
 export const BoardSkeleton = styled.div`

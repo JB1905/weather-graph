@@ -19,8 +19,7 @@ import { theme } from 'styles/theme';
 import reportWebVitals from 'reportWebVitals';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
-  // uri: process.env.REACT_APP_SERVER_ORIGIN,
+  uri: '/graphql', // TODO
 });
 
 const client = new ApolloClient({

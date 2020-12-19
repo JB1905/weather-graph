@@ -1,8 +1,5 @@
 import { useQuery } from '@apollo/client';
-import {
-  FontAwesomeIcon,
-  // FontAwesomeIconProps,
-} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCompress,
   faTint,
@@ -10,7 +7,6 @@ import {
   faArrowCircleUp,
   faArrowCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
-// import geoTz  from 'geo-tz'
 
 import Widget from 'components/Widget';
 import Loader from 'components/Loader';
@@ -70,8 +66,6 @@ const Details = ({ cityId }: DetailsProps) => {
   if (!data) return <p>Not found</p>;
 
   const { weather, main, wind, sys } = data!.currentForecastByIDs[0];
-
-  // console.log( geoTz(47.650499, -122.350070) )
 
   return (
     <Widget>

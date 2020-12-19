@@ -1,9 +1,8 @@
 import { lazy } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { faStar, faSync } from '@fortawesome/free-solid-svg-icons';
+import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { gql, useQuery } from '@apollo/client';
 import queryString from 'query-string';
-// import geoTz  from 'geo-tz'
 
 import Head from 'components/Head';
 import Page from 'components/Page';
@@ -20,16 +19,6 @@ import * as S from './City.styles';
 const Details = withDynamicImport(
   lazy(() => import('components/Widgets/Details'))
 );
-// const Forecast = withDynamicImport(
-//   lazy(() => import('components/Widgets/Forecast'))
-// );
-// const UVIndex = withDynamicImport(
-//   lazy(() => import('components/Widgets/UVIndex'))
-// );
-// const AirQuality = withDynamicImport(
-//   lazy(() => import('components/Widgets/AirQuality'))
-// );
-// const Maps = withDynamicImport(lazy(() => import('components/Widgets/Maps')));
 
 type CityParams = {
   readonly id: string;
@@ -37,7 +26,7 @@ type CityParams = {
 
 const City = ({ match, location }: RouteComponentProps<CityParams>) => {
   // TODO
-  const x = () => {
+  const prepareVariables = () => {
     const variables = {} as any;
 
     if (match.params.id) {
@@ -56,14 +45,9 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
   const { resetBackground } = useBackground();
 
-  const {
-    error,
-    loading,
-    data,
-    // refetch
-  } = useQuery<CurrentForecast>(query, {
+  const { error, loading, data, refetch } = useQuery<CurrentForecast>(query, {
     // TODO
-    variables: x(),
+    variables: prepareVariables(),
   });
 
   if (loading) {
@@ -98,13 +82,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     );
   }
 
-  const {
-    name,
-    id,
-    // coord: { lat, lon },
-  } = data.currentForecast;
-
-  // console.log( geoTz(lat, lon) )
+  const { name, id } = data.currentForecast;
 
   return (
     <>
@@ -113,8 +91,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
       <Page>
         {/* TODO move over apollo query (sync/star always visible/active) */}
         <S.ManagementActions>
-          <ActionButton icon={faStar} />
-          <ActionButton icon={faSync} />
+          <ActionButton icon={faSync} onClick={refetch} />
         </S.ManagementActions>
 
         <S.Content>
@@ -122,18 +99,8 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
             <S.Title>{name}</S.Title>
           </S.Summary>
 
-          {/* <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 222}}> */}
           <Details cityId={id} />
-          {/* </div> */}
         </S.Content>
-
-        {/* <Forecast cityId={id} />
-
-        <UVIndex lat={lat} lon={lon} />
-
-        <AirQuality />
-
-        <Maps lat={lat} lon={lon} /> */}
       </Page>
     </>
   );
