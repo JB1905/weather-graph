@@ -4,13 +4,10 @@ type HeadProps = {
   readonly title?: string;
 };
 
-const Head = ({ title }: HeadProps) => {
-  // TODO
-  return (
-    <Helmet defaultTitle="Weather Graph" titleTemplate="%s | Weather Graph">
-      <title>{title}</title>
-    </Helmet>
-  );
-};
+const Head = ({ title }: HeadProps) => (
+  <Helmet defaultTitle="Weather Graph" titleTemplate="%s | Weather Graph">
+    <title>{title}</title>
+  </Helmet>
+);
 
 export default Head;

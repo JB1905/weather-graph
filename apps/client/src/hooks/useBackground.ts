@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Color from 'color';
 
 import * as Actions from 'state/actions';
+import { weatherThemes } from 'constants/weatherThemes';
 import type { RootState } from 'state/reducers';
 import type { Gradient } from 'types/Gradient';
-import { weatherThemes } from 'constants/weatherThemes';
 
 export const useBackground = () => {
   const dispatch = useDispatch();

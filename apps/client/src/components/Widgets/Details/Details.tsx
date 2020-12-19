@@ -107,4 +107,3 @@ const Details = ({ cityId }: DetailsProps) => {
 };
 
 export default Details;
-// export default withWidget()(Details);

@@ -24,16 +24,12 @@ const App = () => {
   const { backgroundColor } = useBackground();
 
   const submitSearch = (query: string) => {
-    // TODO encodeURIComponent not supported in react-router
     history.replace(routes.city(encodeURIComponent(query)));
-    // history.push(routes.city(encodeURIComponent(query)));
   };
 
   const getLocalForecast = () => {
     getCoords(({ latitude, longitude }) => {
-      // TODO
       history.replace(`${routes.coords}?lat=${latitude}&lon=${longitude}`);
-      // history.push(`${routes.coords}?lat=${latitude}&lon=${longitude}`);
     });
   };
 

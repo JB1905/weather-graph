@@ -10,7 +10,7 @@ export const ManagementActions = styled.div`
   justify-content: flex-end;
   width: ${({ theme }) => theme.size.full};
   height: ${({ theme }) => theme.size.actionButton};
-  padding: ${({ theme }) => theme.spaces.content};
+  /* padding: ${({ theme }) => theme.spaces.content}; */
 `;
 
 export const BoardSkeleton = styled.div`
@@ -38,5 +38,5 @@ export const Summary = styled.div`
 
 export const Title = styled.h1`
   font-size: 2.4rem;
-  margin: 10px 0; //TODO
+  margin: 10px 0; //TODO theme
 `;

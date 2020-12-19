@@ -7,7 +7,7 @@ export const SearchWrapper = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  max-width: 300px; // TODO theme
+  max-width: 300px; // TODO theme?
   width: 100%; // TODO theme
   margin: 0 10px; // TODO theme
 `;

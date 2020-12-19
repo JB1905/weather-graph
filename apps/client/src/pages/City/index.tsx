@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { faStar, faSync } from '@fortawesome/free-solid-svg-icons';
 import { gql, useQuery } from '@apollo/client';
 import queryString from 'query-string';
 // import geoTz  from 'geo-tz'
@@ -8,19 +9,27 @@ import Head from 'components/Head';
 import Page from 'components/Page';
 import Loader from 'components/Loader';
 import ErrorMessage from 'components/ErrorMessage';
+import ActionButton from 'components/ActionButton';
 import { useBackground } from 'hooks/useBackground';
 import { withDynamicImport } from 'hoc/withDynamicImport';
 import { CurrentForecast } from 'types/generated';
 
 import * as S from './City.styles';
 
+// TODO
 const Details = withDynamicImport(
   lazy(() => import('components/Widgets/Details'))
 );
-const Forecast = lazy(() => import('components/Widgets/Forecast'));
-const UVIndex = lazy(() => import('components/Widgets/UVIndex'));
-const AirQuality = lazy(() => import('components/Widgets/AirQuality'));
-const Maps = lazy(() => import('components/Widgets/Maps'));
+const Forecast = withDynamicImport(
+  lazy(() => import('components/Widgets/Forecast'))
+);
+const UVIndex = withDynamicImport(
+  lazy(() => import('components/Widgets/UVIndex'))
+);
+const AirQuality = withDynamicImport(
+  lazy(() => import('components/Widgets/AirQuality'))
+);
+const Maps = withDynamicImport(lazy(() => import('components/Widgets/Maps')));
 
 type CityParams = {
   readonly id: string;
@@ -78,6 +87,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     return (
       <>
         <Head title="Oops..." />
+
         <p>Not found</p>
       </>
     );
@@ -96,9 +106,10 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
       <Head title={name} />
 
       <Page>
+        {/* TODO move over apollo query (sync/star always visible/active) */}
         <S.ManagementActions>
-          {/* <ActionButton /> */}
-          {/* <ActionButton /> */}
+          <ActionButton icon={faStar} />
+          <ActionButton icon={faSync} />
         </S.ManagementActions>
 
         <S.Content>
@@ -111,13 +122,13 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
           {/* </div> */}
         </S.Content>
 
-        <Forecast cityId={id} />
+        {/* <Forecast cityId={id} />
 
         <UVIndex lat={lat} lon={lon} />
 
         <AirQuality />
 
-        <Maps lat={lat} lon={lon} />
+        <Maps lat={lat} lon={lon} /> */}
       </Page>
     </>
   );

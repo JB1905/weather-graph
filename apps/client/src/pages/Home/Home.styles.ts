@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ContentWrapper = styled.div`
-  height: 100%; // TODO
+  height: 100%; // TODO theme
   max-width: 300px;
   display: flex;
   flex-direction: column;
