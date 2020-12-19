@@ -1,0 +1,25 @@
+{
+  "name": "weather-graph",
+  "description": "Weather app built with GraphQL",
+  "author": "Jakub Biesiada",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server watch",
+    "start": "concurrently --kill-others-on-fail 'yarn server' 'yarn client'",
+    "commit": "git-cz"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "cz-conventional-changelog": "3.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

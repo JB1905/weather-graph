@@ -1,0 +1,37 @@
+import { useState } from 'react';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import * as S from './SearchForm.styles';
+
+type SearchFormProps = {
+  onSubmit: (query: string) => void;
+};
+
+const SearchForm = ({ onSubmit }: SearchFormProps) => {
+  const [query, setQuery] = useState('');
+
+  const handleSubmit = () => {
+    if (query !== '') onSubmit(query);
+  };
+
+  return (
+    <S.SearchWrapper>
+      <S.SearchField
+        type="search"
+        placeholder="City name"
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
+        aria-label="Search"
+      />
+
+      <S.SearchButton
+        icon={faSearch}
+        disabled={query === ''}
+        onClick={handleSubmit}
+        aria-label="Submit Search"
+      />
+    </S.SearchWrapper>
+  );
+};
+
+export default SearchForm;

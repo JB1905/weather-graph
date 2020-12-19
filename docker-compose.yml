@@ -3,7 +3,7 @@ services:
   client:
     container_name: wg_client
     restart: always
-    build: client
+    build: apps/client
     ports:
       - 3000:3000
     depends_on:
@@ -12,6 +12,6 @@ services:
   server:
     container_name: wg_server
     restart: always
-    build: server
+    build: apps/server
     ports:
       - 4000:4000
