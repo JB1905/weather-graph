@@ -20,16 +20,16 @@ import * as S from './City.styles';
 const Details = withDynamicImport(
   lazy(() => import('components/Widgets/Details'))
 );
-const Forecast = withDynamicImport(
-  lazy(() => import('components/Widgets/Forecast'))
-);
-const UVIndex = withDynamicImport(
-  lazy(() => import('components/Widgets/UVIndex'))
-);
-const AirQuality = withDynamicImport(
-  lazy(() => import('components/Widgets/AirQuality'))
-);
-const Maps = withDynamicImport(lazy(() => import('components/Widgets/Maps')));
+// const Forecast = withDynamicImport(
+//   lazy(() => import('components/Widgets/Forecast'))
+// );
+// const UVIndex = withDynamicImport(
+//   lazy(() => import('components/Widgets/UVIndex'))
+// );
+// const AirQuality = withDynamicImport(
+//   lazy(() => import('components/Widgets/AirQuality'))
+// );
+// const Maps = withDynamicImport(lazy(() => import('components/Widgets/Maps')));
 
 type CityParams = {
   readonly id: string;
@@ -56,7 +56,12 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
   const { resetBackground } = useBackground();
 
-  const { error, loading, data, refetch } = useQuery<CurrentForecast>(query, {
+  const {
+    error,
+    loading,
+    data,
+    // refetch
+  } = useQuery<CurrentForecast>(query, {
     // TODO
     variables: x(),
   });
@@ -96,7 +101,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
   const {
     name,
     id,
-    coord: { lat, lon },
+    // coord: { lat, lon },
   } = data.currentForecast;
 
   // console.log( geoTz(lat, lon) )

@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import {
   FontAwesomeIcon,
-  FontAwesomeIconProps,
+  // FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
 import {
   faCompress,

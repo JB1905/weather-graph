@@ -15,7 +15,7 @@ import { ReactComponent as Logo } from 'assets/logo.svg';
 import * as S from 'App.styles';
 
 const App = () => {
-  const { loading, applyUpdate, showReload } = useUpdates();
+  // const { loading, applyUpdate, showReload } = useUpdates();
 
   const history = useHistory();
 
