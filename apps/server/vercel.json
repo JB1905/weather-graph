@@ -1,10 +1,15 @@
 {
   "version": 2,
-  "builds": [{ "src": "src/server.ts", "use": "@now/node" }],
+  "builds": [
+    {
+      "src": "src/server.ts",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
-      "src": "/graphql",
-      "dest": "dist/server.ts"
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
