@@ -1,6 +1,7 @@
-export const localTime = (date: any) => {
-  // TODO
-  return new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Australia/Sydney',
+export const localTime = (date: Date, timeZone?: string) => {
+  return new Intl.DateTimeFormat('default', {
+    timeZone,
+    hour: 'numeric',
+    minute: 'numeric'
   }).format(date);
 };
