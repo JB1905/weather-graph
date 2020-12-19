@@ -14,6 +14,6 @@ const server = new ApolloServer({
   },
 });
 
-server.listen().then(({ url }: { readonly url: string }) => {
+server.listen().then(({ url }) => {
   console.log(`Server is running: ${url}`);
 });

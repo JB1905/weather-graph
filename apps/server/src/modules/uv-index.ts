@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 import { endpoint, appid } from '../utils';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type CurrentUVIndex {
     lat: Float!
     lon: Float!
@@ -17,7 +17,7 @@ const typeDefs = gql`
   }
 `;
 
-const resolvers = {
+export const resolvers = {
   Query: {
     // TODO types
     currentUVIndexByCoords: async (
@@ -35,9 +35,4 @@ const resolvers = {
       return data;
     },
   },
-};
-
-module.exports = {
-  typeDefs,
-  resolvers,
 };

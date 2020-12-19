@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 import { endpoint, appid } from '../utils';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Forecast {
     cod: String!
     message: Float!
@@ -71,7 +71,7 @@ const typeDefs = gql`
   }
 `;
 
-const resolvers = {
+export const resolvers = {
   Query: {
     // TODO types
     forecastByName: async (_: any, { name }: { name: string }) => {
@@ -103,9 +103,4 @@ const resolvers = {
       return data;
     },
   },
-};
-
-module.exports = {
-  typeDefs,
-  resolvers,
 };

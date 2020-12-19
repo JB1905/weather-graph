@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 import { endpoint, appid } from '../utils';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type CurrentForecast {
     coord: CurrentForecastCoord!
     weather: [CurrentForecastWeather!]!
@@ -65,7 +65,7 @@ const typeDefs = gql`
   }
 `;
 
-const resolvers = {
+export const resolvers = {
   Query: {
     // TODO types
     currentForecast: async (
@@ -148,9 +148,4 @@ const resolvers = {
       return data;
     },
   },
-};
-
-module.exports = {
-  typeDefs,
-  resolvers,
 };
