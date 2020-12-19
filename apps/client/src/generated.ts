@@ -7,13 +7,19 @@
 // GraphQL query operation: CurrentForecastByIDs
 // ====================================================
 
+export interface CurrentForecastByIDs_currentForecastByIDs_coord {
+  __typename: "CurrentForecastCoord";
+  lat: number;
+  lon: number;
+}
+
 export interface CurrentForecastByIDs_currentForecastByIDs_weather {
-  __typename: 'CurrentForecastWeather';
+  __typename: "CurrentForecastWeather";
   description: string;
 }
 
 export interface CurrentForecastByIDs_currentForecastByIDs_main {
-  __typename: 'CurrentForecastMain';
+  __typename: "CurrentForecastMain";
   temp: number;
   temp_min: number;
   temp_max: number;
@@ -22,21 +28,22 @@ export interface CurrentForecastByIDs_currentForecastByIDs_main {
 }
 
 export interface CurrentForecastByIDs_currentForecastByIDs_wind {
-  __typename: 'CurrentForecastWind';
+  __typename: "CurrentForecastWind";
   deg: number | null;
   speed: number;
 }
 
 export interface CurrentForecastByIDs_currentForecastByIDs_sys {
-  __typename: 'CurrentForecastSys';
+  __typename: "CurrentForecastSys";
   sunrise: number;
   sunset: number;
 }
 
 export interface CurrentForecastByIDs_currentForecastByIDs {
-  __typename: 'CurrentForecast';
+  __typename: "CurrentForecast";
   id: string;
   name: string;
+  coord: CurrentForecastByIDs_currentForecastByIDs_coord;
   weather: CurrentForecastByIDs_currentForecastByIDs_weather[];
   main: CurrentForecastByIDs_currentForecastByIDs_main;
   wind: CurrentForecastByIDs_currentForecastByIDs_wind;
@@ -61,7 +68,7 @@ export interface CurrentForecastByIDsVariables {
 // ====================================================
 
 export interface CurrentUVIndexByCoords_currentUVIndexByCoords {
-  __typename: 'CurrentUVIndex';
+  __typename: "CurrentUVIndex";
   value: number;
 }
 
@@ -84,7 +91,7 @@ export interface CurrentUVIndexByCoordsVariables {
 // ====================================================
 
 export interface ForecastByName_forecastByName_list_main {
-  __typename: 'ForecastMain';
+  __typename: "ForecastMain";
   temp: number;
   temp_min: number;
   temp_max: number;
@@ -93,19 +100,19 @@ export interface ForecastByName_forecastByName_list_main {
 }
 
 export interface ForecastByName_forecastByName_list_wind {
-  __typename: 'ForecastWind';
+  __typename: "ForecastWind";
   deg: number;
   speed: number;
 }
 
 export interface ForecastByName_forecastByName_list {
-  __typename: 'ForecastHourData';
+  __typename: "ForecastHourData";
   main: ForecastByName_forecastByName_list_main;
   wind: ForecastByName_forecastByName_list_wind;
 }
 
 export interface ForecastByName_forecastByName {
-  __typename: 'Forecast';
+  __typename: "Forecast";
   list: ForecastByName_forecastByName_list[];
 }
 

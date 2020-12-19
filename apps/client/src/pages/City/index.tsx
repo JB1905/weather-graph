@@ -91,7 +91,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
       <Page>
         {/* TODO move over apollo query (sync/star always visible/active) */}
         <S.ManagementActions>
-          <ActionButton icon={faSync} onClick={refetch} />
+          <ActionButton icon={faSync} onClick={() => refetch()} />
         </S.ManagementActions>
 
         <S.Content>

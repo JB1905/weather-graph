@@ -5,6 +5,10 @@ export const FORECAST_BY_IDS = gql`
     currentForecastByIDs(ids: $ids) {
       id
       name
+      coord {
+        lat
+        lon
+      }
       weather {
         description
       }

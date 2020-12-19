@@ -8,8 +8,10 @@ const fillSize = css`
 export const ManagementActions = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: ${({ theme }) => theme.size.full};
-  height: ${({ theme }) => theme.size.actionButton};
+  height: 55px; // TODO theme
+  padding: 0 12px;
 `;
 
 export const BoardSkeleton = styled.div`
