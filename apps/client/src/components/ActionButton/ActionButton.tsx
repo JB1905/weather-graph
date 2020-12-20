@@ -6,14 +6,16 @@ import {
 
 import * as S from './ActionButton.styles';
 
+type ActionButtonIcon = Pick<FontAwesomeIconProps, 'icon'>;
+
 type ActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-const ActionButton = memo<
-  Pick<FontAwesomeIconProps, 'icon'> & ActionButtonProps
->(({ icon, ...props }) => (
-  <S.Wrapper {...props}>
-    <FontAwesomeIcon icon={icon} />
-  </S.Wrapper>
-));
+const ActionButton = memo<ActionButtonIcon & ActionButtonProps>(
+  ({ icon, ...props }) => (
+    <S.Wrapper {...props}>
+      <FontAwesomeIcon icon={icon} />
+    </S.Wrapper>
+  )
+);
 
 export default ActionButton;
