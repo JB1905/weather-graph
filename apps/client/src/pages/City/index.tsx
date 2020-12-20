@@ -1,7 +1,7 @@
-import { lazy } from 'react';
+import { lazy, memo, useCallback } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
-import { gql, useQuery } from '@apollo/client';
+import { gql, NetworkStatus, useQuery } from '@apollo/client';
 import queryString from 'query-string';
 
 import Head from 'components/Head';
@@ -11,22 +11,25 @@ import ErrorMessage from 'components/ErrorMessage';
 import ActionButton from 'components/ActionButton';
 import { useBackground } from 'hooks/useBackground';
 import { withDynamicImport } from 'hoc/withDynamicImport';
-import { CurrentForecast } from 'types/generated';
+import type { CurrentForecast } from 'types/generated';
 
 import * as S from './City.styles';
 
-// TODO
 const Details = withDynamicImport(
   lazy(() => import('components/Widgets/Details'))
 );
+
+const Maps = withDynamicImport(lazy(() => import('components/Widgets/Maps')));
 
 type CityParams = {
   readonly id: string;
 };
 
-const City = ({ match, location }: RouteComponentProps<CityParams>) => {
+const POLL_INTERVAL = 1000 * 60 * 10; // 10 minutes
+
+const City = memo<RouteComponentProps<CityParams>>(({ match, location }) => {
   // TODO
-  const prepareVariables = () => {
+  const prepareVariables = useCallback(() => {
     const variables = {} as any;
 
     if (match.params.id) {
@@ -41,16 +44,24 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     }
 
     return variables;
-  };
+  }, [location.search, match.params.id]);
 
   const { resetBackground } = useBackground();
 
-  const { error, loading, data, refetch } = useQuery<CurrentForecast>(query, {
+  const {
+    error,
+    loading,
+    data,
+    refetch,
+    networkStatus,
+  } = useQuery<CurrentForecast>(query, {
     // TODO
     variables: prepareVariables(),
+    pollInterval: POLL_INTERVAL,
+    notifyOnNetworkStatusChange: true,
   });
 
-  if (loading) {
+  if (loading && networkStatus !== NetworkStatus.refetch) {
     resetBackground();
 
     return (
@@ -82,7 +93,11 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     );
   }
 
-  const { name, id } = data.currentForecast;
+  const {
+    name,
+    id,
+    coord: { lat, lon },
+  } = data.currentForecast;
 
   return (
     <>
@@ -91,7 +106,11 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
       <Page>
         {/* TODO move over apollo query (sync/star always visible/active) */}
         <S.ManagementActions>
-          <ActionButton icon={faSync} onClick={() => refetch()} />
+          <ActionButton
+            icon={faSync}
+            onClick={() => refetch()}
+            animate={networkStatus === NetworkStatus.refetch}
+          />
         </S.ManagementActions>
 
         <S.Content>
@@ -101,10 +120,12 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
           <Details cityId={id} />
         </S.Content>
+
+        <Maps lat={lat} lon={lon} />
       </Page>
     </>
   );
-};
+});
 
 export const query = gql`
   query CurrentForecast($name: String, $lon: Float, $lat: Float) {
