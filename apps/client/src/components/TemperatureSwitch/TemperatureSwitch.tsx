@@ -1,5 +1,6 @@
 import { TemperatureUnit } from 'enums/TemperatureUnit';
 import { useUnits } from 'hooks/useUnits';
+import { memo } from 'react';
 
 import * as S from './TemperatureSwitch.styles';
 
@@ -7,7 +8,7 @@ type TemperatureSwitchProps = {
   readonly temp: number;
 };
 
-const TemperatureSwitch = ({ temp }: TemperatureSwitchProps) => {
+const TemperatureSwitch = memo<TemperatureSwitchProps>(({ temp }) => {
   const { temperatureUnit, setUnit, convertUnit } = useUnits();
 
   return (
@@ -27,6 +28,6 @@ const TemperatureSwitch = ({ temp }: TemperatureSwitchProps) => {
       </S.Units>
     </S.Wrapper>
   );
-};
+});
 
 export default TemperatureSwitch;

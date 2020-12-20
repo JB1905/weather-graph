@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +14,8 @@ import { ReactComponent as Logo } from 'assets/logo.svg';
 
 import * as S from 'App.styles';
 
+type SubmitSearchCallbackType = (query: string) => void;
+
 const App = () => {
   const history = useHistory();
 
@@ -20,15 +23,18 @@ const App = () => {
 
   const { backgroundColor } = useBackground();
 
-  const submitSearch = (query: string) => {
-    history.replace(routes.city(encodeURIComponent(query)));
-  };
+  const submitSearch = useCallback<SubmitSearchCallbackType>(
+    (query) => {
+      history.replace(routes.city(encodeURIComponent(query)));
+    },
+    [history]
+  );
 
-  const getLocalForecast = () => {
+  const getLocalForecast = useCallback(() => {
     getCoords(({ latitude, longitude }) => {
       history.replace(`${routes.coords}?lat=${latitude}&lon=${longitude}`);
     });
-  };
+  }, [getCoords, history]);
 
   return (
     <>

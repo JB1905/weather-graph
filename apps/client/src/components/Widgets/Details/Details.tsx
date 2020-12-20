@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCompress,
   faTint,
@@ -7,7 +6,8 @@ import {
   faArrowCircleUp,
   faArrowCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
-import geoTz  from 'geo-tz'
+import { memo, useEffect } from 'react';
+import geoTz from 'geo-tz';
 
 import Widget from 'components/Widget';
 import Loader from 'components/Loader';
@@ -15,32 +15,17 @@ import ErrorMessage from 'components/ErrorMessage';
 import TemperatureSwitch from 'components/TemperatureSwitch';
 import { FORECAST_BY_IDS } from 'api/queries';
 import { CurrentForecastByIDs } from 'generated';
+import { useBackground } from 'hooks/useBackground';
+import { localTime } from 'helpers/localTime';
+import Condition from './Condition';
 
 import * as S from './Details.styles';
-import { useBackground } from 'hooks/useBackground';
-import { useEffect } from 'react';
-import { localTime } from 'helpers/localTime';
 
 type DetailsProps = {
   readonly cityId: string;
 };
 
-// TODO
-const Condition = ({
-  icon,
-  iconRotate, // TODO rename
-  children,
-}: any) => {
-  return (
-    <S.Condition iconRotate={iconRotate}>
-      {children}
-
-      <FontAwesomeIcon icon={icon} />
-    </S.Condition>
-  );
-};
-
-const Details = ({ cityId }: DetailsProps) => {
+const Details = memo<DetailsProps>(({ cityId }) => {
   const { error, loading, data } = useQuery<CurrentForecastByIDs>(
     FORECAST_BY_IDS,
     {
@@ -57,7 +42,9 @@ const Details = ({ cityId }: DetailsProps) => {
     if (data?.currentForecastByIDs[0].weather?.[0]?.description) {
       setBackground(
         data?.currentForecastByIDs[0].weather[0].description,
-        false
+        // TODO refactor
+        Date.now() < data?.currentForecastByIDs[0].sys?.sunrise * 1000 ||
+          Date.now() > data?.currentForecastByIDs[0].sys?.sunset * 1000
       );
     }
   }, [data, setBackground]);
@@ -86,22 +73,31 @@ const Details = ({ cityId }: DetailsProps) => {
 
           <Condition icon={faTint}>Humidity: {main.humidity}%</Condition>
 
-          <S.ConditionsGroup>
-            {/* TODO */}
-            <Condition icon={faArrowCircleUp}>
-              {localTime(new Date(sys.sunrise * 1000))}{' '}
-              ({localTime(new Date(sys.sunrise * 1000), geoTz(coord.lat, coord.lon))})
-            </Condition>
+          {/* <S.ConditionsGroup> */}
+          {/* TODO */}
+          <Condition icon={faArrowCircleUp}>
+            {localTime(new Date(sys.sunrise * 1000))} (
+            {localTime(
+              new Date(sys.sunrise * 1000),
+              geoTz(coord.lat, coord.lon)
+            )}
+            )
+          </Condition>
 
-            <Condition icon={faArrowCircleDown}>
-              {localTime(new Date(sys.sunset * 1000))}{' '}
-              ({localTime(new Date(sys.sunset * 1000), geoTz(coord.lat, coord.lon))})
-            </Condition>
-          </S.ConditionsGroup>
+          {/* TODO */}
+          <Condition icon={faArrowCircleDown}>
+            {localTime(new Date(sys.sunset * 1000))} (
+            {localTime(
+              new Date(sys.sunset * 1000),
+              geoTz(coord.lat, coord.lon)
+            )}
+            )
+          </Condition>
+          {/* </S.ConditionsGroup> */}
         </S.WeatherConditions>
       </S.Wrapper>
     </Widget>
   );
-};
+});
 
 export default Details;

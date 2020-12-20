@@ -7,6 +7,7 @@ export const Layout = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  max-width: ${({ theme }) => theme.size.maxContainerSize};
   height: 100vh;
 
   @supports (-webkit-touch-callout: none) {
@@ -26,7 +27,6 @@ export const Header = styled.header`
   min-height: calc(55px + env(safe-area-inset-top));
   padding-left: ${({ theme }) => theme.spaces.content};
   padding-right: ${({ theme }) => theme.spaces.content};
-  max-width: ${({ theme }) => theme.size.maxContainerSize};
   width: 100%;
   margin: 0 auto;
 `;
@@ -46,8 +46,8 @@ export const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 12px env(safe-area-inset-bottom);
-  overflow: auto; // TODO
+  padding: 0 ${({ theme }) => theme.spaces.content} env(safe-area-inset-bottom);
+  overflow: auto;
 `;
 
 type BackgroundProps = {

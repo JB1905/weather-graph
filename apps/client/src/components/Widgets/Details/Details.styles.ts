@@ -19,17 +19,6 @@ export const WeatherConditions = styled.ul`
   padding: 0;
 `;
 
-export const Condition = styled.li<{ iconRotate?: number }>`
-  margin: 5px 10px;
-
-  svg {
-    margin-left: 8px;
-
-    ${({ iconRotate }) =>
-      iconRotate ? `transform: rotate(${iconRotate}deg)` : ''}
-  }
-`;
-
 export const ConditionsGroup = styled.div`
   display: flex;
 `;

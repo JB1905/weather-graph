@@ -5,7 +5,6 @@ const Page = styled.div`
   display: flex;
   height: 100%;
   max-height: 100%;
-  max-width: ${({ theme }) => theme.size.maxContainerSize};
   flex-direction: column;
   align-items: center;
 `;

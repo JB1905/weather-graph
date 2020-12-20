@@ -17,7 +17,11 @@ export const Units = styled.div`
   margin-top: 2px;
 `;
 
-export const Unit = styled.div<{ readonly active: boolean }>`
+type UnitParams = {
+  readonly active: boolean;
+};
+
+export const Unit = styled.div<UnitParams>`
   padding: 0.1rem 1rem;
   font-family: inherit;
   font-size: 2.8rem;
