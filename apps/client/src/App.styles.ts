@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import type { Gradient } from 'types/Gradient';
 
 export const Layout = styled.div`
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  max-width: ${({ theme }) => theme.size.maxContainerSize};
   height: 100vh;
 
   @supports (-webkit-touch-callout: none) {
@@ -28,6 +26,7 @@ export const Header = styled.header`
   padding-right: ${({ theme }) => theme.spaces.content};
   margin: 0 auto;
   width: 100%;
+  max-width: ${({ theme }) => theme.size.maxContainerSize};
   min-height: calc(
     ${({ theme }) => theme.size.navbar} + env(safe-area-inset-top)
   );
@@ -48,7 +47,7 @@ export const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 ${({ theme }) => theme.spaces.content} env(safe-area-inset-bottom);
+  padding: 0 0 env(safe-area-inset-bottom);
   overflow: auto;
 `;
 
