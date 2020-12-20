@@ -24,11 +24,13 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   padding-top: env(safe-area-inset-top);
-  min-height: calc(55px + env(safe-area-inset-top));
   padding-left: ${({ theme }) => theme.spaces.content};
   padding-right: ${({ theme }) => theme.spaces.content};
-  width: 100%;
   margin: 0 auto;
+  width: 100%;
+  min-height: calc(
+    ${({ theme }) => theme.size.navbar} + env(safe-area-inset-top)
+  );
 `;
 
 export const BrandLink = styled(Link)`

@@ -2,19 +2,19 @@ import styled, { css } from 'styled-components';
 
 const fillSize = css`
   flex: 1;
-  width: ${({ theme }) => theme.size.full};
+  width: 100%;
 `;
 
 export const ManagementActions = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: ${({ theme }) => theme.size.full};
-  height: 55px; // TODO theme
+  width: 100%;
+  height: ${({ theme }) => theme.size.navbar};
 `;
 
 export const BoardSkeleton = styled.div`
-  width: ${({ theme }) => theme.size.full};
+  width: 100%;
   height: 300px;
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@ export const Summary = styled.div`
   align-items: center;
   text-align: center;
   padding: 20px;
-  width: ${({ theme }) => theme.size.full};
+  width: 100%;
   flex: 1;
 `;
 

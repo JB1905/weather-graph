@@ -1,9 +1,9 @@
 export const theme = {
-  breakpoints: {
-    sm: '640px',
-    md: '768px',
-    lg: '1024px',
-  },
+  // breakpoints: {
+  //   sm: '640px',
+  //   md: '768px',
+  //   lg: '1024px',
+  // },
   colors: {
     text: '#fff',
   },
@@ -16,10 +16,10 @@ export const theme = {
     },
   },
   size: {
-    full: '100%',
     actionButton: '34px',
     borderRadius: '4px',
     maxContainerSize: '650px',
+    navbar: '55px',
   },
   spaces: {
     content: '12px',

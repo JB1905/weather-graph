@@ -4,15 +4,17 @@ import { memo } from 'react';
 import * as S from './Widget.styles';
 
 type WidgetProps = {
-  readonly title?: string; // TODO ?
+  readonly title?: string;
   readonly children: React.ReactNode;
 };
 
 const Widget = memo<WidgetProps>(({ title, children }) => (
   <S.Wrapper>
-    <S.Header>
-      <S.Title>{title}</S.Title>
-    </S.Header>
+    {title && (
+      <S.Header>
+        <S.Title>{title}</S.Title>
+      </S.Header>
+    )}
 
     <S.Content>{children}</S.Content>
   </S.Wrapper>

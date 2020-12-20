@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
-import { gql, useQuery } from '@apollo/client';
+import { gql, NetworkStatus, useQuery } from '@apollo/client';
 import queryString from 'query-string';
 
 import Head from 'components/Head';
@@ -24,6 +24,8 @@ type CityParams = {
   readonly id: string;
 };
 
+const POLL_INTERVAL = 1000 * 60 * 10; // 10 minutes
+
 const City = ({ match, location }: RouteComponentProps<CityParams>) => {
   // TODO
   const prepareVariables = () => {
@@ -45,12 +47,20 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
   const { resetBackground } = useBackground();
 
-  const { error, loading, data, refetch } = useQuery<CurrentForecast>(query, {
+  const {
+    error,
+    loading,
+    data,
+    refetch,
+    networkStatus,
+  } = useQuery<CurrentForecast>(query, {
     // TODO
     variables: prepareVariables(),
+    notifyOnNetworkStatusChange: true,
+    pollInterval: POLL_INTERVAL,
   });
 
-  if (loading) {
+  if (loading && networkStatus !== NetworkStatus.refetch) {
     resetBackground();
 
     return (
@@ -91,7 +101,11 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
       <Page>
         {/* TODO move over apollo query (sync/star always visible/active) */}
         <S.ManagementActions>
-          <ActionButton icon={faSync} onClick={() => refetch()} />
+          <ActionButton
+            icon={faSync}
+            onClick={() => refetch()}
+            animate={networkStatus === NetworkStatus.refetch}
+          />
         </S.ManagementActions>
 
         <S.Content>

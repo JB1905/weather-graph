@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  width: ${({ theme }) => theme.size.full}; // TODO remove var
+  width: 100%;
   max-width: ${({ theme }) => theme.size.maxContainerSize};
   overflow: hidden;
 `;

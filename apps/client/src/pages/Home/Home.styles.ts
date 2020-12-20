@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ContentWrapper = styled.div`
-  height: 100%; // TODO theme
+  height: 100%;
   max-width: 300px;
   display: flex;
   flex-direction: column;
@@ -21,5 +21,5 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
   font-size: 1.6rem;
-  margin: 12px 0 0;
+  margin: 12px 0 0; // TODO theme
 `;

@@ -26,8 +26,8 @@ export const Unit = styled.div<UnitParams>`
   font-family: inherit;
   font-size: 2.8rem;
   background: transparent;
-  border: 0;
   color: ${({ theme }) => theme.colors.text};
   opacity: ${({ active }) => (active ? 1 : 0.6)};
   cursor: pointer;
+  border: 0;
 `;
