@@ -20,6 +20,10 @@ const Details = withDynamicImport(
   lazy(() => import('components/Widgets/Details'))
 );
 
+const UVIndex = withDynamicImport(
+  lazy(() => import('components/Widgets/UVIndex'))
+);
+
 type CityParams = {
   readonly id: string;
 };
@@ -82,7 +86,11 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     );
   }
 
-  const { name, id } = data.currentForecast;
+  const {
+    name,
+    id,
+    coord: { lat, lon },
+  } = data.currentForecast;
 
   return (
     <>
@@ -101,6 +109,8 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
           <Details cityId={id} />
         </S.Content>
+
+        <UVIndex lat={lat} lon={lon} />
       </Page>
     </>
   );
