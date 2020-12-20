@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
 
 import Head from 'components/Head';
 import { useBackground } from 'hooks/useBackground';
-import { useEffect } from 'react';
 
 import * as S from './Home.styles';
 

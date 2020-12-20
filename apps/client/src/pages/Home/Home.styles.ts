@@ -21,5 +21,5 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
   font-size: 1.6rem;
-  margin: 12px 0 0; // TODO theme
+  margin: ${({ theme }) => theme.spaces.content} 0 0;
 `;

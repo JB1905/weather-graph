@@ -15,8 +15,8 @@ const SearchForm = ({ onSubmit }: SearchFormProps) => {
   };
 
   return (
-    <S.SearchWrapper>
-      <S.SearchField
+    <S.Wrapper>
+      <S.Field
         type="search"
         placeholder="City name"
         onChange={(e) => setQuery(e.target.value)}
@@ -24,13 +24,13 @@ const SearchForm = ({ onSubmit }: SearchFormProps) => {
         aria-label="Search"
       />
 
-      <S.SearchButton
+      <S.Button
         icon={faSearch}
         disabled={query === ''}
         onClick={handleSubmit}
         aria-label="Submit Search"
       />
-    </S.SearchWrapper>
+    </S.Wrapper>
   );
 };
 

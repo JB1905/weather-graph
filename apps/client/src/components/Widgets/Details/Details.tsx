@@ -17,6 +17,7 @@ import { FORECAST_BY_IDS } from 'api/queries';
 import { CurrentForecastByIDs } from 'generated';
 import { useBackground } from 'hooks/useBackground';
 import { localTime } from 'helpers/localTime';
+import { checkInRange } from 'helpers/checkInRange';
 import Condition from './Condition';
 
 import * as S from './Details.styles';
@@ -43,8 +44,10 @@ const Details = memo<DetailsProps>(({ cityId }) => {
       setBackground(
         data?.currentForecastByIDs[0].weather[0].description,
         // TODO refactor
-        Date.now() < data?.currentForecastByIDs[0].sys?.sunrise * 1000 ||
-          Date.now() > data?.currentForecastByIDs[0].sys?.sunset * 1000
+        checkInRange(
+          data?.currentForecastByIDs[0].sys?.sunrise,
+          data?.currentForecastByIDs[0].sys?.sunset
+        )
       );
     }
   }, [data, setBackground]);

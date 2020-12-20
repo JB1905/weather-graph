@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 import ActionButton from 'components/ActionButton';
 
-export const SearchWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   overflow: hidden;
   position: relative;
   max-width: 300px; // TODO theme?
-  width: 100%; // TODO theme
+  width: 100%;
   margin: 0 10px; // TODO theme
 `;
 
-export const SearchField = styled.input`
+export const Field = styled.input`
   flex: 1;
   border: 0;
   background: none;
@@ -31,7 +31,7 @@ export const SearchField = styled.input`
   }
 `;
 
-export const SearchButton = styled(ActionButton)`
+export const Button = styled(ActionButton)`
   position: absolute;
   right: 0;
 `;
