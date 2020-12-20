@@ -20,6 +20,10 @@ const Details = withDynamicImport(
   lazy(() => import('components/Widgets/Details'))
 );
 
+const AirQuality = withDynamicImport(
+  lazy(() => import('components/Widgets/AirQuality'))
+);
+
 type CityParams = {
   readonly id: string;
 };
@@ -101,6 +105,8 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
           <Details cityId={id} />
         </S.Content>
+
+        <AirQuality />
       </Page>
     </>
   );
