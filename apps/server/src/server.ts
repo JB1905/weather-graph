@@ -12,6 +12,7 @@ const server = new ApolloServer({
   engine: {
     reportSchema: true,
   },
+  introspection: true,
   playground: true,
 });
 
