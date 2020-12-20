@@ -12,6 +12,7 @@ const server = new ApolloServer({
   engine: {
     reportSchema: true,
   },
+  playground: true,
 });
 
 server.listen().then(({ url }) => {
