@@ -1,10 +1,16 @@
-import { memo } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { memo, ButtonHTMLAttributes } from 'react';
+import {
+  FontAwesomeIcon,
+  FontAwesomeIconProps,
+} from '@fortawesome/react-fontawesome';
 
 import * as S from './ActionButton.styles';
 
-// TODO types
-const ActionButton = memo<any>(({ icon, ...props }: any) => (
+type ActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+const ActionButton = memo<
+  Pick<FontAwesomeIconProps, 'icon'> & ActionButtonProps
+>(({ icon, ...props }) => (
   <S.Wrapper {...props}>
     <FontAwesomeIcon icon={icon} />
   </S.Wrapper>
