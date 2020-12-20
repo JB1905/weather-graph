@@ -16,10 +16,11 @@ import App from 'App';
 import Loader from 'components/Loader';
 import { store, persistor } from 'state/store';
 import { theme } from 'styles/theme';
+import * as serviceWorker from 'serviceWorker';
 import reportWebVitals from 'reportWebVitals';
 
 const httpLink = createHttpLink({
-  uri: '/graphql', // TODO
+  uri: '/graphql',
 });
 
 const client = new ApolloClient({
@@ -45,5 +46,7 @@ ReactDOM.render(
   </StrictMode>,
   document.getElementById('root')
 );
+
+serviceWorker.register();
 
 reportWebVitals(console.log); // TODO connect reports
