@@ -4,7 +4,7 @@
 
 Weather app built with GraphQL
 
-##### Main Features
+### Main Features
 
 - search weather for different locations
 - display weather for current location
@@ -12,21 +12,22 @@ Weather app built with GraphQL
 - preview current weather, forecast for next 5 days, UV index & weather conditions on the map
 - add to home screen (PWA support)
 
-[Open Weather Graph](https://weather-graph.now.sh/)
+[Open Weather Graph](https://weather-graph.vercel.app/)
 
 ## Prerequisites
 
+- Node.js
 - Yarn
 
 ## Setup
 
-##### 1. Clone repo
+### 1. Clone repo
 
 ```sh
 $ git clone https://github.com/JB1905/weather-graph.git
 ```
 
-##### 2. Go to directory
+### 2. Go to directory
 
 ```sh
 $ cd weather-graph
@@ -39,8 +40,9 @@ $ cd weather-graph
 - [Docker](https://www.docker.com/)
 - [Vercel (ZEIT) Now](https://vercel.com/)
 - [OpenWeatherMap API](https://openweathermap.org/)
+<!-- TODO yarn workspaces -->
 
-##### Client Side
+### Client Side
 
 - [React](https://reactjs.org/)
 - [React Router](https://reacttraining.com/react-router/)
@@ -50,7 +52,7 @@ $ cd weather-graph
 - [Redux Persist](https://github.com/rt2zz/redux-persist/)
 - [Apollo Client](https://www.apollographql.com/docs/react/)
 
-##### Server Side
+### Server Side
 
 - [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
 
