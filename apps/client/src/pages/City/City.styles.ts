@@ -11,7 +11,6 @@ export const ManagementActions = styled.div`
   align-items: center;
   width: ${({ theme }) => theme.size.full};
   height: 55px; // TODO theme
-  padding: 0 12px;
 `;
 
 export const BoardSkeleton = styled.div`
