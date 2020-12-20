@@ -10,7 +10,7 @@ const City = withDynamicImport(lazy(() => import('pages/City')));
 const Router = () => (
   <Switch>
     <Route exact path={routes.home} component={Home} />
-    <Route path={[routes.city(), routes.coords]} component={City} />
+    <Route exact path={[routes.city(), routes.coords]} component={City} />
 
     <Redirect from="*" to={routes.home} />
   </Switch>
