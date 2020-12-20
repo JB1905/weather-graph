@@ -103,7 +103,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
           <ActionButton
             icon={faSync}
             onClick={() => refetch()}
-            animate={networkStatus === NetworkStatus.refetch}
+            // animate={networkStatus === NetworkStatus.refetch}
           />
         </S.ManagementActions>
 
