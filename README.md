@@ -17,6 +17,7 @@ Weather app built with GraphQL
 ## Prerequisites
 
 - Yarn
+- OpenWeatherMap account with API key
 
 ## Setup
 
