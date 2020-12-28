@@ -19,6 +19,7 @@ import { useBackground } from 'hooks/useBackground';
 import { localTime } from 'helpers/localTime';
 import { checkInRange } from 'helpers/checkInRange';
 import Condition from './Condition';
+import { useUnits } from 'hooks/useUnits';
 
 import * as S from './Details.styles';
 
@@ -37,6 +38,8 @@ const Details = memo<DetailsProps>(({ cityId }) => {
   );
 
   const { setBackground } = useBackground();
+
+  const { convertUnit } = useUnits();
 
   // TODO reset on exit
   useEffect(() => {
@@ -63,6 +66,9 @@ const Details = memo<DetailsProps>(({ cityId }) => {
       <S.Wrapper>
         <S.Summary>
           <TemperatureSwitch temp={main.temp} />
+
+          {convertUnit(main.temp_min)}
+          {convertUnit(main.temp_max)}
 
           <S.Description>{weather[0].description}</S.Description>
         </S.Summary>
