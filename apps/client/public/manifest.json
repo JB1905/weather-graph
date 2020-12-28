@@ -23,5 +23,11 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#4844eb",
-  "background_color": "#4844eb"
+  "background_color": "#4844eb",
+  "shortcuts": [
+    {
+      "name": "Current location",
+      "url": "/city"
+    }
+  ]
 }
