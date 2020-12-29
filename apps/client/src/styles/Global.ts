@@ -10,11 +10,14 @@ const Global = createGlobalStyle`
   body {
     margin: 0;
     min-width: 320px;
-    user-select: none;
     text-transform: uppercase;
     font-family: ${theme.font.family.body};
     font-size: ${theme.font.size.default};
     color: ${theme.colors.text};
+
+    @media (display-mode: standalone) {
+      user-select: none;
+    }
   }
 
   *,
