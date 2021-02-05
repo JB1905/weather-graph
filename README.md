@@ -16,6 +16,7 @@ Weather app built with GraphQL
 
 ## Prerequisites
 
+- Node.js
 - Yarn
 - OpenWeatherMap account with API key
 
@@ -33,10 +34,14 @@ $ git clone https://github.com/JB1905/weather-graph.git
 $ cd weather-graph
 ```
 
+### Development
+
+### Production
+
 ## Build with
 
 - [TypeScript](https://www.typescriptlang.org/)
-- [Travis CI](https://travis-ci.org/)
+<!-- - [Travis CI](https://travis-ci.com/) -->
 - [Docker](https://www.docker.com/)
 - [Vercel (ZEIT) Now](https://vercel.com/)
 - [OpenWeatherMap API](https://openweathermap.org/)
