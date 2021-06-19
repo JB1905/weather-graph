@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  max-width: 300px; // TODO theme?
+  max-width: 300px;
   width: 100%;
-  margin: 0 10px; // TODO theme
+  margin: 0 10px;
 `;
 
 export const Field = styled.input`
@@ -22,7 +22,7 @@ export const Field = styled.input`
   font-family: inherit;
   font-size: ${({ theme }) => theme.font.size.default};
   color: ${({ theme }) => theme.colors.text};
-  padding-left: 10px; // TODO theme
+  padding-left: 10px;
   padding-right: ${({ theme }) => theme.size.actionButton};
   height: ${({ theme }) => theme.size.actionButton};
 

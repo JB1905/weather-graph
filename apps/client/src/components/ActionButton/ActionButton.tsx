@@ -11,6 +11,7 @@ type ActionButtonIcon = Pick<FontAwesomeIconProps, 'icon'>;
 type ActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ActionButton = memo<ActionButtonIcon & ActionButtonProps>(
+  // todo types
   ({ icon, ...props }) => (
     <S.Wrapper {...props}>
       <FontAwesomeIcon icon={icon} />

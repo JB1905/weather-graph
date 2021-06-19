@@ -1,19 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { theme } from './theme';
-
 const Global = createGlobalStyle`
   html {
     font-size: 62.5%;
+      /* position: fixed;
+      overflow: hidden; */
   }
 
   body {
     margin: 0;
     min-width: 320px;
     text-transform: uppercase;
-    font-family: ${theme.font.family.body};
-    font-size: ${theme.font.size.default};
-    color: ${theme.colors.text};
+    font-family: ${({ theme }) => theme.font.family.body};
+    font-size: ${({ theme }) => theme.font.size.default};
+    color: ${({ theme }) => theme.colors.text};
+      /* position: fixed;
+      overflow: hidden; */
 
     @media (display-mode: standalone) {
       user-select: none;

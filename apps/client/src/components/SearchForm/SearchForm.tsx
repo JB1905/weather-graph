@@ -10,6 +10,7 @@ type SearchFormProps = {
 const SearchForm = ({ onSubmit }: SearchFormProps) => {
   const [query, setQuery] = useState('');
 
+  // todo useCallback
   const handleSubmit = () => {
     if (query !== '') onSubmit(query);
   };

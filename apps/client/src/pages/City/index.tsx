@@ -1,4 +1,4 @@
-import { lazy, useCallback } from 'react';
+import { lazy } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { gql, NetworkStatus, useQuery } from '@apollo/client';
@@ -27,7 +27,7 @@ const POLL_INTERVAL = 1000 * 60 * 10; // 10 minutes
 
 const City = ({ match, location }: RouteComponentProps<CityParams>) => {
   // TODO
-  const prepareVariables = useCallback(() => {
+  const prepareVariables = () => {
     const variables = {} as any;
 
     if (match.params.id) {
@@ -42,7 +42,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     }
 
     return variables;
-  }, [location.search, match.params.id]);
+  };
 
   const { resetBackground } = useBackground();
 

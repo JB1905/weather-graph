@@ -14,12 +14,16 @@ export const useBackground = () => {
   );
 
   const setBackground = (description: string, isDark?: boolean) => {
+    const transformColorsToDarken = () => {
+      return (weatherThemes[description].map((color: string) =>
+        Color(color).darken(0.5)
+      ) as unknown) as Gradient;
+    };
+
     // TODO
     const transformColors = () => {
       if (isDark) {
-        return (weatherThemes[description].map((color: string) =>
-          Color(color).darken(0.5)
-        ) as unknown) as Gradient;
+        return transformColorsToDarken();
       }
 
       return weatherThemes[description];
