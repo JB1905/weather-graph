@@ -73,7 +73,6 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    // TODO types
     forecastByName: async (_: any, { name }: { name: string }) => {
       const res = await fetch(`${endpoint}forecast${appid}&q=${name}`);
 
@@ -85,7 +84,6 @@ export const resolvers = {
 
       return data;
     },
-    // TODO types
     forecastByCoords: async (
       _: any,
       { lon, lat }: { lon: number; lat: number }

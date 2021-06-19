@@ -19,7 +19,6 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    // TODO types
     currentUVIndexByCoords: async (
       _: any,
       { lon, lat }: { readonly lon: number; readonly lat: number }

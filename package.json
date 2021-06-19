@@ -8,12 +8,9 @@
     "apps/*"
   ],
   "scripts": {
-    "//update client, server commands": "",
     "client": "yarn workspace client start",
     "server": "yarn workspace server watch",
     "start": "concurrently --kill-others-on-fail 'yarn server' 'yarn client'",
-    "//build": "",
-    "//serve": "",
     "commit": "git-cz"
   },
   "devDependencies": {

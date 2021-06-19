@@ -67,7 +67,6 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    // TODO types
     currentForecast: async (
       _: any,
       {
@@ -94,7 +93,6 @@ export const resolvers = {
 
       return data;
     },
-    // TODO types
     currentForecastByName: async (
       _: any,
       { name }: { readonly name: string }
@@ -109,7 +107,6 @@ export const resolvers = {
 
       return data;
     },
-    // TODO types
     currentForecastByIDs: async (
       _: any,
       { ids }: { readonly ids: string[] }
@@ -130,7 +127,6 @@ export const resolvers = {
 
       return forecasts;
     },
-    // TODO types
     currentForecastByCoords: async (
       _: any,
       { lon, lat }: { lon: number; lat: number }
