@@ -12,6 +12,7 @@ export const FORECAST_BY_IDS = gql`
       weather {
         description
       }
+      # TODO fragment
       main {
         temp
         temp_min
@@ -19,6 +20,7 @@ export const FORECAST_BY_IDS = gql`
         humidity
         pressure
       }
+      # TODO fragment
       wind {
         deg
         speed
@@ -43,6 +45,7 @@ export const LONG_TERM_FORECAST = gql`
   query ForecastByName($name: String!) {
     forecastByName(name: $name) {
       list {
+        # TODO fragment
         main {
           temp
           temp_min
@@ -50,6 +53,7 @@ export const LONG_TERM_FORECAST = gql`
           pressure
           humidity
         }
+        # TODO fragment
         wind {
           deg
           speed

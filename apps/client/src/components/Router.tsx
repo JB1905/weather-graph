@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { withDynamicImport } from 'hoc/withDynamicImport';
 import { routes } from 'routes';
 
 const Home = withDynamicImport(lazy(() => import('pages/Home')));

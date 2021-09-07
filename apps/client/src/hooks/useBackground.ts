@@ -3,23 +3,24 @@ import Color from 'color';
 
 import * as Actions from 'state/actions';
 import { weatherThemes } from 'constants/weatherThemes';
-import type { RootState } from 'state/reducers';
 import type { Gradient } from 'types/Gradient';
 
 export const useBackground = () => {
   const dispatch = useDispatch();
 
   const { backgroundColor } = useSelector(
-    (state: RootState) => state.appearance
+    (state) => state.appearance
   );
 
   const setBackground = (description: string, isDark?: boolean) => {
+    // useCallback
     const transformColorsToDarken = () => {
       return (weatherThemes[description].map((color: string) =>
         Color(color).darken(0.5)
       ) as unknown) as Gradient;
     };
 
+  // useCallback
     // TODO
     const transformColors = () => {
       if (isDark) {
@@ -32,6 +33,7 @@ export const useBackground = () => {
     dispatch(Actions.setBackgroundColor(transformColors()));
   };
 
+  // useCallback
   const resetBackground = () => dispatch(Actions.resetBackgroundColor());
 
   return {

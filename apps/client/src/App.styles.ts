@@ -64,6 +64,7 @@ export const Background = styled.figure<BackgroundProps>`
   top: 0;
   left: 0;
 
+  /* TODO ease in out */
   ${({ gradient: [start, stop] }) => `
     background: linear-gradient(180deg, ${start} 0%, ${stop} 100%);
   `}

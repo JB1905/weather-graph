@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { useCallback } from 'react';
 
 import ActionButton from 'components/ActionButton';
 import SearchForm from 'components/SearchForm';
@@ -20,16 +21,17 @@ const App = () => {
 
   const { backgroundColor } = useBackground();
 
+  // TODO useCallback
   const submitSearch = (query: string) => {
     history.replace(routes.city(encodeURIComponent(query)));
   };
 
   // TODO check if permission enabled
-  const getLocalForecast = () => {
+  const getLocalForecast = useCallback(() => {
     getCoords(({ latitude, longitude }) => {
       history.replace(`${routes.coords}?lat=${latitude}&lon=${longitude}`);
     });
-  };
+  }, [getCoords, history]);
 
   return (
     <>

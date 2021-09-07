@@ -1,19 +1,20 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import * as S from './SearchForm.styles';
 
-type SearchFormProps = {
+interface SearchFormProps {
   onSubmit: (query: string) => void;
 };
 
 const SearchForm = ({ onSubmit }: SearchFormProps) => {
   const [query, setQuery] = useState('');
 
-  // todo useCallback
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     if (query !== '') onSubmit(query);
-  };
+  }, [onSubmit, query]);
+
+  const isSubmitDisabled =  useMemo(() => query === '', [query])
 
   return (
     <S.Wrapper>
@@ -27,7 +28,7 @@ const SearchForm = ({ onSubmit }: SearchFormProps) => {
 
       <S.Button
         icon={faSearch}
-        disabled={query === ''}
+        disabled={isSubmitDisabled}
         onClick={handleSubmit}
         aria-label="Submit Search"
       />

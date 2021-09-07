@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  max-width: 300px;
+  max-width: 300px; /* TODO */
   width: 100%;
-  margin: 0 10px;
+  margin: 0 10px; /* TODO */
 `;
 
 export const Field = styled.input`
@@ -22,12 +22,12 @@ export const Field = styled.input`
   font-family: inherit;
   font-size: ${({ theme }) => theme.font.size.default};
   color: ${({ theme }) => theme.colors.text};
-  padding-left: 10px;
+  padding-left: 10px; /* TODO */
   padding-right: ${({ theme }) => theme.size.actionButton};
   height: ${({ theme }) => theme.size.actionButton};
 
   &::placeholder {
-    color: #fff9;
+    color: #fff9; /* TODO */
   }
 `;
 

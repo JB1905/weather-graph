@@ -1,5 +1,6 @@
 import type { Gradient } from 'types/Gradient';
 
+// TODO array of objects
 export const weatherThemes: Record<string, Gradient> = {
   'scattered clouds': ['#aac9fa', '#8b9ed6'],
   'clear sky': ['#03b1fc', '#0380fc'],

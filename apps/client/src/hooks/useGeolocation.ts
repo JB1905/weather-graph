@@ -32,6 +32,8 @@ export const useGeolocation = () => {
 
   const { permission, isPermissionGranted } = usePermissions('geolocation');
 
+
+  // useCallback
   const getCoords = (
     currentCoords: (coords: GeolocationCoordinates) => void
   ) => {

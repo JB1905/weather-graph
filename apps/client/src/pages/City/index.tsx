@@ -10,7 +10,6 @@ import Loader from 'components/Loader';
 import ErrorMessage from 'components/ErrorMessage';
 import ActionButton from 'components/ActionButton';
 import { useBackground } from 'hooks/useBackground';
-import { withDynamicImport } from 'hoc/withDynamicImport';
 import { CurrentForecast } from 'types/generated';
 
 import * as S from './City.styles';
@@ -19,6 +18,7 @@ const Details = withDynamicImport(
   lazy(() => import('components/Widgets/Details'))
 );
 
+// TODO inteface
 type CityParams = {
   readonly id: string;
 };
@@ -46,6 +46,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
 
   const { resetBackground } = useBackground();
 
+  // TODO create custom hook
   const {
     error,
     loading,
@@ -59,39 +60,39 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
     pollInterval: POLL_INTERVAL,
   });
 
-  if (loading && networkStatus !== NetworkStatus.refetch) {
-    resetBackground();
+  // if (loading && networkStatus !== NetworkStatus.refetch) {
+  //   resetBackground();
 
-    return (
-      <>
-        <Head title="Loading..." />
+  //   return (
+  //     <>
+  //       <Head title="Loading..." />
 
-        <Loader />
-      </>
-    );
-  }
+  //       <Loader />
+  //     </>
+  //   );
+  // }
 
-  if (error) {
-    return (
-      <>
-        <Head title="Oops..." />
+  // if (error) {
+  //   return (
+  //     <>
+  //       <Head title="Oops..." />
 
-        <ErrorMessage>{error.message}</ErrorMessage>
-      </>
-    );
-  }
+  //       <ErrorMessage>{error.message}</ErrorMessage>
+  //     </>
+  //   );
+  // }
 
-  if (!data) {
-    return (
-      <>
-        <Head title="Oops..." />
+  // if (!data) {
+  //   return (
+  //     <>
+  //       <Head title="Oops..." />
 
-        <p>Not found</p>
-      </>
-    );
-  }
+  //       <p>Not found</p>
+  //     </>
+  //   );
+  // }
 
-  const { name, id } = data.currentForecast;
+  // const { name, id } = data.currentForecast;
 
   return (
     <>
@@ -119,6 +120,7 @@ const City = ({ match, location }: RouteComponentProps<CityParams>) => {
   );
 };
 
+// TODO move to queries
 export const query = gql`
   query CurrentForecast($name: String, $lon: Float, $lat: Float) {
     currentForecast(name: $name, lon: $lon, lat: $lat) {
