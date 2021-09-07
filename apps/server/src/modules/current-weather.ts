@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 import fetch from 'node-fetch';
 
-import { endpoint, appid } from '../utils';
+import { ENDPOINT, APP_ID } from '../constants';
 
 export const typeDefs = gql`
   type CurrentForecast {
@@ -65,6 +65,9 @@ export const typeDefs = gql`
   }
 `;
 
+// TODO set fetch base config
+const BASE_URL = `${ENDPOINT}weather${APP_ID}`;
+
 export const resolvers = {
   Query: {
     currentForecast: async (
@@ -77,16 +80,19 @@ export const resolvers = {
     ) => {
       let conditionalEndpoint: string;
 
+      // TODO remove condition
       if (name) {
-        conditionalEndpoint = `${endpoint}weather${appid}&q=${name}`;
+        conditionalEndpoint = `${BASE_URL}&q=${name}`;
       } else {
-        conditionalEndpoint = `${endpoint}weather${appid}&lat=${lat}&lon=${lon}`;
+        conditionalEndpoint = `${BASE_URL}&lat=${lat}&lon=${lon}`;
       }
 
       const res = await fetch(conditionalEndpoint);
 
+      // TODO? add types
       const data = await res.json();
 
+      // TODO? add middleware
       if (data.cod === '404') {
         throw new Error(data.message);
       }
@@ -97,10 +103,12 @@ export const resolvers = {
       _: any,
       { name }: { readonly name: string }
     ) => {
-      const res = await fetch(`${endpoint}weather${appid}&q=${name}`);
+      const res = await fetch(`${BASE_URL}&q=${name}`);
 
+      // TODO? add types
       const data = await res.json();
 
+      // TODO? add middleware
       if (data.cod === '404') {
         throw new Error(data.message);
       }
@@ -114,10 +122,12 @@ export const resolvers = {
       const forecasts = [];
 
       for (const id of ids) {
-        const res = await fetch(`${endpoint}weather${appid}&id=${id}`);
+        const res = await fetch(`${BASE_URL}&id=${id}`);
 
+        // TODO? add types
         const data = await res.json();
 
+        // TODO? add middleware
         if (data.cod === '400') {
           throw new Error('wrong data type');
         }
@@ -129,14 +139,14 @@ export const resolvers = {
     },
     currentForecastByCoords: async (
       _: any,
-      { lon, lat }: { lon: number; lat: number }
+      { lon, lat }: { readonly lon: number; readonly lat: number }
     ) => {
-      const res = await fetch(
-        `${endpoint}weather${appid}&lat=${lat}&lon=${lon}`
-      );
+      const res = await fetch(`${BASE_URL}&lat=${lat}&lon=${lon}`);
 
+      // TODO? add types
       const data = await res.json();
 
+      // TODO? add middleware
       if (data.cod === '400') {
         throw new Error('wrong data type');
       }

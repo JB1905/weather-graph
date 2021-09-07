@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 import fetch from 'node-fetch';
 
-import { endpoint, appid } from '../utils';
+import { ENDPOINT, APP_ID } from '../constants';
 
 export const typeDefs = gql`
   type CurrentUVIndex {
@@ -23,10 +23,13 @@ export const resolvers = {
       _: any,
       { lon, lat }: { readonly lon: number; readonly lat: number }
     ) => {
-      const res = await fetch(`${endpoint}uvi${appid}&lat=${lat}&lon=${lon}`);
+      // TODO? move ${ENDPOINT}uvi${APP_ID} to BASE_URL const
+      const res = await fetch(`${ENDPOINT}uvi${APP_ID}&lat=${lat}&lon=${lon}`);
 
+      // TODO? add types
       const data = await res.json();
 
+      // TODO? add middleware
       if (data.cod === '400') {
         throw new Error('wrong data type');
       }

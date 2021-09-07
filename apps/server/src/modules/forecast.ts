@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 import fetch from 'node-fetch';
 
-import { endpoint, appid } from '../utils';
+import { ENDPOINT, APP_ID } from '../constants';
 
 export const typeDefs = gql`
   type Forecast {
@@ -71,13 +71,18 @@ export const typeDefs = gql`
   }
 `;
 
+// TODO set fetch base config
+const BASE_URL = `${ENDPOINT}forecast${APP_ID}`;
+
 export const resolvers = {
   Query: {
-    forecastByName: async (_: any, { name }: { name: string }) => {
-      const res = await fetch(`${endpoint}forecast${appid}&q=${name}`);
+    forecastByName: async (_: any, { name }: { readonly name: string }) => {
+      const res = await fetch(`${BASE_URL}&q=${name}`);
 
+      // TODO? add types
       const data = await res.json();
 
+      // TODO? add middleware
       if (data.cod === '404') {
         throw new Error(data.message);
       }
@@ -86,14 +91,14 @@ export const resolvers = {
     },
     forecastByCoords: async (
       _: any,
-      { lon, lat }: { lon: number; lat: number }
+      { lon, lat }: { readonly lon: number; readonly lat: number }
     ) => {
-      const res = await fetch(
-        `${endpoint}forecast${appid}&lat=${lat}&lon=${lon}`
-      );
+      const res = await fetch(`${BASE_URL}&lat=${lat}&lon=${lon}`);
 
+      // TODO? add types
       const data = await res.json();
 
+      // TODO? add middleware
       if (data.cod === '400') {
         throw new Error('wrong data type');
       }

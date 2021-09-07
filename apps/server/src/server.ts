@@ -9,11 +9,11 @@ const server = new ApolloServer({
     require('./modules/forecast'),
     require('./modules/uv-index'),
   ],
-  engine: {
-    reportSchema: true,
-  },
+  // engine: {
+  //   reportSchema: true,
+  // },
   introspection: true,
-  playground: true,
+  // playground: true,
 });
 
 server.listen().then(({ url }) => {
